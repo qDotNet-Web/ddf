@@ -1,35 +1,35 @@
-from typing import List
-from fastapi import FastAPI, HTTPException, status, UUID4
-from models import Player, Lobby
+from fastapi import FastAPI
+from . import crud, models
+from .database import connect_to_mongo, clode_mongo_connection
 
 app = FastAPI()
 
-lobbies: List[Lobby] = []
 
-@app.post("/lobbies/", response_mopdel=Lobby)
-def create_lobby(player: Player):
-    lobby = Lobby(host=player)
-    lobbies.append(lobby)
-    return lobby
+@app.on_event("startup")
+async def startup_event():
+    await connect_to_mongo()
 
 
-@app.route("/lobbies/{lobby_id}/join", response_model=Lobby)
-def join_lobby(lobby_id: UUID4, player: Player):
-    for lobby in lobbies: 
-        if lobby.id == lobby_id:
-            if lobby.is_active:
-                raise HTTPException(
-                    status_code=status.HTTP_400_BAD_REQUEST, detail="Lobby ist bereits gestartet"
-                )
-            if player not in lobby.players:
-                lobby.palyers.append(player)
-            return lobby
-    raise HTTPException(status_code=status.HTTP_400_NOT_FOUND, detail="Lobby nicht gefunden")
+@app.on_event("shutdown")
+async def shutdown_event():
+    await clode_mongo_connection()
 
 
-pp.route("lobbies/{lobby_id}", response_model=Lobby)
-def get_lobby(lobby_id: UUID4):
-    for lobby in lobbies: 
-        if lobby.id == lobby_id:
-            return lobby
-    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Lobby nicht gefunden")
+@app.post("/lobbies/", response_model=models.Lobby)
+async def create_lobby(lobby: models.Lobby):
+    return await crud.create_lobby(lobby)
+
+
+@app.get("/lobbies/{lobby_id}", response_model=models.Lobby)
+async def read_lobby(lobby_id: str):
+    return await crud.get_lobby(lobby_id)
+
+
+@app.put("/lobbies/{lobby_id}", response_model=models.Lobby)
+async def upadte_lobby(lobby_id: str, lobby: models.Lobby):
+    return await crud.update_lobby(lobby_id, lobby)
+
+
+@app.delete("/lobbies/{lobby_id}", response_model=dict)
+async def delete_lobby(lobby_id: str):
+    return await crud.delete_lobby(lobby_id)

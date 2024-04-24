@@ -11,5 +11,5 @@ async def connect_to_mongo():
     db = client['ddf_db']
 
 
-async def clode_mongo_connection():
+async def close_mongo_connection():
     db.client.close()

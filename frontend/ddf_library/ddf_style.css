@@ -1,0 +1,346 @@
+:root {
+    --main-bg-color: #2d2d2d;
+    --main-text-color: white;
+    --main-sub-text-color: #cbcbcb;
+    --main-highlight-color: #eaed35;
+    --main-border-color: white;
+    --main-border-radius: 8px;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    background-color: var(--main-bg-color); 
+    color: white;
+}
+
+.ddf-btn {
+    background-color: transparent;
+    border: 2px solid white;
+    border-radius: 0;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    margin: 0;
+    outline: none;
+    overflow: visible;
+    padding: 1.25em 2em;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    text-transform: none;
+    transition: all 0.3s ease-in-out;
+    user-select: none;
+    font-size: 13px;
+    border-radius: var(--main-border-radius);
+}
+
+.ddf-btn::before {
+    content: none;
+}
+
+.ddf-btn .ddf-text {
+    font-size: 1.125em;
+    line-height: 1.33333em;
+    display: block;
+    text-align: left;
+    transition: all 0.3s ease-in-out;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: white;
+}
+
+.ddf-btn .ddf-top-key {
+    height: 2px;
+    width: 1.5625rem;
+    top: -2px;
+    left: 0.625rem;
+    position: absolute;
+    background: var(--main-bg-color);
+    transition: width 0.5s ease-out, left 0.3s ease-out;
+}
+
+.ddf-btn .ddf-bottom-key-1 {
+    height: 2px;
+    width: 1.5625rem;
+    right: 1.875rem;
+    bottom: -2px;
+    position: absolute;
+    background: var(--main-bg-color);
+    transition: width 0.5s ease-out, right 0.3s ease-out;
+}
+
+.ddf-btn .ddf-bottom-key-2 {
+    height: 2px;
+    width: 0.625rem;
+    right: 0.625rem;
+    bottom: -2px;
+    position: absolute;
+    background: var(--main-bg-color);
+    transition: width 0.5s ease-out, right 0.3s ease-out;
+}
+
+.ddf-btn:hover {
+    color: white;
+    background: var(--main-highlight-color);
+}
+
+.ddf-btn:hover:before {
+    width: 0.9375rem;
+    background: transparent;
+}
+
+.ddf-btn:hover .ddf-text {
+    color: black;
+    padding-left: 1em;
+}
+
+.ddf-btn:hover .ddf-top-key {
+    left: -2px;
+    width: 0px;
+}
+
+.ddf-btn:hover .ddf-bottom-key-1,
+.ddf-btn:hover .ddf-bottom-key-2 {
+    right: 0;
+    width: 0;
+}
+
+.ddf-input-container {
+    position: relative;
+    width: 300px;
+    margin: 20px;
+}
+
+.ddf-input {
+    background-color: transparent;
+    border: 2px solid white;
+    border-radius: 0;
+    box-sizing: border-box;
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    outline: none;
+    padding: 1.25em 2em;
+    position: relative;
+    width: 100%;
+    transition: all 0.3s ease-in-out;
+    font-size: 16px;
+    border-radius: var(--main-border-radius);
+}
+
+.ddf-input::before {
+    content: '';
+    position: absolute;
+    width: 1.5625rem;
+    height: 2px;
+    background: white;
+    top: 50%;
+    left: 1.5em;
+    transform: translateY(-50%);
+    transition: background 0.3s linear, width 0.3s linear;
+}
+
+.ddf-input:focus {
+    color: black;
+    background: var(--main-highlight-color);
+}
+
+.ddf-input:focus::before {
+    width: 0.9375rem;
+    background: transparent;
+}
+
+.ddf-card {
+    background-color: var(--main-bg-color);
+    border: 2px solid white;
+    border-radius: 0;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    margin: 20px;
+    overflow: visible;
+    padding: 1.25em 2em;
+    position: relative;
+    text-align: center;
+    text-transform: none;
+    transition: all 0.3s ease-in-out;
+    user-select: none;
+    font-size: 13px;
+    width: 300px;
+    border-radius: var(--main-border-radius);
+}
+
+.ddf-card::before, .ddf-card::after {
+    content: '';
+    position: absolute;
+    height: 2px;
+    background: white;
+    transition: all 0.3s ease-in-out;
+}
+
+.ddf-card::before {
+    top: 0;
+    left: 50%;
+    width: 0;
+}
+
+.ddf-card::after {
+    bottom: 0;
+    right: 50%;
+    width: 0;
+}
+
+.ddf-card:hover {
+    background: var(--main-highlight-color);
+    color: black;
+}
+
+.ddf-card:hover::before {
+    left: 0;
+    width: 100%;
+}
+
+.ddf-card:hover::after {
+    right: 0;
+    width: 100%;
+}
+
+.ddf-card-content {
+    padding: 20px;
+}
+
+.ddf-card-title {
+    font-size: 1.25em;
+    margin-bottom: 0.5em;
+}
+
+.ddf-card-text {
+    font-size: 1em;
+    line-height: 1.5;
+}
+
+.ddf-modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.ddf-modal {
+    background: var(--main-bg-color);
+    border: 2px solid white;
+    padding: 2em;
+    width: 300px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+    transform: scale(0);
+    border-radius: var(--main-border-radius);
+}
+
+.ddf-modal-header, .ddf-modal-body, .ddf-modal-footer {
+    margin: 0 0 20px;
+}
+
+.ddf-modal-header {
+    font-weight: 700;
+    font-size: 1.5em;
+    color: #fff;
+}
+
+.ddf-modal-body {
+    color: #fff;
+    font-size: 1em;
+}
+
+.ddf-modal-footer {
+    text-align: center;
+}
+
+.ddf-btn {
+    background-color: transparent;
+    border: 2px solid white;
+    color: #fff;
+    padding: 0.5em 1em;
+    font-size: 1em;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    text-transform: uppercase;
+}
+
+.ddf-btn:hover {
+    background-color: var(--main-highlight-color);
+    color: black;
+}
+
+.show-modal {
+    display: flex;
+}
+
+.show-modal .ddf-modal {
+    transform: scale(1);
+}
+
+.ddf-dropdown {
+    position: relative;
+    display: inline-block;
+    width: 250px;
+}
+
+.ddf-dropdown-button {
+    background-color: var(--main-bg-color);
+    border: 2px solid var(--main-border-color);
+    border-radius: 8px;
+    color: var(--main-text-color);
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    outline: none;
+    width: 100%;
+    text-align: left;
+    box-sizing: border-box;
+}
+
+.ddf-dropdown-button:hover {
+    background-color: var(--main-highlight-color);
+    color: black;
+}
+
+.ddf-dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--main-bg-color);
+    min-width: 100%;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: var(--main-border-radius);
+    border: 2px solid var(--main-border-color);
+    border-top: none;
+}
+
+.ddf-dropdown-content a {
+    color: var(--main-text-color);
+    padding: 12px 20px;
+    text-decoration: none;
+    display: block;
+    transition: background 0.3s ease;
+    font-size: 15px;
+}
+
+.ddf-dropdown-content a:hover {
+    background-color: var(--main-highlight-color);
+    color: black;
+}

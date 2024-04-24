@@ -25,6 +25,7 @@ class GameConfig(BaseModel):
     lives: int
     rounds: int
     text_based: bool = False
+    show_cards_at_end: bool = True  # Only if text based
 
 
 class Question(BaseModel):

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="ddf_style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <title>DDF - Component Library</title>
+</head>
+<body>
+    <div>
+        <a href="#" class="ddf-btn">
+            <span class="ddf-top-key"></span>
+            <span class="ddf-text">Spiel starten</span>
+            <span class="ddf-bottom-key-1"></span>
+            <span class="ddf-bottom-key-2"></span>
+        </a>
+    </div>
+
+    <hr>
+
+    <div class="ddf-input-container">
+        <input type="text" class="ddf-input" placeholder="Placeholder">
+    </div>
+
+    <hr>
+
+    <div class="ddf-card">
+        <div class="ddf-card-content">
+            <div class="ddf-card-title">Card Titel</div>
+            <p class="ddf-card-text">Hier steht der Text für die Karte</p>
+        </div>
+    </div>
+
+    <hr>
+
+    <a href="#" class="ddf-btn" onclick="toggleModal()">
+        <span class="ddf-top-key"></span>
+        <span class="ddf-text">Modal öffnen</span>
+        <span class="ddf-bottom-key-1"></span>
+        <span class="ddf-bottom-key-2"></span>
+    </a>
+
+    <div class="ddf-modal-overlay" id="modalOverlay">
+        <div class="ddf-modal">
+            <div class="ddf-modal-header">Modal Titel</div>
+            <div class="ddf-modal-body">Hier steht der Inhalt des Modals</div>
+            <div class="ddf-modal-footer">
+                <a href="#" class="ddf-btn" onclick="toggleModal()">
+                    <span class="ddf-top-key"></span>
+                    <span class="ddf-text">Schließen</span>
+                    <span class="ddf-bottom-key-1"></span>
+                    <span class="ddf-bottom-key-2"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="ddf-dropdown">
+        <button class="ddf-dropdown-button">Dropdown</button>
+        <div class="ddf-dropdown-content">
+            <a href="#">Link 1</a>
+            <a href="#">Link 2</a>
+            <a href="#">Link 3</a>
+        </div>
+    </div>
+
+    <script>
+        function toggleModal() {
+            const modal = document.getElementById('modalOverlay');
+            modal.classList.toggle('show-modal');
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdown = document.querySelector('.ddf-dropdown-button');
+            dropdown.onclick = function() {
+                var content = this.nextElementSibling;
+                if (content.style.display === 'block') {
+                    content.style.display = 'none';
+                } else {
+                    content.style.display = 'block';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

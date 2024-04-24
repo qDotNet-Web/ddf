@@ -1,0 +1,42 @@
+[
+    {
+        "text": "Was ist die Hauptstadt von Deutschland?",
+        "correct_answer": "Berlin"
+    },
+    {
+        "text": "In welchem Jahr landete der erste Mensch auf dem Mond?",
+        "correct_answer": "1969"
+    },
+    {
+        "text": "Wer malte die Mona Lisa?",
+        "correct_answer": "Leonardo da Vinci"
+    },
+    {
+        "text": "Was ist das chemische Symbol für Wasser?",
+        "correct_answer": "H2O"
+    },
+    {
+        "text": "Wer schrieb das Drama 'Romeo und Julia'?",
+        "correct_answer": "William Shakespeare"
+    },
+    {
+        "text": "Welches Tier ist bekannt als der König der Tiere?",
+        "correct_answer": "Löwe"
+    },
+    {
+        "text": "Was ist das größte Organ des menschlichen Körpers?",
+        "correct_answer": "Haut"
+    },
+    {
+        "text": "In welchem Kontinent liegt Ägypten?",
+        "correct_answer": "Afrika"
+    },
+    {
+        "text": "Wie viele Elemente gibt es im Periodensystem?",
+        "correct_answer": "118"
+    },
+    {
+        "text": "Welches Land gewann die Fußball-Weltmeisterschaft 2014?",
+        "correct_answer": "Deutschland"
+    }
+]

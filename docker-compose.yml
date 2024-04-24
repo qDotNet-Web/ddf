@@ -1,0 +1,17 @@
+services:
+  web:
+    build: .
+    ports: 
+      - "8000:8000"
+    depends_on:
+      - mongo
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/ddf_db
+  mongo:
+    image: mongo:latest
+    ports: 
+      - "27017:27017"
+    volumes: 
+      - mongo_data:/data/
+volumes: 
+  mongo_data:

@@ -33,3 +33,13 @@ async def upadte_lobby(lobby_id: str, lobby: models.Lobby):
 @app.delete("/lobbies/{lobby_id}", response_model=dict)
 async def delete_lobby(lobby_id: str):
     return await crud.delete_lobby(lobby_id)
+
+
+@app.post("/lobbies/{lobby_id}/start")
+async def start_game(lobby_id: str):
+    return await crud.start_game(lobby_id)
+
+
+@app.post("/lobbies/{lobby_id}/vote")
+async def vote(lobby_id: str, player_id: str, voted_player_id: str):
+    return await crud.vote(lobby_id, player_id, voted_player_id)

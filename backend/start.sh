@@ -1,1 +1,1 @@
-uvicorn app.main:app --reload --host 0.0.0.0 --prt 80
+uvicorn app.main:app --reload --host 0.0.0.0 --port 80

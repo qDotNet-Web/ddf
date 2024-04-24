@@ -20,12 +20,26 @@ class Player(BaseModel):
     avatar: Optional[str] = None
 
 
+class GameConfig(BaseModel):
+    max_players: int
+    lives: int
+    rounds: int
+    text_based: bool = False
+
+
+class Question(BaseModel):
+    question: str
+    answer: str
+
+    class Config: 
+        arbitraty_types_allowed = True
+        json_encoders = {ObjectId: str}
+
+
 class Lobby(BaseModel):
     id: PyObjectId = Field(default_factory=PyObjectId, alias='_id')
     host: Player
     players: List[Player] = []
     is_active: bool = False
-    max_players: int
-    lives: int
-    rounds: int
-    text_based: bool = False
+    current_round: int = 0
+    game_config: GameConfig

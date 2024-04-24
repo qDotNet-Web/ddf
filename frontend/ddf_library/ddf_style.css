@@ -1,7 +1,7 @@
 :root {
     --main-bg-color: #2d2d2d;
     --main-text-color: white;
-    --main-sub-text-color: #cbcbcb;
+    --main-sub-text-color: #dedede;
     --main-highlight-color: #eaed35;
     --main-border-color: white;
     --main-border-radius: 8px;
@@ -267,17 +267,6 @@ body {
 
 .ddf-modal-footer {
     text-align: center;
-}
-
-.ddf-btn {
-    background-color: transparent;
-    border: 2px solid white;
-    color: #fff;
-    padding: 0.5em 1em;
-    font-size: 1em;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    text-transform: uppercase;
 }
 
 .ddf-btn:hover {

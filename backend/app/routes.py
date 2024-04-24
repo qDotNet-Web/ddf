@@ -32,3 +32,5 @@ async def start_game(lobby_id: str):
 @app.post("/lobbies/{lobby_id}/vote")
 async def vote(lobby_id: str, player_id: str, voted_player_id: str):
     return await crud.vote(lobby_id, player_id, voted_player_id)
+
+# Add Routes

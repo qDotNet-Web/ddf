@@ -29,3 +29,16 @@ Dieses Projekt verwendet:
 git clone https://github.com/deinusername/derduemmstefliegt.git
 cd ddf
 docker-compose up -d
+```
+
+## Wie man beiträgt 🤝
+
+Interessierte an einer Mitarbeit sind willkommen! Es gibt viele Möglichkeiten, beizutragen:
+
+- 📝 Verbesserung der Dokumentation
+- ➕ Hinzufügen neuer Fragen
+- 🛠 Verbesserung der bestehenden Funktionalitäten
+
+## Lizenz 📜
+
+Dieses Projekt ist unter der MIT Lizenz lizenziert.

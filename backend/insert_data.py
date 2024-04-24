@@ -1,7 +1,8 @@
-from models import Question
+from app.models import Question
 from motor.motor_asyncio import AsyncIOMotorClient
 import asyncio
 import json
+
 
 async def insert_questions():
     client = AsyncIOMotorClient("mongodb://localhost:27017")

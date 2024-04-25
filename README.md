@@ -26,7 +26,7 @@ Dieses Projekt verwendet:
 ### Installation
 
 ```bash
-git clone https://github.com/deinusername/derduemmstefliegt.git
+git clone https://github.com/q96exe/ddf
 cd ddf
 docker-compose up -d
 ```

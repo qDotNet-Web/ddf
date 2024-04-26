@@ -1,6 +1,6 @@
 services:
-  web:
-    build: .
+  backend:
+    build: ./backend
     ports: 
       - "8000:8000"
     depends_on:
@@ -21,6 +21,14 @@ services:
       - mongo_data:/data/db
     networks:
         - ddf_network
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "80:80"
+    networks:
+      - ddf_network
+
 volumes: 
   mongo_data:
 

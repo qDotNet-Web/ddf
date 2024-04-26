@@ -2,11 +2,11 @@ FROM python:3.12.1-slim
 
 WORKDIR /code
 
-COPY backend/requirements.txt /code/requirements.txt
+COPY requirements.txt /code/requirements.txt
 
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
-COPY backend/app /code/app
+COPY app /code/app
 
 EXPOSE 8000
 

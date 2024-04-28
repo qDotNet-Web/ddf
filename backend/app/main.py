@@ -1,12 +1,11 @@
 from fastapi import FastAPI
-from .api.endpoints import game, user
+from .api.endpoints import game
 from .core.database import db
 
 
 app = FastAPI()
 
 app.include_router(game.router, prefix="/game", tags=["game"])
-app.include_router(user.router, prefix="/user", tags=["user"])
 
 
 @app.on_event("startup")

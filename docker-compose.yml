@@ -22,12 +22,12 @@ services:
     networks:
         - ddf_network
 
-  frontend:
-    build: ./frontend
-    ports:
-      - "80:80"
-    networks:
-      - ddf_network
+#  frontend:
+#    build: ./frontend
+#    ports:
+#      - "80:80"
+#    networks:
+#      - ddf_network
 
 volumes: 
   mongo_data:

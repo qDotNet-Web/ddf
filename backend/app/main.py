@@ -1,31 +1,27 @@
 from fastapi import FastAPI
-from .api.endpoints import game
+from .api.router import game_router
 from .core.database import db
 
 
 app = FastAPI()
 
-app.include_router(game.router, prefix="/game", tags=["game"])
+app.include_router(game_router.router, prefix="/game", tags=["game"])
 
 
 @app.on_event("startup")
-async def startup_event():
+async def startup_event() -> None:
     await db.initialize()
 
 
 @app.on_event("shutdown")
-async def shutdown_event():
+async def shutdown_event() -> None:
     db.close()
 
 
 '''
 Spielprinzip:
 
-Was würdest du sagen sind die wichtigsten Routen für die API? Wenn du das Spielprinzip bedenkst. 
-
-Gern hier noch einmal eine Zusammenfassung des Spiels: 
-
-1. Es können bis zu aktuell 10 Spieler spielen
+1. Es können aktuell bis zu 10 Spieler spielen
 2. Jemand wählt seinen Namen aus und erstellt eine Lobby
 3. Man kann mit diesem Code Leute einladen
 4. Wenn diese Joinen müssen sie einen Namen eintragen

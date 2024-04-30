@@ -1,25 +1,23 @@
-from pydantic import BaseModel, Field, validator
-from bson import ObjectId
+from pydantic import BaseModel, Field
 from typing import List, Any
 
 
-"""class PyObjectId(ObjectId):
-    @classmethod
-    def __get_validators__(cls):
-        yield cls.validate
-
-    @classmethod
-    def validate(cls, v: Any):
-        if not isinstance(v, ObjectId):
-            raise TypeError("ObjectId required")
-        return str(v)"""
+class PlayerCreate(BaseModel):
+    name: str
 
 
-class Player(BaseModel):
+class PlayerRead(BaseModel):
     id: str = Field(default_factory=str, alias="_id")
     name: str
     lives: int
-    is_alive: bool = True
+    is_alive: bool
+
+
+class PlayerUpdate(BaseModel):
+    id: str = Field(default_factory=str, alias="_id")
+    name: str
+    lives: int
+    is_alive: bool
 
 
 class Settings(BaseModel):
@@ -27,12 +25,26 @@ class Settings(BaseModel):
     lives_per_player: int = 3
 
 
-class Lobby(BaseModel):
+class LobbyRead(BaseModel):
     id: str = Field(default_factory=str, alias="_id")
     code: str
-    owner: Player
+    owner: PlayerRead
     is_active: bool = False
-    players: List[Player] = []
+    players: List[PlayerRead] = []
+    settings: Settings
+
+
+class LobbyCreate(BaseModel):
+    owner: PlayerCreate
+    settings: Settings
+
+
+class LobbyUpdate(BaseModel):
+    id: str = Field(default_factory=str, alias="_id")
+    code: str
+    owner: PlayerRead
+    is_active: bool = False
+    players: List[PlayerRead] = []
     settings: Settings
 
 

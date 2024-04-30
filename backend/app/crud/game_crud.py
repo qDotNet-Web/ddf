@@ -2,10 +2,16 @@ from bson import ObjectId
 from fastapi import HTTPException
 from ..models.game_model import Lobby, Player, Question, Settings
 from ..core.database import db
+import random
 
 
 async def get_game_collection():
     return db.db["game"]
+
+
+# CRUD operations for Game
+def create_lobby_code():
+    return ''.join(random.choices("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789", k=6))
 
 
 # CRUD operations for Lobby

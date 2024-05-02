@@ -48,6 +48,7 @@
         © 2024 qdotnet <br>
         Es werden keine personenbezogenen Daten erhoben.
         </footer>
+        <component :is="currentView"></component>
     </div>
 </template>
 

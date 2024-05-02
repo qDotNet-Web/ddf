@@ -20,6 +20,7 @@
                     </div>
                     <div class="modal-body space-between">
                         <button type="button" class="btn btn-modal" id="createGameButton" @click="currentView = 'createLobby'">Erstellen</button>
+                        <component :is="currentView"></component>
                         <button type="button" class="btn btn-modal" id="joinGameButton">Beitreten</button>
                     </div>
                 </div>

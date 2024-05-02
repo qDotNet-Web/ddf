@@ -21,10 +21,10 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">Spiel-ID:</label>
-                            <input type="text" class="form-control" id="recipient-name">
-                            <button type="button" class="btn btn-modal" id="joinGameButton">Spiel beitreten</button>
-                            <button type="button" class="btn btn-modal" id="createGameButton" >Spiel erstellen</button>
+                            <label for="gameId" class="col-form-label">Spiel-ID:</label>
+                            <input type="text" class="form-control" id="gameId">
+                            <button type="button" class="btn btn-modal" id="joinGameButton">Beitreten</button>
+                            <button type="button" class="btn btn-modal" id="createGameButton">Erstellen</button>
                         </div>
                     </div>
                     <div class="modal-footer">

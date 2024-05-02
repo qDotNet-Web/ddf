@@ -19,4 +19,4 @@ jobs:
 
       - name: Deploy to Test Server
         run: |
-          ssh -o StrictHostKeyChecking=no root@45.138.49.163 "cd /home/ddf && docker-compose down && git stash && git pull origin dev && docker-compose up -d"
+          ssh -o StrictHostKeyChecking=no root@45.138.49.163 "cd /home/ddf && docker-compose down && git stash && git pull origin dev && docker-compose up --build"

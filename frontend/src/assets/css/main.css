@@ -130,6 +130,11 @@ body, html {
 .modal-footer {
     border: none;
 }
+
+.btn-close {
+    size: 1.5rem;
+}
+
 .space-between {
     display: flex;
     justify-content: space-between;

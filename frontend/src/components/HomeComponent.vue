@@ -4,6 +4,13 @@
 </style>
 
 <template>
+
+<div v-if="currentView === 'CreateLobby'">
+    <component :is="currentView"></component>
+    
+</div>
+  <div v-else>
+    
     <div class="container my-auto vertical-center dff-padding-top" id="app">
         <img src="@/assets/logo.png" alt="Logo" class="icon mb-4">
         <h1 class="dff-h1 mb-4">Der Dümmste fliegt!</h1>
@@ -48,8 +55,10 @@
         © 2024 qdotnet <br>
         Es werden keine personenbezogenen Daten erhoben.
         </footer>
-        <component :is="currentView"></component>
     </div>
+  </div>
+
+
 </template>
 
 <script>

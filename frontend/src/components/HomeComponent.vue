@@ -16,22 +16,14 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content bg-dark text-light">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="playModalLabel">Ein Spiel starten</h5>
+                        <h5 class="modal-title" id="playModalLabel">Möchtest du einem Spiel beitreten, oder eines erstellen?</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="">Lobby-ID</span>
-                            </div>
-                            <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="button">Button</button>
-                            </div>
-                        </div>
+                        <button type="button" class="btn btn-modal" id="createGameButton">Erstellen</button>
+                        <button type="button" class="btn btn-modal" id="joinGameButton">Beitreten</button>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-modal" id="createGameButton">Erstellen</button>
                         <button type="button" class="btn btn-modal" data-bs-dismiss="modal">Schließen</button>
                     </div>
                 </div>

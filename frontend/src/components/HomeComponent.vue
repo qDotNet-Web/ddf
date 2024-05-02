@@ -21,7 +21,11 @@
                     </div>
                     <div class="modal-body">
                         <button type="button" class="btn btn-modal" id="createGameButton" @click="$router.push({path: 'createGame'})">Spiel erstellen</button>
-                        <button type="button" class="btn btn-modal" id="joinGameButton">Spiel beitreten</button>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Recipient:</label>
+                            <input type="text" class="form-control" id="recipient-name">
+                            <button type="button" class="btn btn-modal" id="joinGameButton">Spiel beitreten</button>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-modal" data-bs-dismiss="modal">Schließen</button>

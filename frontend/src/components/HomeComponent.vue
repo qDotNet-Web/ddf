@@ -19,7 +19,7 @@
                         <h5 class="modal-title" id="playModalLabel">Möchtest du einem Spiel beitreten, oder erstellen?</h5>
                     </div>
                     <div class="modal-body space-between">
-                        <button type="button" class="btn btn-modal" data-bs-dismiss="modal" id="createGameButton" @click="currentView = 'CreateLobby'">Erstellen</button>
+                        <router-link to = "/createLobby"><button type="button" class="btn btn-modal" data-bs-dismiss="modal" id="createGameButton">Erstellen</button></router-link>
                         <button type="button" class="btn btn-modal" id="joinGameButton">Beitreten</button>
                     </div>
                 </div>
@@ -48,7 +48,6 @@
         © 2024 qdotnet <br>
         Es werden keine personenbezogenen Daten erhoben.
         </footer>
-        <component :is="currentView"></component>
     </div>
 </template>
 

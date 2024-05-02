@@ -24,7 +24,7 @@
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label">Recipient:</label>
                             <input type="text" class="form-control" id="recipient-name">
-                            <button type="button" class="btn btn-modal" id="joinGameButton">Spiel beitreten</button>
+                            <!-- <button type="button" class="btn btn-modal" id="joinGameButton">Spiel beitreten</button> -->
                         </div>
                     </div>
                     <div class="modal-footer">

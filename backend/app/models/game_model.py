@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field
-from typing import List, Any
+from typing import List
 
 
 class PlayerCreate(BaseModel):
@@ -20,9 +20,16 @@ class PlayerUpdate(BaseModel):
     is_alive: bool
 
 
+class PlayerJoin(BaseModel):
+    name: str
+    lives: int
+    is_alive: bool
+
+
 class Settings(BaseModel):
     round_timer: int = 180
     lives_per_player: int = 3
+    max_players: int = 10
 
 
 class LobbyRead(BaseModel):
@@ -49,5 +56,6 @@ class LobbyUpdate(BaseModel):
 
 
 class Question(BaseModel):
+    id: str = Field(default_factory=str, alias="_id")
     question: str
     answer: str

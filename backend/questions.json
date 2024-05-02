@@ -38,5 +38,1065 @@
     {
         "text": "Welches Land gewann die Fußball-Weltmeisterschaft 2014?",
         "correct_answer": "Deutschland"
+    },
+    {
+        "text": "Was ist die chemische Formel von Kohlendioxid?",
+        "correct_answer": "CO2"
+    },
+    {
+        "text": "In welcher Stadt steht der Eiffelturm?",
+        "correct_answer": "Paris"
+    },
+    {
+        "text": "Was ist die kleinste Primzahl?",
+        "correct_answer": "2"
+    },
+    {
+        "text": "Welches Element hat das chemische Symbol 'O'?",
+        "correct_answer": "Sauerstoff"
+    },
+    {
+        "text": "Wer schrieb 'Der Fänger im Roggen'?",
+        "correct_answer": "J.D. Salinger"
+    },
+    {
+        "text": "Was ist der am meisten gesprochene Muttersprache der Welt?",
+        "correct_answer": "Mandarin"
+    },
+    {
+        "text": "Was ist das härteste natürliche Material auf der Erde?",
+        "correct_answer": "Diamant"
+    },
+    {
+        "text": "Welcher Fluss ist der längste der Welt?",
+        "correct_answer": "Amazonas"
+    },
+    {
+        "text": "Was ist das Hauptprodukt, das von Bienen hergestellt wird?",
+        "correct_answer": "Honig"
+    },
+    {
+        "text": "Wie viele Bundesstaaten hat die USA?",
+        "correct_answer": "50"
+    },
+    {
+        "text": "Welcher Planet ist als der Rote Planet bekannt?",
+        "correct_answer": "Mars"
+    },
+    {
+        "text": "Wie viele Tasten hat ein klassisches Klavier?",
+        "correct_answer": "88"
+    },
+    {
+        "text": "Wer ist der Autor von 'Krieg und Frieden'?",
+        "correct_answer": "Leo Tolstoi"
+    },
+    {
+        "text": "In welchem Jahr fiel die Berliner Mauer?",
+        "correct_answer": "1989"
+    },
+    {
+        "text": "Was ist das größte Tier im Ozean?",
+        "correct_answer": "Blauwal"
+    },
+    {
+        "text": "Wie viele Herzklappen hat ein menschliches Herz?",
+        "correct_answer": "4"
+    },
+    {
+        "text": "Welche Farbe ergibt Blau gemischt mit Gelb?",
+        "correct_answer": "Grün"
+    },
+    {
+        "text": "Was ist das gesetzliche Zahlungsmittel in Japan?",
+        "correct_answer": "Yen"
+    },
+    {
+        "text": "Wer war der erste Präsident der Vereinigten Staaten?",
+        "correct_answer": "George Washington"
+    },
+    {
+        "text": "In welchem Land wurde die Pizza erfunden?",
+        "correct_answer": "Italien"
+    },
+    {
+        "text": "Was ist das Symbol für Gold im Periodensystem?",
+        "correct_answer": "Au"
+    },
+    {
+        "text": "Welche Stadt ist als 'Die Stadt der Liebe' bekannt?",
+        "correct_answer": "Paris"
+    },
+    {
+        "text": "Wer schuf das Kunstwerk 'Das letzte Abendmahl'?",
+        "correct_answer": "Leonardo da Vinci"
+    },
+    {
+        "text": "Was ist das größte Land der Welt nach Fläche?",
+        "correct_answer": "Russland"
+    },
+    {
+        "text": "Was ist das grundlegende Maß der elektrischen Stromstärke?",
+        "correct_answer": "Ampere"
+    },
+    {
+        "text": "Wie viele Minuten hat eine Stunde?",
+        "correct_answer": "60"
+    },
+    {
+        "text": "Welche Stadt ist die Hauptstadt von Russland?",
+        "correct_answer": "Moskau"
+    },
+    {
+        "text": "Was ist das Hauptnahrungsmittel von Pandas?",
+        "correct_answer": "Bambus"
+    },
+    {
+        "text": "Welches Metall ist bekannt dafür, dass es bei Raumtemperatur flüssig ist?",
+        "correct_answer": "Quecksilber"
+    },
+    {
+        "text": "Welcher Kontinent ist der kleinste der Welt?",
+        "correct_answer": "Australien"
+    },
+    {
+        "text": "In welchem Jahr wurde das iPhone erstmals vorgestellt?",
+        "correct_answer": "2007"
+    },
+    {
+        "text": "Welches Land hat die größte Bevölkerung der Welt?",
+        "correct_answer": "China"
+    },
+    {
+        "text": "Was ist das chemische Symbol für Eisen?",
+        "correct_answer": "Fe"
+    },
+    {
+        "text": "Wie viele Sekunden hat eine Minute?",
+        "correct_answer": "60"
+    },
+    {
+        "text": "In welchem Land befindet sich der Mount Everest?",
+        "correct_answer": "Nepal"
+    },
+    {
+        "text": "Wer hat das erste Telefon erfunden?",
+        "correct_answer": "Alexander Graham Bell"
+    },
+    {
+        "text": "Was ist das häufigste Element im Universum?",
+        "correct_answer": "Wasserstoff"
+    },
+    {
+        "text": "In welcher Stadt befindet sich der Buckingham Palace?",
+        "correct_answer": "London"
+    },
+    {
+        "text": "Was ist der chemische Prozess, bei dem Pflanzen Sonnenlicht zur Herstellung von Nahrung nutzen?",
+        "correct_answer": "Photosynthese"
+    },
+    {
+        "text": "Welches Organ filtert das Blut in einem menschlichen Körper?",
+        "correct_answer": "Niere"
+    },
+    {
+        "text": "Wie viele Punkte zählt ein Touchdown im American Football?",
+        "correct_answer": "6"
+    },
+    {
+        "text": "Welches Gas ist für die Erwärmung der Erdatmosphäre verantwortlich?",
+        "correct_answer": "Kohlendioxid"
+    },
+    {
+        "text": "Welche Sprache wird hauptsächlich in Brasilien gesprochen?",
+        "correct_answer": "Portugiesisch"
+    },
+    {
+        "text": "Was ist die Hauptzutat in traditionellem Sushi?",
+        "correct_answer": "Reis"
+    },
+    {
+        "text": "In welchem Jahr begann der Zweite Weltkrieg?",
+        "correct_answer": "1939"
+    },
+    {
+        "text": "Wer ist bekannt für seine Relativitätstheorie?",
+        "correct_answer": "Albert Einstein"
+    },
+    {
+        "text": "Welche Zahl ist das römische Symbol 'X'?",
+        "correct_answer": "10"
+    },
+    {
+        "text": "Welches Land hat eine Flagge mit einem weißen Kreuz auf rotem Hintergrund?",
+        "correct_answer": "Schweiz"
+    },
+    {
+        "text": "Was ist das größte Land der Welt nach Bevölkerung?",
+        "correct_answer": "China"
+    },
+    {
+        "text": "Was ist der Hauptbestandteil von Glas?",
+        "correct_answer": "Sand"
+    },
+    {
+        "text": "Welches Organ produziert die Verdauungsenzyme im menschlichen Körper?",
+        "correct_answer": "Pankreas"
+    },
+    {
+        "text": "Welches Land hat die höchste Anzahl an offiziellen Sprachen?",
+        "correct_answer": "Indien"
+    },
+    {
+        "text": "In welchem Jahr fiel die Berliner Mauer?",
+        "correct_answer": "1989"
+    },
+    {
+        "text": "Wie heißt der längste Fluss in Deutschland?",
+        "correct_answer": "Rhein"
+    },
+    {
+        "text": "Welche Farbe symbolisiert Frieden?",
+        "correct_answer": "Weiß"
+    },
+    {
+        "text": "Welche zwei Länder teilen sich die längste internationale Grenze?",
+        "correct_answer": "USA und Kanada"
+    },
+    {
+        "text": "Wer war der römische Gott des Krieges?",
+        "correct_answer": "Mars"
+    },
+    {
+        "text": "Welches ist das größte innere Organ des menschlichen Körpers?",
+        "correct_answer": "Leber"
+    },
+    {
+        "text": "Wie viele Planeten hat unser Sonnensystem?",
+        "correct_answer": "8"
+    },
+    {
+        "text": "Wer malte 'Das Mädchen mit dem Perlenohrring'?",
+        "correct_answer": "Johannes Vermeer"
+    },
+    {
+        "text": "Welches Land ist bekannt für seine Tulpen?",
+        "correct_answer": "Niederlande"
+    },
+    {
+        "text": "Was ist das chemische Symbol für Natrium?",
+        "correct_answer": "Na"
+    },
+    {
+        "text": "In welchem Land wurde Adolf Hitler geboren?",
+        "correct_answer": "Österreich"
+    },
+    {
+        "text": "Welche Stadt ist als 'Big Apple' bekannt?",
+        "correct_answer": "New York"
+    },
+    {
+        "text": "Was ist das häufigste Metall in der Erdkruste?",
+        "correct_answer": "Aluminium"
+    },
+    {
+        "text": "In welchem Jahr wurde die deutsche Wiedervereinigung vollzogen?",
+        "correct_answer": "1990"
+    },
+    {
+        "text": "Was ist das am meisten verbreitete Religion der Welt?",
+        "correct_answer": "Christentum"
+    },
+    {
+        "text": "Wie viele Länder gibt es in der Welt?",
+        "correct_answer": "195"
+    },
+    {
+        "text": "Wer schrieb '1984'?",
+        "correct_answer": "George Orwell"
+    },
+    {
+        "text": "Welche Stadt war ursprünglich als Byzanz bekannt?",
+        "correct_answer": "Istanbul"
+    },
+    {
+        "text": "Welcher Ozean ist der größte?",
+        "correct_answer": "Pazifischer Ozean"
+    },
+    {
+        "text": "Wie viele Knochen hat ein erwachsener menschlicher Körper?",
+        "correct_answer": "206"
+    },
+    {
+        "text": "In welchem Land liegt die Stadt Casablanca?",
+        "correct_answer": "Marokko"
+    },
+    {
+        "text": "Was ist der längste Fluss in Europa?",
+        "correct_answer": "Wolga"
+    },
+    {
+        "text": "Was ist das kleinste Land der Welt?",
+        "correct_answer": "Vatikanstadt"
+    },
+    {
+        "text": "In welchem Jahr wurde das World Wide Web (WWW) erstmals öffentlich zugänglich gemacht?",
+        "correct_answer": "1991"
+    },
+    {
+        "text": "Wie viele Bundesländer hat Deutschland?",
+        "correct_answer": "16"
+    },
+    {
+        "text": "Wer ist der Autor von 'Harry Potter'?",
+        "correct_answer": "J.K. Rowling"
+    },
+    {
+        "text": "Welches Tier wird oft als 'Schiff der Wüste' bezeichnet?",
+        "correct_answer": "Kamel"
+    },
+    {
+        "text": "Wie heißt der längste Fluss in Südamerika?",
+        "correct_answer": "Amazonas"
+    },
+    {
+        "text": "Welcher Künstler ist berühmt für das Schneiden seines eigenen Ohrs?",
+        "correct_answer": "Vincent van Gogh"
+    },
+    {
+        "text": "Was ist der chemische Prozess, bei dem Pflanzen Sonnenlicht zur Herstellung von Nahrung nutzen?",
+        "correct_answer": "Photosynthese"
+    },
+    {
+        "text": "Wie viele Länder gibt es in Afrika?",
+        "correct_answer": "54"
+    },
+    {
+        "text": "In welchem Jahr endete der Erste Weltkrieg?",
+        "correct_answer": "1918"
+    },
+    {
+        "text": "Welches Tier ist das größte auf der Erde?",
+        "correct_answer": "Blauwal"
+    },
+    {
+        "text": "Wie viele Streifen hat die amerikanische Flagge?",
+        "correct_answer": "13"
+    },
+    {
+        "text": "Was ist die Hauptstadt von Kanada?",
+        "correct_answer": "Ottawa"
+    },
+    {
+        "text": "Wer hat die Relativitätstheorie formuliert?",
+        "correct_answer": "Albert Einstein"
+    },
+    {
+        "text": "Was ist das Hauptexportprodukt von Saudi-Arabien?",
+        "correct_answer": "Öl"
+    },
+    {
+        "text": "Welche Sprache spricht man in Australien?",
+        "correct_answer": "Englisch"
+    },
+    {
+        "text": "Wie viele Seiten hat ein Würfel?",
+        "correct_answer": "6"
+    },
+    {
+        "text": "Welches Land grenzt an die meisten anderen Länder?",
+        "correct_answer": "Russland"
+    },
+    {
+        "text": "Was ist die Hauptstadt von Schweden?",
+        "correct_answer": "Stockholm"
+    },
+    {
+        "text": "Welche Stadt ist als die Windy City bekannt?",
+        "correct_answer": "Chicago"
+    },
+    {
+        "text": "Wer schrieb 'Der große Gatsby'?",
+        "correct_answer": "F. Scott Fitzgerald"
+    },
+    {
+        "text": "Welches Tier ist das nationale Symbol der USA?",
+        "correct_answer": "Bald Eagle"
+    },
+    {
+        "text": "Wie viele Mitgliedsstaaten hat die Europäische Union (Stand 2021)?",
+        "correct_answer": "27"
+    },
+    {
+        "text": "Was ist der tiefste Punkt der Weltmeere?",
+        "correct_answer": "Marianengraben"
+    },
+    {
+        "text": "Welches Land ist der größte Produzent von Kaffee?",
+        "correct_answer": "Brasilien"
+    },
+    {
+        "text": "Was ist das härteste natürliche Material auf der Erde?",
+        "correct_answer": "Diamant"
+    },
+    {
+        "text": "Welche Stadt ist die Hauptstadt von Australien?",
+        "correct_answer": "Canberra"
+    },
+    {
+        "text": "Welcher Planet ist als der Rote Planet bekannt?",
+        "correct_answer": "Mars"
+    },
+    {
+        "text": "Was ist die Hauptstadt von Ägypten?",
+        "correct_answer": "Kairo"
+    },
+    {
+        "text": "Wie viele Streifen hat die amerikanische Flagge?",
+        "correct_answer": "13"
+    },
+    {
+        "text": "Was ist die Hauptstadt von Kanada?",
+        "correct_answer": "Ottawa"
+    },
+    {
+        "text": "Wer hat die Relativitätstheorie formuliert?",
+        "correct_answer": "Albert Einstein"
+    },
+    {
+        "text": "Was ist das Hauptexportprodukt von Saudi-Arabien?",
+        "correct_answer": "Öl"
+    },
+    {
+        "text": "Welche Sprache spricht man in Australien?",
+        "correct_answer": "Englisch"
+    },
+    {
+        "text": "Wie viele Seiten hat ein Würfel?",
+        "correct_answer": "6"
+    },
+    {
+        "text": "Welches Land grenzt an die meisten anderen Länder?",
+        "correct_answer": "Russland"
+    },
+    {
+        "text": "Was ist die Hauptstadt von Schweden?",
+        "correct_answer": "Stockholm"
+    },
+    {
+        "text": "Welche Stadt ist als die Windy City bekannt?",
+        "correct_answer": "Chicago"
+    },
+    {
+        "text": "Wer schrieb 'Der große Gatsby'?",
+        "correct_answer": "F. Scott Fitzgerald"
+    },
+    {
+        "text": "Welches Tier ist das nationale Symbol der USA?",
+        "correct_answer": "Bald Eagle"
+    },
+    {
+        "text": "Wie viele Mitgliedsstaaten hat die Europäische Union (Stand 2021)?",
+        "correct_answer": "27"
+    },
+    {
+        "text": "Was ist der tiefste Punkt der Weltmeere?",
+        "correct_answer": "Marianengraben"
+    },
+    {
+        "text": "Welches Land ist der größte Produzent von Kaffee?",
+        "correct_answer": "Brasilien"
+    },
+    {
+        "text": "Welche Stadt ist die Hauptstadt von Australien?",
+        "correct_answer": "Canberra"
+    },
+    {
+        "text": "Was ist die Hauptstadt von Ägypten?",
+        "correct_answer": "Kairo"
+    },
+    {
+        "text": "Wie viele Streifen hat die amerikanische Flagge?",
+        "correct_answer": "13"
+    },
+    {
+        "text": "Was ist die Hauptstadt von Kanada?",
+        "correct_answer": "Ottawa"
+    },
+    {
+        "text": "Wer hat die Relativitätstheorie formuliert?",
+        "correct_answer": "Albert Einstein"
+    },
+    {
+        "text": "Was ist das Hauptexportprodukt von Saudi-Arabien?",
+        "correct_answer": "Öl"
+    },
+    {
+        "text": "Welche Sprache spricht man in Australien?",
+        "correct_answer": "Englisch"
+    },
+    {
+        "text": "Wie viele Seiten hat ein Würfel?",
+        "correct_answer": "6"
+    },
+    {
+        "text": "Welches Land grenzt an die meisten anderen Länder?",
+        "correct_answer": "Russland"
+    },
+    {
+        "text": "Was ist die Hauptstadt von Schweden?",
+        "correct_answer": "Stockholm"
+    },
+    {
+        "text": "Welche Stadt ist als die Windy City bekannt?",
+        "correct_answer": "Chicago"
+    },
+    {
+        "text": "Wer schrieb 'Der große Gatsby'?",
+        "correct_answer": "F. Scott Fitzgerald"
+    },
+    {
+        "text": "Welches Tier ist das nationale Symbol der USA?",
+        "correct_answer": "Bald Eagle"
+    },
+    {
+        "text": "Wie viele Mitgliedsstaaten hat die Europäische Union (Stand 2021)?",
+        "correct_answer": "27"
+    },
+    {
+        "text": "Welche Farbe hat das Blut eines Oktopus?",
+        "correct_answer": "Blau"
+    },
+    {
+        "text": "Wie viele Gesichtsmuskeln setzt ein Mensch beim Lächeln ein?",
+        "correct_answer": "17"
+    },
+    {
+        "text": "Welches Land ist der größte Produzent von Vanille?",
+        "correct_answer": "Madagaskar"
+    },
+    {
+        "text": "In welchem Ozean liegt das Bermudadreieck?",
+        "correct_answer": "Atlantischer Ozean"
+    },
+    {
+        "text": "Welcher Planet unseres Sonnensystems ist der heißeste?",
+        "correct_answer": "Venus"
+    },
+    {
+        "text": "Was ist der größte Vogel der Welt?",
+        "correct_answer": "Strauß"
+    },
+    {
+        "text": "Wie viele Zähne hat ein normaler erwachsener Mensch?",
+        "correct_answer": "32"
+    },
+    {
+        "text": "Was war das erste Videospiel, das jemals hergestellt wurde?",
+        "correct_answer": "Pong"
+    },
+    {
+        "text": "Wie viele Spieler sind in einer Fußballmannschaft auf dem Feld?",
+        "correct_answer": "11"
+    },
+    {
+        "text": "Was ist die am häufigsten gesprochene Sprache in Südamerika?",
+        "correct_answer": "Spanisch"
+    },
+    {
+        "text": "Welches Tier kann rückwärts laufen?",
+        "correct_answer": "Schimpanse"
+    },
+    {
+        "text": "Was ist der Hauptbestandteil von Bronze?",
+        "correct_answer": "Kupfer"
+    },
+    {
+        "text": "Welcher Körperbereich altert bei Menschen am schnellsten?",
+        "correct_answer": "Haut"
+    },
+    {
+        "text": "Welches Tier hat das längste Schwangerschaftsintervall?",
+        "correct_answer": "Elefant"
+    },
+    {
+        "text": "Wie viele Kammern hat das Herz eines Menschen?",
+        "correct_answer": "4"
+    },
+    {
+        "text": "Was ist der am häufigsten verwendete Buchstabe in der deutschen Sprache?",
+        "correct_answer": "E"
+    },
+    {
+        "text": "In welchem Jahr wurde das erste Auto gebaut?",
+        "correct_answer": "1885"
+    },
+    {
+        "text": "Welche Stadt ist als die Ewige Stadt bekannt?",
+        "correct_answer": "Rom"
+    },
+    {
+        "text": "Was ist der höchste Berg in Europa?",
+        "correct_answer": "Mont Blanc"
+    },
+    {
+        "text": "Wie viele Buchstaben hat das deutsche Alphabet?",
+        "correct_answer": "26"
+    },
+    {
+        "text": "Wer schrieb das Buch 'Der Prozess'?",
+        "correct_answer": "Franz Kafka"
+    },
+    {
+        "text": "Welches Land hat die größte Anzahl von Vulkanen?",
+        "correct_answer": "Indonesien"
+    },
+    {
+        "text": "In welcher Stadt wurden die Olympischen Spiele 2000 ausgetragen?",
+        "correct_answer": "Sydney"
+    },
+    {
+        "text": "Wie viele Elemente sind auf dem Periodensystem bekannt?",
+        "correct_answer": "118"
+    },
+    {
+        "text": "Welches Gebäude war das höchste der Welt vor dem Bau des Burj Khalifa?",
+        "correct_answer": "Taipei 101"
+    },
+    {
+        "text": "In welchem Land liegt der Victoriafall?",
+        "correct_answer": "Simbabwe"
+    },
+    {
+        "text": "Was ist die Hauptstadt von Neuseeland?",
+        "correct_answer": "Wellington"
+    },
+    {
+        "text": "Wie heißt das größte Technologieunternehmen in Südkorea?",
+        "correct_answer": "Samsung"
+    },
+    {
+        "text": "Wie lange dauert die Erdumlaufbahn um die Sonne?",
+        "correct_answer": "365 Tage"
+    },
+    {
+        "text": "Welche Farbe entsteht, wenn man alle Farben des Lichts mischt?",
+        "correct_answer": "Weiß"
+    },
+    {
+        "text": "Welches Tier wird oft als 'König des Dschungels' bezeichnet?",
+        "correct_answer": "Löwe"
+    },
+    {
+        "text": "Was ist die Amtssprache von Brasilien?",
+        "correct_answer": "Portugiesisch"
+    },
+    {
+        "text": "Wer ist der Maler hinter dem berühmten Bild 'Die Sternennacht'?",
+        "correct_answer": "Vincent van Gogh"
+    },
+    {
+        "text": "Was ist das Grundelement von Stahl?",
+        "correct_answer": "Eisen"
+    },
+    {
+        "text": "Welches chemische Element hat das Symbol Pb?",
+        "correct_answer": "Blei"
+    },
+    {
+        "text": "Welche Stadt wird als die Geburtsstätte der Renaissance angesehen?",
+        "correct_answer": "Florenz"
+    },
+    {
+        "text": "In welchem Land wurde der Tango ursprünglich getanzt?",
+        "correct_answer": "Argentinien"
+    },
+    {
+        "text": "Wie viele Ozeane gibt es auf der Erde?",
+        "correct_answer": "5"
+    },
+    {
+        "text": "Was ist die Hauptstadt von Island?",
+        "correct_answer": "Reykjavik"
+    },
+    {
+        "text": "Wer hat die Glühbirne erfunden?",
+        "correct_answer": "Thomas Edison"
+    },
+    {
+        "text": "Was ist das häufigste Element auf der Erde?",
+        "correct_answer": "Sauerstoff"
+    },
+    {
+        "text": "In welcher Stadt befindet sich der Freiheitsturm?",
+        "correct_answer": "New York"
+    },
+    {
+        "text": "Wie viele Spielfiguren hat jeder Spieler zu Beginn einer Schachpartie?",
+        "correct_answer": "16"
+    },
+    {
+        "text": "Welches Land ist als das Land der aufgehenden Sonne bekannt?",
+        "correct_answer": "Japan"
+    },
+    {
+        "text": "Was ist das spezifische Gewicht von Gold?",
+        "correct_answer": "19,32 g/cm³"
+    },
+    {
+        "text": "Welches historische Ereignis wird oft als der Beginn des Mittelalters angesehen?",
+        "correct_answer": "Fall des Römischen Reiches"
+    },
+    {
+        "text": "In welcher Stadt kann man die Originalstatue der Freiheitsstatue finden?",
+        "correct_answer": "New York"
+    },
+    {
+        "text": "Wie viele Grammys hat die Sängerin Beyoncé gewonnen?",
+        "correct_answer": "28"
+    },
+    {
+        "text": "Was ist der am weitesten entfernte Planet von der Sonne in unserem Sonnensystem?",
+        "correct_answer": "Neptun"
+    },
+    {
+        "text": "Welches Organ im menschlichen Körper produziert Insulin?",
+        "correct_answer": "Pankreas"
+    },
+    {
+        "text": "In welchem Jahr wurde die Titanic versenkt?",
+        "correct_answer": "1912"
+    },
+    {
+        "text": "Was ist die größte Stadt in Indien nach Bevölkerung?",
+        "correct_answer": "Mumbai"
+    },
+    {
+        "text": "Was ist der Hauptbestandteil in der Luft, die wir atmen?",
+        "correct_answer": "Stickstoff"
+    },
+    {
+        "text": "Welche zwei Länder haben die meisten gemeinsamen Sprachen?",
+        "correct_answer": "Indien und Pakistan"
+    },
+    {
+        "text": "Welches Tier hat die längste Lebensdauer?",
+        "correct_answer": "Grönlandwal"
+    },
+    {
+        "text": "In welchem Jahr wurde das erste Foto der Erde aus dem Weltraum aufgenommen?",
+        "correct_answer": "1946"
+    },
+    {
+        "text": "Welche Farbe hat eine Zimtspinne?",
+        "correct_answer": "Braun"
+    },
+    {
+        "text": "Was ist das schwerste Element im Periodensystem?",
+        "correct_answer": "Osmium"
+    },
+    {
+        "text": "Wie viele Planeten hat unser Sonnensystem?",
+        "correct_answer": "8"
+    },
+    {
+        "text": "Wer war der römische Gott des Krieges?",
+        "correct_answer": "Mars"
+    },
+    {
+        "text": "Welches ist das größte innere Organ des menschlichen Körpers?",
+        "correct_answer": "Leber"
+    },
+    {
+        "text": "Wie viele Knochen hat ein erwachsener menschlicher Körper?",
+        "correct_answer": "206"
+    },
+    {
+        "text": "In welchem Land befindet sich der Mount Everest?",
+        "correct_answer": "Nepal"
+    },
+    {
+        "text": "Wer hat das erste Telefon erfunden?",
+        "correct_answer": "Alexander Graham Bell"
+    },
+    {
+        "text": "Was ist das häufigste Element im Universum?",
+        "correct_answer": "Wasserstoff"
+    },
+    {
+        "text": "In welcher Stadt befindet sich der Buckingham Palace?",
+        "correct_answer": "London"
+    },
+    {
+        "text": "Was ist der chemische Prozess, bei dem Pflanzen Sonnenlicht zur Herstellung von Nahrung nutzen?",
+        "correct_answer": "Photosynthese"
+    },
+    {
+        "text": "Welches Organ filtert das Blut in einem menschlichen Körper?",
+        "correct_answer": "Niere"
+    },
+    {
+        "text": "Wie viele Punkte zählt ein Touchdown im American Football?",
+        "correct_answer": "6"
+    },
+    {
+        "text": "Welches Gas ist für die Erwärmung der Erdatmosphäre verantwortlich?",
+        "correct_answer": "Kohlendioxid"
+    },
+    {
+        "text": "Welche Sprache wird hauptsächlich in Brasilien gesprochen?",
+        "correct_answer": "Portugiesisch"
+    },
+    {
+        "text": "Was ist die Hauptzutat in traditionellem Sushi?",
+        "correct_answer": "Reis"
+    },
+    {
+        "text": "In welchem Jahr begann der Zweite Weltkrieg?",
+        "correct_answer": "1939"
+    },
+    {
+        "text": "Wer ist bekannt für seine Relativitätstheorie?",
+        "correct_answer": "Albert Einstein"
+    },
+    {
+        "text": "Welche Zahl ist das römische Symbol 'X'?",
+        "correct_answer": "10"
+    },
+    {
+        "text": "Welches Land hat eine Flagge mit einem weißen Kreuz auf rotem Hintergrund?",
+        "correct_answer": "Schweiz"
+    },
+    {
+        "text": "Was ist das größte Land der Welt nach Bevölkerung?",
+        "correct_answer": "China"
+    },
+    {
+        "text": "Was ist der Hauptbestandteil von Glas?",
+        "correct_answer": "Sand"
+    },
+    {
+        "text": "Welches Organ produziert die Verdauungsenzyme im menschlichen Körper?",
+        "correct_answer": "Pankreas"
+    },
+    {
+        "text": "Welches Land hat die höchste Anzahl an offiziellen Sprachen?",
+        "correct_answer": "Indien"
+    },
+    {
+        "text": "In welchem Jahr fiel die Berliner Mauer?",
+        "correct_answer": "1989"
+    },
+    {
+        "text": "Wie heißt der längste Fluss in Deutschland?",
+        "correct_answer": "Rhein"
+    },
+    {
+        "text": "Welche Farbe symbolisiert Frieden?",
+        "correct_answer": "Weiß"
+    },
+    {
+        "text": "Welche zwei Länder teilen sich die längste internationale Grenze?",
+        "correct_answer": "USA und Kanada"
+    },
+    {
+        "text": "Welches chemische Element wird mit dem Kürzel 'K' abgekürzt?",
+        "correct_answer": "Kalium"
+    },
+    {
+        "text": "Wie viele Staaten bilden die Vereinigten Staaten von Amerika?",
+        "correct_answer": "50"
+    },
+    {
+        "text": "In welchem Land findet man die Stadt Timbuktu?",
+        "correct_answer": "Mali"
+    },
+    {
+        "text": "Was ist das größte Säugetier, das jemals gelebt hat?",
+        "correct_answer": "Blauwal"
+    },
+    {
+        "text": "Wie viele Spieler bilden ein Rugby-Team?",
+        "correct_answer": "15"
+    },
+    {
+        "text": "Was ist die längste Schlange der Welt?",
+        "correct_answer": "Netzpython"
+    },
+    {
+        "text": "Welche Farbe wird in China traditionell als glückbringend angesehen?",
+        "correct_answer": "Rot"
+    },
+    {
+        "text": "Was ist die Hauptstadt von Australien?",
+        "correct_answer": "Canberra"
+    },
+    {
+        "text": "Welcher Musiker ist bekannt als 'The King of Pop'?",
+        "correct_answer": "Michael Jackson"
+    },
+    {
+        "text": "In welchem Meer liegt die Insel Mallorca?",
+        "correct_answer": "Mittelmeer"
+    },
+    {
+        "text": "Wie heißt der größte Knochen im menschlichen Körper?",
+        "correct_answer": "Femur (Oberschenkelknochen)"
+    },
+    {
+        "text": "Welches Land ist für seine Windmühlen und Tulpen bekannt?",
+        "correct_answer": "Niederlande"
+    },
+    {
+        "text": "Wer schrieb das Werk 'Ulysses'?",
+        "correct_answer": "James Joyce"
+    },
+    {
+        "text": "Welches ist das kleinste Land der Welt?",
+        "correct_answer": "Vatikanstadt"
+    },
+    {
+        "text": "Wie viele Richter sitzen am Obersten Gerichtshof der USA?",
+        "correct_answer": "9"
+    },
+    {
+        "text": "Was ist die chemische Formel für Kochsalz?",
+        "correct_answer": "NaCl"
+    },
+    {
+        "text": "Welche ist die älteste Universität der Welt, die bis heute noch in Betrieb ist?",
+        "correct_answer": "Universität Al Quaraouiyine"
+    },
+    {
+        "text": "Welcher Vogel ist bekannt für seine Fähigkeit, die Sprache der Menschen nachzuahmen?",
+        "correct_answer": "Papagei"
+    },
+    {
+        "text": "In welchem Land wurden die Olympischen Spiele 1964 ausgetragen?",
+        "correct_answer": "Japan"
+    },
+    {
+        "text": "Was ist der kleinste Planet in unserem Sonnensystem?",
+        "correct_answer": "Merkur"
+    },
+    {
+        "text": "Welches Land produziert die meisten Filme weltweit?",
+        "correct_answer": "Indien"
+    },
+    {
+        "text": "Wer hat den Roman 'Stolz und Vorurteil' geschrieben?",
+        "correct_answer": "Jane Austen"
+    },
+    {
+        "text": "In welcher Stadt befindet sich der Prado, eines der berühmtesten Museen der Welt?",
+        "correct_answer": "Madrid"
+    },
+    {
+        "text": "Was ist das beliebteste Brettspiel der Welt?",
+        "correct_answer": "Schach"
+    },
+    {
+        "text": "Was ist das Hauptingredienz in einem Martini-Cocktail?",
+        "correct_answer": "Gin"
+    },
+    {
+        "text": "Welcher Fluss fließt durch Paris?",
+        "correct_answer": "Seine"
+    },
+    {
+        "text": "Welcher französische Kaiser ist bekannt für seine Niederlage in der Schlacht von Waterloo?",
+        "correct_answer": "Napoleon Bonaparte"
+    },
+    {
+        "text": "Wie viele Striche sind in dem chinesischen Schriftzeichen für 'ewig' enthalten?",
+        "correct_answer": "5"
+    },
+    {
+        "text": "Was ist der chemische Name von Backsoda?",
+        "correct_answer": "Natriumbicarbonat"
+    },
+    {
+        "text": "Welches Organ ist dafür verantwortlich, Insulin im menschlichen Körper zu produzieren?",
+        "correct_answer": "Pankreas"
+    },
+    {
+        "text": "Welche Stadt wird oft als 'Venedig des Nordens' bezeichnet?",
+        "correct_answer": "Amsterdam"
+    },
+    {
+        "text": "Welcher US-Präsident war während des Amerikanischen Bürgerkriegs im Amt?",
+        "correct_answer": "Abraham Lincoln"
+    },
+    {
+        "text": "Was ist das meistverkaufte Musikalbum aller Zeiten?",
+        "correct_answer": "Thriller von Michael Jackson"
+    },
+    {
+        "text": "Welches Gewürz wird aus den getrockneten Stigmen einer Blume gewonnen?",
+        "correct_answer": "Safran"
+    },
+    {
+        "text": "Was ist die am weitesten gesprochene Sprache in Indien?",
+        "correct_answer": "Hindi"
+    },
+    {
+        "text": "In welchem Land befindet sich der längste Kanal der Welt, der Große Kanal?",
+        "correct_answer": "China"
+    },
+    {
+        "text": "Wer erfand den Phonographen?",
+        "correct_answer": "Thomas Edison"
+    },
+    {
+        "text": "Was ist der offizielle Name von Südkorea?",
+        "correct_answer": "Republik Korea"
+    },
+    {
+        "text": "Welches Metall ist höher in der elektrochemischen Reihe als Eisen?",
+        "correct_answer": "Kupfer"
+    },
+    {
+        "text": "Wie wird der Effekt genannt, wenn Licht sich in Regentropfen bricht und ein Spektrum erzeugt?",
+        "correct_answer": "Regenbogen"
+    },
+    {
+        "text": "Welches Land hat die meisten Seen weltweit?",
+        "correct_answer": "Kanada"
+    },
+    {
+        "text": "Welche Stadt ist die Geburtsstätte des Jazz?",
+        "correct_answer": "New Orleans"
+    },
+    {
+        "text": "Wer hat die Theorie der Schwarzen Löcher entwickelt?",
+        "correct_answer": "Stephen Hawking"
+    },
+    {
+        "text": "Was ist die Hauptstadt von Schottland?",
+        "correct_answer": "Edinburgh"
+    },
+    {
+        "text": "Welches Element hat das Periodensystemkürzel 'Fe'?",
+        "correct_answer": "Eisen"
+    },
+    {
+        "text": "In welchem Land wurde die erste schriftliche Verfassung Europas verfasst?",
+        "correct_answer": "Polen"
+    },
+    {
+        "text": "Was ist die tiefste Stelle im Weltmeer?",
+        "correct_answer": "Marianengraben"
+    },
+    {
+        "text": "Welches historische Reich wird oft als 'das Reich, in dem die Sonne nie untergeht' beschrieben?",
+        "correct_answer": "Britisches Reich"
+    },
+    {
+        "text": "Was ist die am häufigsten vorkommende Substanz auf der Erde?",
+        "correct_answer": "Wasser"
+    },
+    {
+        "text": "Wie heißt die traditionelle japanische Kunst des Papierfaltens?",
+        "correct_answer": "Origami"
     }
 ]

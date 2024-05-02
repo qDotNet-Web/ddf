@@ -19,7 +19,7 @@
                         <h5 class="modal-title" id="playModalLabel">Möchtest du einem Spiel beitreten, oder erstellen?</h5>
                     </div>
                     <div class="modal-body space-between">
-                        <button type="button" class="btn btn-modal" data-bs-dismiss="modal" id="createGameButton" @click="$router.push('/createLobby')">Erstellen</button>
+                        <button type="button" class="btn btn-modal" data-bs-dismiss="modal" id="createGameButton" data-bs-toggle="modal" data-bs-target="#createLobbyModal">Erstellen</button>
                         <button type="button" class="btn btn-modal" id="joinGameButton">Beitreten</button>
                     </div>
                 </div>
@@ -42,6 +42,61 @@
                 </div>
             </div>
         </div>
+        <!-- Modal 3 / createLobby-->
+                        <div class="modal fade" id="anleitungsModal" tabindex="-1" aria-labelledby="anleitungsModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content bg-dark text-light">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="anleitungsModalLabel">Lobby erstellen</h5>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="ip_roundLength">Rundenlänge (min)</label>
+                            </div>
+                            <select class="custom-select" id="ip_roundLength">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option selected value="3">3</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="ip_playercount">Spieleranzahl</label>
+                            </div>
+                            <select class="custom-select" id="ip_playerCount">
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option selected value="10">10</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="ip_maxPlayerLives">Max. Spielerleben</label>
+                            </div>
+                            <select class="custom-select" id="ip_playercount">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option selected value="3">3</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-modal" data-bs-dismiss="modal">Schließen</button>
+                        <button type="button" class="btn btn-modal" data-bs-dismiss="modal">Lobby starten</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
         <!-- Footer -->
         <footer class="mt-auto mb-4 text-center fw-bold">

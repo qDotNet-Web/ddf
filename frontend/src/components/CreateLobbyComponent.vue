@@ -1,5 +1,5 @@
 <template>
-    <div class="container my-auto vertical-center dff-padding-top" id="app">
+    <div class="container my-auto dff-padding-top" id="app">
         <img src="@/assets/logo.png" alt="Logo" class="icon mb-4">
         <h1 class="dff-h1 mb-4">Der Dümmste fliegt!</h1>
 

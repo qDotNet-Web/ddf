@@ -19,7 +19,7 @@
                         <h5 class="modal-title" id="playModalLabel">Möchtest du einem Spiel beitreten, oder erstellen?</h5>
                     </div>
                     <div class="modal-body space-between">
-                        <router-link to = "/createLobby"><button type="button" class="btn btn-modal" data-bs-dismiss="modal" id="createGameButton">Erstellen</button></router-link>
+                        <button type="button" class="btn btn-modal" data-bs-dismiss="modal" id="createGameButton" @click="$router.push('/createLobby')">Erstellen</button>
                         <button type="button" class="btn btn-modal" id="joinGameButton">Beitreten</button>
                     </div>
                 </div>

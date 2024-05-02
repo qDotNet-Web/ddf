@@ -8,6 +8,7 @@ import CreateLobbyView from './views/CreateLobbyView.vue';
   <header>
   </header>
   <HomeView />
+  <router-view />
 </template>
 
 <!-- <style scoped>

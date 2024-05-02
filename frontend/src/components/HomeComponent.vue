@@ -19,8 +19,7 @@
                         <h5 class="modal-title" id="playModalLabel">Möchtest du einem Spiel beitreten, oder erstellen?</h5>
                     </div>
                     <div class="modal-body space-between">
-                        <button type="button" class="btn btn-modal" id="createGameButton" @click="currentView = 'createLobby'">Erstellen</button>
-                        <component :is="currentView"></component>
+                        <button type="button" class="btn btn-modal" id="createGameButton" @click="currentView = 'CreateLobby'">Erstellen</button>
                         <button type="button" class="btn btn-modal" id="joinGameButton">Beitreten</button>
                     </div>
                 </div>
@@ -53,7 +52,16 @@
 </template>
 
 <script>
+import CreateLobby from '@/components/CreateLobbyComponent.vue';
+
 export default {
-    name: 'HomeComponent'
+  components: {
+    CreateLobby,
+  },
+  data() {
+    return {
+      currentView: null
+    }
+  }
 }
 </script>

@@ -23,7 +23,7 @@
                         <div class="form-group">
                             <label for="gameId" class="col-form-label">Spiel-ID:</label>
                             <input type="text" class="form-control" id="gameId">
-                            <button type="button" class="btn btn-modal" id="joinGameButton">Beitreten</button>
+                            <button type="button" class="btn btn-modal mr-5" id="joinGameButton">Beitreten</button>
                             <button type="button" class="btn btn-modal" id="createGameButton">Erstellen</button>
                         </div>
                     </div>

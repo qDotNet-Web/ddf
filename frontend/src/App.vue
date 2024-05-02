@@ -1,28 +1,15 @@
-<template>
-  <div id="app">
-    <Home/>
-    <router-view/>
-  </div>
-</template>
-
-<script>
-import Home from './components/Home.vue'
-
-export default {
-  name: 'App',
-  components: {
-    Home
-  }
-}
+<script setup>
+import { RouterLink, RouterView } from 'vue-router'
+import HomeView from './views/HomeView.vue';
 </script>
 
-<style>
-#app {
-  font-family: Montserrat, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<template>
+  <header>
+  </header>
+  <HomeView />
+  <!-- <RouterView /> -->
+</template>
+
+<!-- <style scoped>
+
+</style> -->

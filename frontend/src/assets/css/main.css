@@ -21,8 +21,8 @@ body, html {
     height: 100%;
     margin: 0;
     font-family: 'Montserrat', sans-serif;
-    background: var(--main-bg-color);
-    color: var(--main-text-color);
+    background: var(--main-bg-color) !important;
+    color: var(--main-text-color) !important;
 }
 
 .dff-padding-top {
@@ -45,15 +45,15 @@ body, html {
 }
 
 .btn-main {
-    background-image: var(--main-gradiant-color);
+    background-image: var(--main-gradiant-color) !important;
     background-size: 200% 200%;
     border: none;
-    border-radius: var(--main-border-radius);
+    border-radius: var(--main-border-radius) !important;
     padding: 10px 30px;
     font-weight: 800;
     margin-top: 15px;
     transition: transform 0.5s;
-    color: var(--main-sub-text-color);
+    color: var(--main-sub-text-color) !important;
     height: 50px;
     width: 150px;
     font-size: 1.2rem;
@@ -65,15 +65,15 @@ body, html {
 }
 
 .btn-modal {
-    background-image: var(--main-gradiant-color);
+    background-image: var(--main-gradiant-color) !important;
     background-size: 150% 150%;
     border: none;
-    border-radius: var(--main-border-radius);
+    border-radius: var(--main-border-radius) !important;
     padding: 10px 30px;
     font-weight: 800;
     margin-top: 5px;
     transition: transform 0.5s;
-    color: var(--main-sub-text-color);
+    color: var(--main-sub-text-color) !important;
     height: 50px;
     width: 150px;
     font-size: 1rem;
@@ -81,7 +81,7 @@ body, html {
 }
 
 .btn-close {
-    color: var(--main-sub-text-color);
+    color: var(--main-sub-text-color) !important;
 }
 
 .link-main, .link-main:hover, .link-main:focus, .link-main:active {
@@ -92,7 +92,7 @@ body, html {
 }
 
 .link-main:hover {
-    color: var(--main-highlight-color);
+    color: var(--main-highlight-color) !important;
 }
 
 .icon {
@@ -103,7 +103,7 @@ body, html {
 
 .modal-content {
     background-color: #181818;
-    color: var(--main-text-color);
+    color: var(--main-text-color) !important;
     font-size: 1.2rem;
 }
 
@@ -115,14 +115,16 @@ body, html {
 
 .modal-backdrop.show {
     opacity: 0.7;
-    backdrop-filter: blur(90px);
+    backdrop-filter: blur(2px);
 }
 
 .modal.fade .modal-dialog {
-    transition: transform 0.3s ease-out, -webkit-transform 03s ease-out;
+    /* -webkit-transform: 0.3s ease-out; */
+    /* transition: transform 0.3s ease-out;  */
+
 }
 
-.modal.show .modla.dialog {
+.modal.show .modal.dialog {
     transform: translateY(0);
 }
 

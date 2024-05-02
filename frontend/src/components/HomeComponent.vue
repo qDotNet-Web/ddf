@@ -43,14 +43,14 @@
             </div>
         </div>
         <!-- Modal 3 / createLobby-->
-                        <div class="modal fade" id="anleitungsModal" tabindex="-1" aria-labelledby="anleitungsModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content bg-dark text-light">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="anleitungsModalLabel">Lobby erstellen</h5>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="input-group mb-3">
+        <div class="modal fade" id="createLobbyModal" tabindex="-1" aria-labelledby="createLobbyModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content bg-dark text-light">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="createLobbyModalLabel">Lobby erstellen</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <label class="input-group-text" for="ip_roundLength">Rundenlänge (min)</label>
                             </div>

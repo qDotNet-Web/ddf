@@ -50,7 +50,7 @@
                         <h5 class="modal-title" id="createLobbyModalLabel">Lobby erstellen</h5>
                     </div>
                     <div class="modal-body">
-                        <div class="input-group mb-3">
+                        <div class="input-group">
                             <div class="input-group-prepend">
                                 <label class="input-group-text" for="ip_roundLength">Rundenlänge (min)</label>
                             </div>
@@ -61,7 +61,7 @@
                             </select>
                         </div>
 
-                        <div class="input-group mb-3">
+                        <div class="input-group">
                             <div class="input-group-prepend">
                                 <label class="input-group-text" for="ip_playercount">Spieleranzahl</label>
                             </div>
@@ -78,7 +78,7 @@
                             </select>
                         </div>
 
-                        <div class="input-group mb-3">
+                        <div class="input-group">
                             <div class="input-group-prepend">
                                 <label class="input-group-text" for="ip_maxPlayerLives">Max. Spielerleben</label>
                             </div>
@@ -91,7 +91,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-modal" data-bs-dismiss="modal">Schließen</button>
-                        <button type="button" class="btn btn-modal" data-bs-dismiss="modal">Lobby starten</button>
+                        <button type="button" class="btn btn-modal" data-bs-dismiss="modal">Starten</button>
                     </div>
                 </div>
             </div>

@@ -20,14 +20,18 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <div class="form-group">
-                            <label for="gameId" class="col-form-label">Spiel-ID:</label>
-                            <input type="text" class="form-control" id="gameId">
-                            <button type="button" class="btn btn-modal mb-4" id="joinGameButton">Beitreten</button>
-                            <button type="button" class="btn btn-modal" id="createGameButton">Erstellen</button>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="">Lobby-ID</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button">Button</button>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">
+                        <button type="button" class="btn btn-modal" id="createGameButton">Erstellen</button>
                         <button type="button" class="btn btn-modal" data-bs-dismiss="modal">Schließen</button>
                     </div>
                 </div>

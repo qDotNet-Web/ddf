@@ -115,7 +115,6 @@ body, html {
 
 .modal-backdrop.show {
     opacity: 0.7;
-    backdrop-filter: blur(2px);
 }
 
 .modal.fade .modal-dialog {

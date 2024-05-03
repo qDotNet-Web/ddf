@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - dev
+      - 4-create-frontend
 
 jobs:
   deploy:

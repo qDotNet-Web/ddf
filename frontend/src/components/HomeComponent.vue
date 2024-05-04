@@ -20,7 +20,7 @@
                     </div>
                     <div class="modal-body space-between">
                         <button type="button" class="btn btn-modal" data-bs-dismiss="modal" id="createGameButton" data-bs-toggle="modal" data-bs-target="#createLobbyModal">Erstellen</button>
-                        <button type="button" class="btn btn-modal" id="joinGameButton">Beitreten</button>
+                        <button type="button" class="btn btn-modal" id="joinGameButton" data-bs-toggle="modal" data-bs-target="#joinLobbyModal">Beitreten</button>
                     </div>
                 </div>
             </div>
@@ -50,53 +50,55 @@
                         <h5 class="modal-title" id="createLobbyModalLabel">Lobby erstellen</h5>
                     </div>
                     <div class="modal-body">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <label class="input-group-text" for="ip_roundLength">Rundenlänge (min)</label>
-                            </div>
-                            <select class="custom-select" id="ip_roundLength">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option selected value="3">3</option>
-                            </select>
+                        <div class="input-text mb-3">
+                            <label for="ip_playerName">Dein Name</label>
+                            <input type="text" id="ip_playerName" name="ip_playerName" placeholder="Schlaubischlumpf" maxlength="20">
+                        </div>
+                        <div class="input-slide mb-3">
+                            <label for="ip_roundLength">Rundenlänge: 3 min</label>
+                            <input type="range" id="ip_roundLength" name="ip_roundLength" min="1" max="3" value="3" @input="updateRoundlength">
+                        </div>
+                        <div class="input-slide mb-3">
+                            <label for="ip_maxPlayers">Spieleranzahl: 4</label>
+                            <input type="range" id="ip_maxPlayers" name="ip_maxPlayers" min="2" max="8" value="4" @input="updateMaxPlayers">
                         </div>
 
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <label class="input-group-text" for="ip_playercount">Spieleranzahl</label>
-                            </div>
-                            <select class="custom-select" id="ip_playerCount">
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option selected value="10">10</option>
-                            </select>
-                        </div>
-
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <label class="input-group-text" for="ip_maxPlayerLives">Max. Spielerleben</label>
-                            </div>
-                            <select class="custom-select" id="ip_playercount">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option selected value="3">3</option>
-                            </select>
+                        <div class="input-slide mb-3">
+                            <label for="ip_playerLives">Spielerleben: 3</label>
+                            <input type="range" id="ip_playerLives" name="ip_playerLives" min="1" max="10" value="3" @input="updatePlayerLives">
                         </div>
                     </div>
-                    <div class="modal-footer">
+                    <div class="modal-footer space-between">
                         <button type="button" class="btn btn-modal" data-bs-dismiss="modal">Schließen</button>
-                        <button type="button" class="btn btn-modal" data-bs-dismiss="modal">Starten</button>
+                        <button type="button" class="btn btn-modal" data-bs-dismiss="modal" @click="createLobby">Starten</button>
                     </div>
                 </div>
             </div>
         </div>
-
+        <!-- Modal 4 JoinLobby -->
+        <div class="modal fade" id="joinLobbyModal" tabindex="-1" aria-labelledby="joinLobbyModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content bg-dark text-light">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="joinLobbyModalLabel">Lobby beitreten</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="input-text mb-3">
+                            <label for="ip_playerName">Lobby-ID</label>
+                            <input type="text" name="ip_lobbyID" placeholder="123456" maxlength="6" v-model="lobbyId">
+                        </div>
+                        <div class="input-text mb-3">
+                            <label for="ip_playerName">Dein Name</label>
+                            <input type="text" name="ip_playerName" placeholder="Schlaubischlumpf" maxlength="20" v-model="playerName">
+                        </div>
+                    <div class="modal-footer space-between">
+                        <button type="button" class="btn btn-modal" data-bs-dismiss="modal">Schließen</button>
+                        <button type="button" class="btn btn-modal" data-bs-dismiss="modal" @click="joinLobby">Beitreten</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
         <!-- Footer -->
         <footer class="mt-auto mb-4 text-center fw-bold">
@@ -107,15 +109,69 @@
 </template>
 
 <script>
-import CreateLobby from '@/components/CreateLobbyComponent.vue';
-
 export default {
   components: {
-    CreateLobby,
   },
   data() {
     return {
-      currentView: null
+        lobbyId: '',
+        playerName: '',
+        currentView: null
+    }
+  },
+  methods: {
+    updateMaxPlayers(event) {
+        document.querySelector('label[for="ip_maxPlayers"]').innerText = `Spieleranzahl: ${event.target.value}`;
+    },
+    updatePlayerLives(event) {
+        document.querySelector('label[for="ip_playerLives"]').innerText = `Spielerleben: ${event.target.value}`;
+    },
+    updateRoundlength(event) {
+        document.querySelector('label[for="ip_roundLength"]').innerText = `Rundenlänge: ${event.target.value} min`;
+    },
+    joinLobby() {
+        let lobbyId = this.lobbyId;
+        let playerName = this.playerName;
+        if (lobbyId.length != 6) {
+            this.$swal({
+                title: 'Fehler',
+                text: 'Die Lobby-ID muss 6 Zeichen lang sein.',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
+            return;
+        }
+        if  (playerName.length < 1) {
+            this.$swal({
+                title: 'Fehler',
+                text: 'Bitte gib deinen Namen ein.',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
+            return;
+        }
+    },
+    createLobby() {
+        let playerName = document.getElementById('ip_playerName').value;
+        let roundLength = document.getElementById('ip_roundLength').value;
+        let maxPlayers = document.getElementById('ip_maxPlayers').value;
+        let playerLives = document.getElementById('ip_playerLives').value;
+        if  (playerName.length < 1) {
+            this.$swal({
+                title: 'Fehler',
+                text: 'Bitte gib deinen Namen ein.',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
+            return;
+        }
+        this.$swal({
+            title: 'Lobby erstellt',
+            text: 'Deine Lobby wurde erstellt. Die Lobby-ID lautet: 123456',
+            icon: 'success',
+            confirmButtonText: 'OK'
+        });
+        
     }
   }
 }

@@ -117,11 +117,11 @@ body, html {
     opacity: 0.7;
 }
 
-.modal.fade .modal-dialog {
-    /* -webkit-transform: 0.3s ease-out; */
-    /* transition: transform 0.3s ease-out;  */
+/* .modal.fade .modal-dialog {
+    -webkit-transform: 0.3s ease-out;
+     transition: transform 0.3s ease-out; 
 
-}
+} */
 
 .modal.show .modal.dialog {
     transform: translateY(0);
@@ -138,4 +138,67 @@ body, html {
 .space-between {
     display: flex;
     justify-content: space-between;
+}
+
+.input-slide {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-slide label {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--main-sub-text-color);
+}
+
+.input-slide select{
+    width: 100%;
+    padding: 10px;
+    border-radius: var(--main-border-radius);
+    border: none;
+    background-color: #343a40;
+    color: var(--main-text-color);
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.input-slide input[type="range"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: var(--main-border-radius);
+    border: none;
+    background-color: #343a40;
+    color: var(--main-text-color);
+    font-size: 1.2rem;
+    font-weight: 500;
+    background-color: transparent;
+    color: var(--main-gradiant-color);
+}
+
+.input-text {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px;
+    border-radius: var(--main-border-radius);
+    border: none;
+    background-color: #343a40;
+    color: var(--main-text-color);
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.input-text input {
+    border-radius: var(--main-border-radius);
+    border: none;
+    background-color: #343a40;
+    color: var(--main-text-color);
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-align: right;
+}
+
+.input-text input:focus {
+    outline: none;
+    border-bottom: #181818;
 }

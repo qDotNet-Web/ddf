@@ -13,8 +13,6 @@ app.include_router(game_router.router, prefix="/game", tags=["game"])
 @app.on_event("startup")
 async def startup_event() -> None:
     await db.initialize()
-    questions_list = await db.get_all_questions()
-    print(questions_list)
 
 
 @app.on_event("shutdown")

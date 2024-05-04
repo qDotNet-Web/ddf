@@ -84,13 +84,14 @@ async def update_lobby(lobby_id: str, lobby_data: LobbyUpdate) -> LobbyRead:
 
 # CRUD operations for Question
 async def get_random_question() -> Question:
-    collection = await get_questions_collection()
     try:
-        sample = await collection.aggregate([{"$sample": {"size": 1}}]).to_list(1)
-        if not sample:
+        collection = await get_questions_collection()
+        sample = await collection.aggregate([{'$sample': {'size': 1}}]).to_list(1)
+        if sample:
+            random_question = sample[0]
+            random_question["_id"] = str(random_question["_id"])
+            return Question(**random_question)
+        else:
             raise HTTPException(status_code=404, detail="No questions found.")
-        random_question = sample[0]
-        random_question["_id"] = str(random_question["_id"])
-        return Question(**random_question)
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Failed to fetch question: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Failed to fetch random question: {str(e)}")

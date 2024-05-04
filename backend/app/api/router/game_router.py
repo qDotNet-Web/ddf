@@ -63,10 +63,9 @@ async def join_lobby_route(lobby_data: LobbyRead, lobby_id: str, player_data: Pl
 
 
 @router.get("/question/get_random_question")
-async def get_random_question():
+async def get_random_question_route():
     try:
-        question = await get_random_question()
-        return question
+        return await get_random_question()
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 

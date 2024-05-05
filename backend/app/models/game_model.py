@@ -1,5 +1,5 @@
 import pydantic
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing import Optional, List
 from .fields import GameFields, PlayerFields, QuestionFields
 
@@ -8,38 +8,27 @@ __all__ = ("LobbyCreate", "LobbyRead", "LobbyUpdate", "PlayerCreate", "PlayerRea
 
 class LobbyUpdate(BaseModel):
     code: Optional[str] = GameFields.code
-    owner_id: Optional[str] = GameFields.owner_id
+    # owner_id: Optional[str] = GameFields.owner_id
     owner_name: Optional[str] = GameFields.owner_name
     is_active: Optional[bool] = GameFields.is_active
-    players: Optional[list] = GameFields.players
+    players: Optional[List[str]] = Field(default_factory=list)
     round_timer: Optional[int] = GameFields.round_timer
     lives_per_player: Optional[int] = GameFields.lives_per_player
-    max_players: Optional[int] = GameFields.max_players
 
 
-class LobbyCreate(LobbyUpdate):
-    code: str = GameFields.code
-    owner_id: str = GameFields.owner_id
+class LobbyCreate(BaseModel):
     owner_name: str = GameFields.owner_name
     is_active: bool = GameFields.is_active
-    players: list = GameFields.players
+    players: List[str] = Field(default_factory=list)
     round_timer: int = GameFields.round_timer
     lives_per_player: int = GameFields.lives_per_player
-    max_players: int = GameFields.max_players
 
     class Config:
         orm_mode = True
 
 
-class LobbyRead(LobbyCreate):
+class LobbyRead(LobbyUpdate):
     code: str = GameFields.code
-    owner_id: str = GameFields.owner_id
-    owner_name: str = GameFields.owner_name
-    is_active: bool = GameFields.is_active
-    players: list = GameFields.players
-    round_timer: int = GameFields.round_timer
-    lives_per_player: int = GameFields.lives_per_player
-    max_players: int = GameFields.max_players
 
     @pydantic.root_validator(pre=True)
     def _set_lobby_id(cls, data):
@@ -50,9 +39,6 @@ class LobbyRead(LobbyCreate):
 
     class Config(LobbyCreate.Config):
         extra = pydantic.Extra.ignore
-
-
-LobbyRead = List[LobbyRead]
 
 
 class PlayerUpdate(BaseModel):
@@ -71,10 +57,6 @@ class PlayerCreate(PlayerUpdate):
 
 
 class PlayerRead(PlayerCreate):
-    name: str = PlayerFields.name
-    lives: int = PlayerFields.lives
-    is_alive: bool = PlayerFields.is_alive
-
     @pydantic.root_validator(pre=True)
     def _set_player_id(cls, data):
         document_id = data.get("_id")
@@ -93,6 +75,3 @@ class QuestionRead(BaseModel):
     class Config:
         extra = pydantic.Extra.ignore
         orm_mode = True
-
-
-QuestionRead = List[QuestionRead]

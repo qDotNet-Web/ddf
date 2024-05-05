@@ -1,101 +1,100 @@
 from ..models.game_model import *
 from ..core.exceptions import *
 from ..core.database import db
-from ..core.utils import get_uuid
-from fastapi import HTTPException
+from ..core.utils import get_uuid, get_lobby_id
+from typing import List
 
 __all__ = ["GameRepository", "PlayerRepository", "QuestionRepository"]
 
 
-def get_game_collection():
-    try:
-        return db.db["game"]
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Failed to fetch game collection: {str(e)}")
-
-
-def get_question_collection():
-    try:
-        return db.db["questions"]
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Failed to fetch question collection: {str(e)}")
-
-
 class GameRepository:
     @staticmethod
-    def get(lobby_id: str) -> LobbyRead:
-        document = get_game_collection().find_one({"_id": lobby_id})
+    def get_collection():
+        return db.db["game"]
+
+    @staticmethod
+    async def get(lobby_id: str) -> LobbyRead:
+        document = await GameRepository.get_collection().find_one({"_id": lobby_id})
         if not document:
-            raise NotFoundException("Lobby not found")
+            raise NotFoundException("Lobby nicht gefunden")
         return LobbyRead(**document)
 
     @staticmethod
-    def list() -> LobbyRead:
-        cursor = get_game_collection().find()
-        return [LobbyRead(**document) for document in cursor]
+    async def list() -> List[LobbyRead]:
+        cursor = GameRepository.get_collection().find()
+        return [LobbyRead(**document) for document in await cursor.to_list(length=None)]
 
     @staticmethod
-    def create(create: LobbyCreate) -> LobbyRead:
+    async def create(create: LobbyCreate) -> LobbyRead:
         document = create.dict()
         document["_id"] = get_uuid()
-        result = get_game_collection().insert_one(document)
+        document["code"] = get_lobby_id()
+        result = await GameRepository.get_collection().insert_one(document)
         assert result.acknowledged
-        return GameRepository.get(result.inserted_id)
+        return await GameRepository.get(str(result.inserted_id))
 
     @staticmethod
-    def update(lobby_id: str, update: LobbyUpdate) -> None:
-        document = update.dict()
-        result = get_game_collection().update_one({"_id": lobby_id}, {"$set": document})
+    async def update(lobby_id: str, update: LobbyUpdate) -> None:
+        document = update.dict(exclude_unset=True)
+        result = await GameRepository.get_collection().update_one({"_id": lobby_id}, {"$set": document})
         if not result.modified_count:
-            raise NotFoundException("Lobby not found")
+            raise NotFoundException("Lobby nicht gefunden")
 
     @staticmethod
-    def delete(lobby_id: str) -> None:
-        result = get_game_collection().delete_one({"_id": lobby_id})
+    async def delete(lobby_id: str) -> None:
+        result = await GameRepository.get_collection().delete_one({"_id": lobby_id})
         if not result.deleted_count:
-            raise NotFoundException("Lobby not found")
+            raise NotFoundException("Lobby nicht gefunden")
 
 
 class PlayerRepository:
     @staticmethod
-    def get(player_id: str) -> PlayerRead:
-        document = get_game_collection().find_one({"_id": player_id})
+    async def get(player_id: str) -> PlayerRead:
+        document = await GameRepository.get_collection().find_one({"_id": player_id})
         if not document:
-            raise NotFoundException("Player not found")
+            raise NotFoundException("Spieler nicht gefunden")
         return PlayerRead(**document)
 
     @staticmethod
-    def list() -> PlayerRead:
-        cursor = get_game_collection().find()
-        return [PlayerRead(**document) for document in cursor]
+    async def list() -> List[PlayerRead]:
+        cursor = GameRepository.get_collection().find()
+        return [PlayerRead(**document) for document in await cursor.to_list(length=None)]
 
     @staticmethod
-    def create(create: PlayerCreate) -> PlayerRead:
+    async def create(create: PlayerCreate) -> PlayerRead:
         document = create.dict()
         document["_id"] = get_uuid()
-        result = get_game_collection().insert_one(document)
+        result = await GameRepository.get_collection().insert_one(document)
         assert result.acknowledged
-        return PlayerRepository.get(result.inserted_id)
+        return await PlayerRepository.get(str(result.inserted_id))
 
     @staticmethod
-    def update(player_id: str, update: PlayerUpdate) -> None:
-        document = update.dict()
-        result = get_game_collection().update_one({"_id": player_id}, {"$set": document})
+    async def update(player_id: str, update: PlayerUpdate) -> None:
+        document = update.dict(exclude_unset=True)
+        result = await GameRepository.get_collection().update_one({"_id": player_id}, {"$set": document})
         if not result.modified_count:
-            raise NotFoundException("Player not found")
+            raise NotFoundException("Spieler nicht gefunden")
 
     @staticmethod
-    def delete(player_id: str) -> None:
-        result = get_game_collection().delete_one({"_id": player_id})
+    async def delete(player_id: str) -> None:
+        result = await GameRepository.get_collection().delete_one({"_id": player_id})
         if not result.deleted_count:
-            raise NotFoundException("Player not found")
+            raise NotFoundException("Spieler nicht gefunden")
 
 
 class QuestionRepository:
     @staticmethod
-    def get_random() -> QuestionRead:
-        collection = get_question_collection()
-        document = collection.aggregate([{"$sample": {"size": 1}}]).to_list(length=1)
+    async def get_collection():
+        return db.db["questions"]
+
+    @staticmethod
+    async def list() -> List[QuestionRead]:
+        cursor = QuestionRepository.get_collection().find()
+        return [QuestionRead(**document) for document in await cursor.to_list(length=None)]
+
+    @staticmethod
+    async def get_random() -> QuestionRead:
+        document = await QuestionRepository.get_collection().aggregate([{"$sample": {"size": 1}}]).to_list(length=1)
         if not document:
-            raise NotFoundException("No Questions found")
+            raise NotFoundException("Keine Fragen gefunden")
         return QuestionRead(**document[0])

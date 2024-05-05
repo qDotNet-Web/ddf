@@ -42,6 +42,7 @@ class LobbyRead(BaseModel):
 
 
 class LobbyCreate(BaseModel):
+    id: str = Field(default_factory=str, alias="_id")
     owner: PlayerCreate
     settings: Settings
 

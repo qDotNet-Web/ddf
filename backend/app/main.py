@@ -1,8 +1,7 @@
 from fastapi import FastAPI
-from .api.router import game_router
 from .core.database import db
-
 from .core.middleware import request_handler
+from .api.router import game_router
 
 
 app = FastAPI()
@@ -18,7 +17,6 @@ async def startup_event() -> None:
 @app.on_event("shutdown")
 async def shutdown_event() -> None:
     db.close()
-
 
 '''
 Spielprinzip:

@@ -1,6 +1,6 @@
 from pydantic import Field
-
 from ..core.utils import get_uuid
+from typing import List
 
 __all__ = ("GameFields", "PlayerFields")
 
@@ -26,10 +26,10 @@ class GameFields:
         description="The status of the lobby",
         example=True
     )
-    players = Field(
+    players: List[str] = Field(
         description="The list of players in the lobby",
         example=[],
-        default=[]
+        default_factory=list
     )
     round_timer = Field(
         description="The time in seconds for each round",

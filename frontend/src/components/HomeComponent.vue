@@ -161,7 +161,7 @@ export default {
                 is_active: true,
                 players: [],
                 round_timer: roundLength * 60,
-                lives_per_player: playerLives
+                lives_per_player: parseInt(playerLives)
             }
 
 

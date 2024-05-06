@@ -8,6 +8,10 @@ _string = dict(min_length=1)
 
 
 class GameFields:
+    lobby_id = Field(
+        description="The unique identifier of the lobby",
+        example=get_uuid()
+    )
     code = Field(
         description="The unique code for the lobby",
         example="ABC123",
@@ -46,6 +50,10 @@ class GameFields:
 
 
 class PlayerFields:
+    player_id = Field(
+        description="The unique identifier of the player",
+        example=get_uuid()
+    )
     name = Field(
         description="The name of the player",
         example="John Doe",

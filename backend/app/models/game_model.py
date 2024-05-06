@@ -28,16 +28,19 @@ class LobbyCreate(BaseModel):
 
 
 class LobbyRead(LobbyUpdate):
+    lobby_id: str = Field(description="The id of the lobby")
     code: str = GameFields.code
 
-    @pydantic.root_validator(pre=True)
+    @pydantic.model_validator(mode="before")
     def _set_lobby_id(cls, data):
-        document_id = data.get("_id")
-        if document_id:
-            data["lobby_id"] = document_id
+        if isinstance(data, dict):
+            document_id = data.get('_id')
+            if document_id:
+                data["lobby_id"] = str(document_id)
         return data
 
     class Config(LobbyCreate.Config):
+        orm_mode = True
         extra = pydantic.Extra.ignore
 
 
@@ -51,7 +54,6 @@ class PlayerCreate(PlayerUpdate):
     name: str = PlayerFields.name
     lives: int = PlayerFields.lives
     is_alive: bool = PlayerFields.is_alive
-
 
     class Config:
         orm_mode = True
@@ -69,9 +71,15 @@ class PlayerRead(PlayerCreate):
         extra = pydantic.Extra.ignore
 
 
+class PlayerJoin(BaseModel):
+    player_id: str = PlayerFields.player_id
+    player_name: str = PlayerFields.name
+    lobby_id: str = GameFields.lobby_id
+
+
 class QuestionRead(BaseModel):
     question: Optional[str] = QuestionFields.question
-    answer: Optional[str] = QuestionFields.answer
+    correct_answer: Optional[str] = QuestionFields.answer
 
     class Config:
         extra = pydantic.Extra.ignore

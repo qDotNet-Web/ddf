@@ -17,25 +17,39 @@ class GameRepository:
         return db.db["game"]
 
     @staticmethod
-    async def get(lobby_id: str) -> LobbyRead:
+    async def gen_unique_code():
+        while True:
+            code = get_lobby_id()
+            if not await db.exists("game", "code", code):
+                return code
+
+    @staticmethod
+    async def get_by_id(lobby_id: str) -> LobbyRead:
         document = await GameRepository.get_collection().find_one({"_id": lobby_id})
         if not document:
             raise NotFoundException("Lobby nicht gefunden")
         return LobbyRead(**document)
 
     @staticmethod
+    async def get_by_code(code: str) -> LobbyRead:
+        document = await GameRepository.get_collection().find_one({"code": code})
+        if not document:
+            raise NotFoundException("Lobby nicht gefunden")
+        return LobbyRead(**document)
+
+    @staticmethod
     async def list() -> List[LobbyRead]:
-        cursor = await GameRepository.get_collection().find()
+        cursor = GameRepository.get_collection().find()
         return [LobbyRead(**document) for document in await cursor.to_list(length=None)]
 
     @staticmethod
     async def create(create: LobbyCreate) -> LobbyRead:
         document = create.dict()
         document["_id"] = get_uuid()
-        document["code"] = get_lobby_id()
+        document["code"] = await GameRepository.gen_unique_code()
         result = await GameRepository.get_collection().insert_one(document)
         assert result.acknowledged
-        return await GameRepository.get(str(result.inserted_id))
+        return await GameRepository.get_by_id(str(result.inserted_id))
 
     @staticmethod
     async def update(lobby_id: str, update: LobbyUpdate) -> None:

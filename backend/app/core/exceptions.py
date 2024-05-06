@@ -28,7 +28,7 @@ class BaseAPIException(Exception):
 
     def response(self):
         return JSONResponse(
-            content=self.data.dcit(),
+            content=self.data.dict(),
             status_code=self.code
         )
 

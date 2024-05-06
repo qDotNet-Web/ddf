@@ -60,11 +60,12 @@ class PlayerCreate(PlayerUpdate):
 
 
 class PlayerRead(PlayerCreate):
-    @pydantic.root_validator(pre=True)
+    @pydantic.model_validator(mode="before")
     def _set_player_id(cls, data):
-        document_id = data.get("_id")
-        if document_id:
-            data["player_id"] = document_id
+        if isinstance(data, dict):
+            document_id = data.get("_id")
+            if document_id:
+                data["player_id"] = document_id
         return data
 
     class Config(PlayerCreate.Config):

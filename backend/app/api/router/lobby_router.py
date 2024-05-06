@@ -16,13 +16,24 @@ async def list_lobbies():
 
 
 @router.post("/create_lobby",
-             response_model=LobbyCreate,
+             response_model=LobbyRead,
              description="Create a new lobby",
              tags=["lobby"])
 async def create_lobby(lobby: LobbyCreate):
     return await GameRepository.create(lobby)
 
 
-@router.get("/get/{lobby_id}", response_model=LobbyRead, description="Get a lobby by id", tags=["lobby"])
-async def get_lobby(lobby_id: str):
-    return await GameRepository.get(lobby_id)
+@router.get("/get_by_id/{lobby_id}",
+            response_model=LobbyRead,
+            description="Get a lobby by id",
+            tags=["lobby"])
+async def get_lobby_by_id(lobby_id: str):
+    return await GameRepository.get_by_id(lobby_id)
+
+
+@router.get("/get_by_code/{code}",
+            response_model=LobbyRead,
+            description="Get a lobby by code",
+            tags=["lobby"])
+async def get_lobby_by_code(code: str):
+    return await GameRepository.get_by_code(code)

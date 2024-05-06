@@ -52,6 +52,7 @@ class PlayerCreate(PlayerUpdate):
     lives: int = PlayerFields.lives
     is_alive: bool = PlayerFields.is_alive
 
+
     class Config:
         orm_mode = True
 

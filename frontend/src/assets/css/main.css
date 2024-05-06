@@ -247,3 +247,12 @@ input[type="range"]:hover {
     background-color: #343a40;
     margin: 10px 0;
 }
+
+footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: var(--main-bg-color);
+    color: var(--main-sub-text-color);
+    text-align: center;
+}

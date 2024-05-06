@@ -83,14 +83,13 @@
             </div>
         </div>
     </div>
-
+    </div>
         <!-- Footer -->
         <footer class="mt-auto mb-4 text-center fw-bold">
         © 2024 <br>
         qdotnet.de <br>
         └ <router-link to="/impressum" class="custom-link">Impressum</router-link> ┘
         </footer>
-    </div>
 </template>
 
 <script>
@@ -144,7 +143,6 @@ export default {
         }
 
         function createLobby() {
-            console.log('createLobby')
             let playerName = document.getElementById('ip_playerName').value;
             let roundLength = document.getElementById('ip_roundLength').value;
             let playerLives = document.getElementById('ip_playerLives').value;
@@ -159,17 +157,15 @@ export default {
             }
 
             let gameOptions = {
-                owner: {
-                    name: playerName
-                },
-                settings: {
-                    round_timer: roundLength * 60,
-                    lives_per_player: playerLives,
-                }
+                owner_name: playerName,
+                is_active: true,
+                players: [],
+                round_timer: roundLength * 60,
+                lives_per_player: playerLives
             }
 
 
-            fetch('http://localhost:8000/api/lobby/create', {
+            fetch('http://localhost:8000/game/lobby/create', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

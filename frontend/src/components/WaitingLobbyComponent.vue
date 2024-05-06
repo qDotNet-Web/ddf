@@ -15,11 +15,7 @@ export default {
   name: 'WaitingLobbyComponent',
   setup() {
     const gameStore = useGameStore();
-    let gameOptions = gameStore.gameOptions;
-    let gameSettings = gameStore.gameSettings;
-    let ownerName = gameOptions.owner.name;
-    let round_timer = gameSettings.round_timer;
-    let lives_per_player = gameSettings.lives_per_player;
+    console.log(JSON.stringify(gameStore.gameOptions));
 
   },
 };

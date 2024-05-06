@@ -72,7 +72,7 @@ button.btn-main-new::before {
 }
 
 button.btn-main-new:hover {
-    color: white;
+    color: var(--main-bg-color);
 }
 
 button.btn-main-new:before{

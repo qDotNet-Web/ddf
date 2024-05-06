@@ -47,9 +47,9 @@ body, html {
 }
 
 .spin {
-    -webkit-animation:spin 4s linear infinite;
-    -moz-animation:spin 4s linear infinite;
-    animation:spin 4s linear infinite;
+    -webkit-animation:spin 2s linear infinite;
+    -moz-animation:spin 2s linear infinite;
+    animation:spin 2s linear infinite;
 }
 
 .center {
@@ -95,10 +95,9 @@ body, html {
 
 .btn-modal {
     background: var(--main-design-color) !important;
-    background-size: 150% 150%;
     border: none;
     border-radius: var(--main-border-radius) !important;
-    padding: 10px 30px;
+    padding: 1rem;
     font-weight: 800;
     transition: transform 0.5s;
     color: var(--main-bg-color) !important;
@@ -237,8 +236,8 @@ input[type="range"]:hover {
 
 
 footer{
-    position: fixed;
-    bottom: 0;
+    /* position: fixed;
+    bottom: 0; */
     width: 100%;
     background-color: var(--main-bg-color);
     color: var(--main-sub-text-color);

@@ -1,8 +1,16 @@
+<style scoped>
+h2:hover {
+    cursor: pointer;
+    /* underline */
+    text-decoration: underline;
+  }
+</style>
+
 <template>
     <div class="container my-auto" id="app">
         <div class="heading center mb-4">
             <h1>Wartelobby</h1>
-            <h2>Lobby-ID: Laden...</h2>
+            <h2 @click="">Lobby-ID: Laden...</h2>
         </div>
         <div id="playerList"></div>
     </div>
@@ -16,8 +24,6 @@ export default {
   name: 'WaitingLobbyComponent',
   setup() {
     
-
-
   },
   mounted() {
     const gameStore = useGameStore();
@@ -29,12 +35,16 @@ export default {
         console.log("substituted gameOptions from cookies")
         // set lobby id to h2
         let h2 = document.querySelector('h2');
-        h2.innerHTML = 'Lobby-ID: ' + gameOptions.lobby_id;
+        h2.innerHTML = 'Lobby-ID: ' + gameOptions.code;
       } else {
         this.$router.push('/');
       }
+    } else {
+      // set lobby id to h2
+      let h2 = document.querySelector('h2');
+      h2.innerHTML = 'Lobby-ID: ' + gameOptions.code;
     }
-    console.log(JSON.stringify(gameOptions));
+    // console.log(JSON.stringify(gameOptions));
 
     let playerList = document.getElementById('playerList');
     let player1 = document.createElement('div');

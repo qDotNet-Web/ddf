@@ -9,7 +9,7 @@ app = FastAPI()
 
 origins = [
     "https://derduemmstefliegt.online",
-    "http://localhost"
+    "http://localhost:80"
 ]
 
 app.middleware("http")(request_handler)

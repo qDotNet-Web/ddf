@@ -161,17 +161,20 @@ export default {
                 is_active: true,
                 players: [],
                 round_timer: roundLength * 60,
-                lives_per_player: playerLives
+                lives_per_player: parseInt(playerLives)
             }
 
 
-            fetch('http://localhost:8000/game/lobby/create', {
+            let response = fetch('http://localhost:8000/game/lobby/create', {
                 method: 'POST',
+                mode : 'no-cors',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(gameOptions)
             })
+
+            console.log(response)
 
             const gameStore = useGameStore();
             gameStore.setGameOptions(gameOptions);

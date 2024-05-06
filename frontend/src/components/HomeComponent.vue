@@ -96,6 +96,7 @@
 import router from '@/router/index.js'
 import { reactive } from 'vue';
 import { useGameStore } from "@/store.js";
+import Cookies from 'js-cookie';
 
 Element.prototype.remove = function() {
     this.parentElement.removeChild(this);
@@ -113,6 +114,14 @@ export default {
   },
   data() {
     return {
+    }
+  },
+  mounted(){
+    // see if cookies  are set
+    let gameStore = useGameStore();
+    if (Cookies.get('gameOptions') != null) {
+        gameStore = JSON.parse(Cookies.get('gameOptions'));
+        console.log(JSON.stringify(gameStore.gameOptions), Cookies.get('gameOptions'));
     }
   },
   setup(){
@@ -178,6 +187,7 @@ export default {
 
             const gameStore = useGameStore();
             gameStore.setGameOptions(gameOptions);
+            Cookies.set('gameOptions', JSON.stringify(gameStore.gameOptions));
             router.push('/waitingLobby');
         }
         return {createLobby, joinLobby}

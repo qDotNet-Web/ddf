@@ -1,3 +1,5 @@
+from pydantic import ValidationError
+
 from ..models.game_model import *
 from ..core.exceptions import *
 from ..core.database import db
@@ -5,6 +7,8 @@ from ..core.utils import get_uuid, get_lobby_id
 from typing import List
 
 __all__ = ["GameRepository", "PlayerRepository", "QuestionRepository"]
+
+from ..models.game_model import QuestionRead
 
 
 class GameRepository:
@@ -21,7 +25,7 @@ class GameRepository:
 
     @staticmethod
     async def list() -> List[LobbyRead]:
-        cursor = GameRepository.get_collection().find()
+        cursor = await GameRepository.get_collection().find()
         return [LobbyRead(**document) for document in await cursor.to_list(length=None)]
 
     @staticmethod
@@ -89,12 +93,23 @@ class QuestionRepository:
 
     @staticmethod
     async def list() -> List[QuestionRead]:
-        cursor = QuestionRepository.get_collection().find()
-        return [QuestionRead(**document) for document in await cursor.to_list(length=None)]
+        collection = await QuestionRepository.get_collection()
+        document = collection.find()
+        if not document:
+            raise NotFoundException("Keine Fragen gefunden")
+        try:
+            return [QuestionRead(**document) for document in await document.to_list(length=None)]
+        except ValidationError as e:
+            raise ValueError(f"Missing required fields in the database document: {e}")
 
     @staticmethod
     async def get_random() -> QuestionRead:
-        document = await QuestionRepository.get_collection().aggregate([{"$sample": {"size": 1}}]).to_list(length=1)
-        if not document:
+        collection = await QuestionRepository.get_collection()
+        document = await collection.aggregate([{"$sample": {"size": 1}}]).to_list(length=1)
+        if not document or not document[0]:
             raise NotFoundException("Keine Fragen gefunden")
-        return QuestionRead(**document[0])
+        question_data = document[0]
+        try:
+            return QuestionRead(**question_data)
+        except ValidationError as e:
+            raise ValueError(f"Missing required fields in the database document: {e}")

@@ -236,7 +236,24 @@ input[type="range"]:hover {
 }
 
 
+footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: var(--main-bg-color);
+    color: var(--main-sub-text-color);
+    text-align: center;
+}
+
 /* waitinglobby */
+
+#playerList{
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+    height: 40rem;
+    overflow: auto;
+}
 
 .player {
     display: flex;
@@ -246,13 +263,5 @@ input[type="range"]:hover {
     border-radius: var(--main-border-radius);
     background-color: #343a40;
     margin: 10px 0;
-}
-
-footer{
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background-color: var(--main-bg-color);
-    color: var(--main-sub-text-color);
-    text-align: center;
+    height: 3rem;
 }

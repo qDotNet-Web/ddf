@@ -168,7 +168,9 @@ export default {
             let gameOptions = {
                 owner_name: playerName,
                 is_active: true,
-                players: [],
+                players: [
+                    playerName
+                ],
                 round_timer: roundLength * 60,
                 lives_per_player: parseInt(playerLives)
             }
@@ -184,6 +186,7 @@ export default {
             })
 
             console.log(response)
+            gameOptions['code'] = response.code;
 
             const gameStore = useGameStore();
             gameStore.setGameOptions(gameOptions);

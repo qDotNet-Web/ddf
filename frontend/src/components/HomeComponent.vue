@@ -165,13 +165,16 @@ export default {
             }
 
 
-            fetch('http://localhost:8000/game/lobby/create', {
+            let response = fetch('http://localhost:8000/game/lobby/create', {
                 method: 'POST',
+                mode : 'cors',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(gameOptions)
             })
+
+            console.log(response)
 
             const gameStore = useGameStore();
             gameStore.setGameOptions(gameOptions);

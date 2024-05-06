@@ -9,6 +9,6 @@ async def request_handler(request: Request, call_next):
         return await call_next(request)
     except Exception as e:
         if isinstance(e, BaseAPIException):
-            return e.to_response()
+            return e.response()
 
         raise e

@@ -1,3 +1,5 @@
+from pydantic import ValidationError
+
 from ..models.game_model import *
 from ..core.exceptions import *
 from ..core.database import db
@@ -6,6 +8,8 @@ from typing import List
 
 __all__ = ["GameRepository", "PlayerRepository", "QuestionRepository"]
 
+from ..models.game_model import QuestionRead
+
 
 class GameRepository:
     @staticmethod
@@ -13,8 +17,22 @@ class GameRepository:
         return db.db["game"]
 
     @staticmethod
-    async def get(lobby_id: str) -> LobbyRead:
+    async def gen_unique_code():
+        while True:
+            code = get_lobby_id()
+            if not await db.exists("game", "code", code):
+                return code
+
+    @staticmethod
+    async def get_by_id(lobby_id: str) -> LobbyRead:
         document = await GameRepository.get_collection().find_one({"_id": lobby_id})
+        if not document:
+            raise NotFoundException("Lobby nicht gefunden")
+        return LobbyRead(**document)
+
+    @staticmethod
+    async def get_by_code(code: str) -> LobbyRead:
+        document = await GameRepository.get_collection().find_one({"code": code})
         if not document:
             raise NotFoundException("Lobby nicht gefunden")
         return LobbyRead(**document)
@@ -28,10 +46,10 @@ class GameRepository:
     async def create(create: LobbyCreate) -> LobbyRead:
         document = create.dict()
         document["_id"] = get_uuid()
-        document["code"] = get_lobby_id()
+        document["code"] = await GameRepository.gen_unique_code()
         result = await GameRepository.get_collection().insert_one(document)
         assert result.acknowledged
-        return await GameRepository.get(str(result.inserted_id))
+        return await GameRepository.get_by_id(str(result.inserted_id))
 
     @staticmethod
     async def update(lobby_id: str, update: LobbyUpdate) -> None:
@@ -89,12 +107,23 @@ class QuestionRepository:
 
     @staticmethod
     async def list() -> List[QuestionRead]:
-        cursor = QuestionRepository.get_collection().find()
-        return [QuestionRead(**document) for document in await cursor.to_list(length=None)]
+        collection = await QuestionRepository.get_collection()
+        document = collection.find()
+        if not document:
+            raise NotFoundException("Keine Fragen gefunden")
+        try:
+            return [QuestionRead(**document) for document in await document.to_list(length=None)]
+        except ValidationError as e:
+            raise ValueError(f"Missing required fields in the database document: {e}")
 
     @staticmethod
     async def get_random() -> QuestionRead:
-        document = await QuestionRepository.get_collection().aggregate([{"$sample": {"size": 1}}]).to_list(length=1)
-        if not document:
+        collection = await QuestionRepository.get_collection()
+        document = await collection.aggregate([{"$sample": {"size": 1}}]).to_list(length=1)
+        if not document or not document[0]:
             raise NotFoundException("Keine Fragen gefunden")
-        return QuestionRead(**document[0])
+        question_data = document[0]
+        try:
+            return QuestionRead(**question_data)
+        except ValidationError as e:
+            raise ValueError(f"Missing required fields in the database document: {e}")

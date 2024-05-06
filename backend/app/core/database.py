@@ -1,6 +1,5 @@
 from motor.motor_asyncio import AsyncIOMotorClient
-from app.core.config import settings
-
+from .config import settings
 
 
 class Database:
@@ -19,13 +18,6 @@ class Database:
     @classmethod
     def close(cls):
         cls.client.close()
-
-    @classmethod
-    async def get_all_questions(cls):
-        cursor = cls.db["questions"].find({})
-        all_questions = await cursor.to_list(length=None)
-        questions = [(question["question"], all_questions["answer"]) for question in all_questions]
-        return questions
 
 
 db = Database()

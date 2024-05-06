@@ -1,26 +1,22 @@
 from fastapi import FastAPI
-from app.api.router import game_router
-from app.core.database import db
-
-
-questions_list = []
+from .core.database import db
+from .core.middleware import request_handler
+from .api.router import game_router
 
 
 app = FastAPI()
-app.include_router(game_router.router, prefix="/game", tags=["game"])
+app.middleware("http")(request_handler)
+app.include_router(game_router.router, prefix="/game")
 
 
 @app.on_event("startup")
 async def startup_event() -> None:
     await db.initialize()
-    questions_list = await db.get_all_questions()
-    print(questions_list)
 
 
 @app.on_event("shutdown")
 async def shutdown_event() -> None:
     db.close()
-
 
 '''
 Spielprinzip:

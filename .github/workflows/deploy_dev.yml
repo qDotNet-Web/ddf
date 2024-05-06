@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - dev
+      - 4-create-frontend
 
 jobs:
   deploy:
@@ -19,4 +20,4 @@ jobs:
 
       - name: Deploy to Test Server
         run: |
-          ssh -o StrictHostKeyChecking=no root@45.138.49.163 "cd /home/ddf && docker-compose down && git stash && git pull origin dev && docker-compose up --build"
+          ssh -o StrictHostKeyChecking=no root@45.138.49.163 "cd /home/ddf && docker-compose down && git stash && git config pull.rebase false && git pull origin dev && docker-compose up --build -d"

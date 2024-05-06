@@ -97,9 +97,9 @@ button.btn-main-new:hover::before {
 }
 
 .spin {
-    -webkit-animation:spin 4s linear infinite;
-    -moz-animation:spin 4s linear infinite;
-    animation:spin 4s linear infinite;
+    -webkit-animation:spin 2s linear infinite;
+    -moz-animation:spin 2s linear infinite;
+    animation:spin 2s linear infinite;
 }
 
 .center {
@@ -145,10 +145,9 @@ button.btn-main-new:hover::before {
 
 .btn-modal {
     background: var(--main-design-color) !important;
-    background-size: 150% 150%;
     border: none;
     border-radius: var(--main-border-radius) !important;
-    padding: 10px 30px;
+    padding: 1rem;
     font-weight: 800;
     transition: transform 0.5s;
     color: var(--main-bg-color) !important;
@@ -290,7 +289,24 @@ input[type="range"]:hover {
 }
 
 
+footer{
+    /* position: fixed;
+    bottom: 0; */
+    width: 100%;
+    background-color: var(--main-bg-color);
+    color: var(--main-sub-text-color);
+    text-align: center;
+}
+
 /* waitinglobby */
+
+#playerList{
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+    height: 40rem;
+    overflow: auto;
+}
 
 .player {
     display: flex;
@@ -300,13 +316,5 @@ input[type="range"]:hover {
     border-radius: var(--main-border-radius);
     background-color: #343a40;
     margin: 10px 0;
-}
-
-footer{
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background-color: var(--main-bg-color);
-    color: var(--main-sub-text-color);
-    text-align: center;
+    height: 3rem;
 }

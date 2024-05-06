@@ -6,6 +6,7 @@ import 'bootstrap/dist/js/bootstrap.bundle'
 import './assets/css/animate.css'
 import './assets/css/animate.min.css'
 import './assets/css/main.css'
+import './assets/css/loading.css'
 import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 

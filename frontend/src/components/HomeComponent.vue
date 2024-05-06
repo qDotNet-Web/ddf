@@ -11,8 +11,8 @@
         <img src="@/assets/logo.png" alt="Logo" class="icon mb-4">
         <h1 class="dff-h1 mb-4">Der Dümmste fliegt!</h1>
         <div class="d-flex justify-content-center gap-5 homeActions">
-            <button class="btn btn-main-new" id="startButton" data-bs-toggle="modal" data-bs-target="#createLobbyModal">Erstellen</button>
-            <button class="btn btn-main-new"  data-bs-toggle="modal" data-bs-target="#joinLobbyModal">Beitreten</button>
+            <button class="btn btn-main-new fr-animate fr-move-up fr-delay-3" id="startButton" data-bs-toggle="modal" data-bs-target="#createLobbyModal">Erstellen</button>
+            <button class="btn btn-main-new fr-animate fr-move-up fr-delay-5" data-bs-toggle="modal" data-bs-target="#joinLobbyModal">Beitreten</button>
         </div>
         <!-- Modal 2 -->
         <div class="modal fade" id="anleitungsModal" tabindex="-1" aria-labelledby="anleitungsModalLabel" aria-hidden="true">
@@ -53,8 +53,8 @@
                         </div>
                     </div>
                     <div class="modal-footer space-between">
-                        <button type="button" class="btn btn-modal" data-bs-dismiss="modal">Schließen</button>
-                        <button type="button" class="btn btn-modal" data-bs-dismiss="modal" @click="createLobby()">Starten</button>
+                        <button type="button" class="btn btn-main-new btn-modal-new" data-bs-dismiss="modal">Schließen</button>
+                        <button type="button" class="btn btn-main-new btn-modal-new" data-bs-dismiss="modal" @click="createLobby()">Starten</button>
                     </div>
                 </div>
             </div>
@@ -75,15 +75,16 @@
                             <label for="ip_playerName">Dein Name</label>
                             <input type="text" name="ip_playerName" placeholder="Schlaubischlumpf" maxlength="20" v-model="playerName">
                         </div>
+                        </div>
                     <div class="modal-footer space-between">
-                        <button type="button" class="btn btn-modal" data-bs-dismiss="modal">Schließen</button>
-                        <button type="button" class="btn btn-modal" data-bs-dismiss="modal" @click="joinLobby()">Beitreten</button>
+                        <button type="button" class="btn btn-main-new btn-modal-new" data-bs-dismiss="modal">Schließen</button>
+                        <button type="button" class="btn btn-main-new btn-modal-new" data-bs-dismiss="modal" @click="joinLobby()">Beitreten</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    </div>
+   
         <!-- Footer -->
         <footer class="mt-auto mb-4 text-center fw-bold">
         © 2024 <br>
@@ -96,6 +97,12 @@
 import router from '@/router/index.js'
 import { reactive } from 'vue';
 import { useGameStore } from "@/store.js";
+
+window.onload = function() {
+    document.querySelectorAll(".fr-animate").forEach((el) => {
+        el.classList.add('fr-animate-init');
+    });
+}
 
 Element.prototype.remove = function() {
     this.parentElement.removeChild(this);

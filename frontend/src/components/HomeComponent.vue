@@ -167,7 +167,7 @@ export default {
 
             let response = fetch('http://localhost:8000/game/lobby/create', {
                 method: 'POST',
-                mode : 'cors',
+                mode : 'no-cors',
                 headers: {
                     'Content-Type': 'application/json'
                 },

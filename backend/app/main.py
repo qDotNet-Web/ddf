@@ -8,8 +8,8 @@ from .api.router import game_router
 app = FastAPI()
 
 origins = [
-    "https://derduemmstefliegt.online",
-    "http://localhost"
+    "https://derduemmstefliegt.online:8000",
+    "http://localhost:8000"
 ]
 
 app.middleware("http")(request_handler)

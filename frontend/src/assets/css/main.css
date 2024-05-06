@@ -112,6 +112,49 @@ body, html {
     color: var(--main-sub-text-color) !important;
 }
 
+.btn-main-new {
+    --color: #0077ff;
+    font-family: inherit;
+    display: inline-block;
+    width: 6em;
+    height: 2.6em;
+    line-height: 2.5em;
+    overflow: hidden;
+    cursor: pointer;
+    margin: 20px;
+    font-size: 17px;
+    z-index: 1;
+    color: var(--color);
+    border: 2px solid var(--color);
+    border-radius: 6px;
+    position: relative;
+}
+
+button.btn-main-new::before {
+    position: absolute;
+    content: "";
+    background: var(--color);
+    width: 150px;
+    height: 200px;
+    z-index: -1;
+    border-radius: 50%;
+}
+
+button.btn-main-new:hover {
+    color: white;
+}
+
+button.btn-main-new:before{
+    top: 100%;
+    left: 100%;
+    transition: 0.3s all;
+}
+
+button.btn-main-new:hover::before {
+    top: -30px;
+    left: -30px;
+}
+
 .icon {
     width: 200px;
     height: auto;

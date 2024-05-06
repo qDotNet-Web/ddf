@@ -11,8 +11,8 @@
         <img src="@/assets/logo.png" alt="Logo" class="icon mb-4">
         <h1 class="dff-h1 mb-4">Der Dümmste fliegt!</h1>
         <div class="d-flex justify-content-center gap-5 homeActions">
-            <button class="btn btn-main" id="startButton" data-bs-toggle="modal" data-bs-target="#createLobbyModal">Erstellen</button>
-            <button class="btn btn-main"  data-bs-toggle="modal" data-bs-target="#joinLobbyModal">Beitreten</button>
+            <button class="btn btn-main-new" id="startButton" data-bs-toggle="modal" data-bs-target="#createLobbyModal">Erstellen</button>
+            <button class="btn btn-main-new"  data-bs-toggle="modal" data-bs-target="#joinLobbyModal">Beitreten</button>
         </div>
         <!-- Modal 2 -->
         <div class="modal fade" id="anleitungsModal" tabindex="-1" aria-labelledby="anleitungsModalLabel" aria-hidden="true">

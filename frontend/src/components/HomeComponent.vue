@@ -9,6 +9,17 @@
             <div class="shadow"></div>
             <div class="shadow"></div>
             <div class="shadow"></div>
+            </div>
+    <div class="container my-auto vertical-center dff-padding-top" id="app">
+        <div class="howToPlay">
+            
+        </div>
+        <img src="@/assets/logo.png" alt="Logo" class="icon mb-4">
+        <h1 class="dff-h1 mb-4">Der Dümmste fliegt!</h1>
+        <div class="d-flex justify-content-center gap-5 homeActions">
+            <button class="btn btn-main-new fr-animate fr-move-up fr-delay-3" id="startButton" data-bs-toggle="modal" data-bs-target="#createLobbyModal">Erstellen</button>
+            <button class="btn btn-main-new fr-animate fr-move-up fr-delay-5" data-bs-toggle="modal" data-bs-target="#joinLobbyModal">Beitreten</button>
+
         </div>
         <div class="container my-auto vertical-center dff-padding-top homeContainer" id="app">
             <div class="howToPlay"></div> <!-- TODO -->
@@ -69,6 +80,13 @@
                                 @click="createLobby()">Starten</button>
                         </div>
                     </div>
+
+
+                    <div class="modal-footer space-between">
+                        <button type="button" class="btn btn-main-new btn-modal-new" data-bs-dismiss="modal">Schließen</button>
+                        <button type="button" class="btn btn-main-new btn-modal-new" data-bs-dismiss="modal" @click="createLobby()">Starten</button>
+                    </div>
+
                 </div>
             </div>
             <!-- Modal 4 JoinLobby -->
@@ -96,11 +114,21 @@
                                     @click="joinLobby()">Beitreten</button>
                             </div>
                         </div>
+
+
+                        </div>
+                    <div class="modal-footer space-between">
+                        <button type="button" class="btn btn-main-new btn-modal-new" data-bs-dismiss="modal">Schließen</button>
+                        <button type="button" class="btn btn-main-new btn-modal-new" data-bs-dismiss="modal" @click="joinLobby()">Beitreten</button>
+
                     </div>
                 </div>
             </div>
             <!-- Footer -->
         </div>
+    </div>
+   
+        <!-- Footer -->
         <footer class="mt-auto mb-4 text-center fw-bold">
             © 2024 <br>
             qdotnet.de <br>
@@ -114,7 +142,14 @@ import { reactive, ref } from 'vue';
 import { useGameStore } from "@/store.js";
 import Cookies from 'js-cookie';
 
-Element.prototype.remove = function () {
+
+window.onload = function() {
+    document.querySelectorAll(".fr-animate").forEach((el) => {
+        el.classList.add('fr-animate-init');
+    });
+}
+
+Element.prototype.remove = function() {
     this.parentElement.removeChild(this);
 }
 NodeList.prototype.remove = HTMLCollection.prototype.remove = function () {

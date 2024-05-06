@@ -1,11 +1,19 @@
 from fastapi import FastAPI
+from starlette.middleware.cors import CORSMiddleware
 from .core.database import db
 from .core.middleware import request_handler
 from .api.router import game_router
 
 
 app = FastAPI()
+
+origins = [
+    "https://derduemmstefluegt.online",
+    "http://localhost"
+]
+
 app.middleware("http")(request_handler)
+app.add_middleware(CORSMiddleware, allow_origins=origins, allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
 app.include_router(game_router.router, prefix="/game")
 
 

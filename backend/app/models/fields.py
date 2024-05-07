@@ -74,6 +74,10 @@ class PlayerFields:
 
 
 class QuestionFields:
+    question_id = Field(
+        description="The unique identifier of the question",
+        example=get_uuid()
+    )
     question = Field(
         description="The question",
         example="What is the capital of Germany?",
@@ -83,4 +87,8 @@ class QuestionFields:
         description="The answer to the question",
         example="Berlin",
         **_string
+    )
+    used = Field(
+        description="The status of the question",
+        example=False
     )

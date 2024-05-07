@@ -1,8 +1,10 @@
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
+
 from .core.database import db
 from .core.middleware import request_handler
-from .api.router import lobby_router, player_router, question_router
+from .api.router import lobby_router, player_router, question_router, websocket_router
+from .core.redis_client import redis_client
 
 
 app = FastAPI()
@@ -19,15 +21,18 @@ app.add_middleware(CORSMiddleware, allow_origins=origins, allow_credentials=True
 app.include_router(lobby_router.router, prefix="/lobby")
 app.include_router(player_router.router, prefix="/player")
 app.include_router(question_router.router, prefix="/question")
+app.include_router(websocket_router.router, prefix="/ws")
 
 
 @app.on_event("startup")
 async def startup_event() -> None:
+    await redis_client.initialize()
     await db.initialize()
 
 
 @app.on_event("shutdown")
 async def shutdown_event() -> None:
+    redis_client.close()
     db.close()
 
 '''

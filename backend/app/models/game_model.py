@@ -22,9 +22,16 @@ class LobbyCreate(BaseModel):
     players: List[str] = Field(default_factory=list)
     round_timer: int = GameFields.round_timer
     lives_per_player: int = GameFields.lives_per_player
+    used_questions: Optional[List[str]] = Field(default_factory=list)
 
     class Config:
         orm_mode = True
+
+
+class LobbyQuestions(BaseModel):
+    lobby_id: str = GameFields.lobby_id
+    question_id: List[str] = QuestionFields.question_id
+    used: bool = QuestionFields.used
 
 
 class LobbyRead(LobbyUpdate):
@@ -50,16 +57,18 @@ class PlayerUpdate(BaseModel):
     is_alive: Optional[bool] = PlayerFields.is_alive
 
 
-class PlayerCreate(PlayerUpdate):
+class PlayerCreate(BaseModel):
     name: str = PlayerFields.name
-    lives: int = PlayerFields.lives
-    is_alive: bool = PlayerFields.is_alive
+    # lives: int = PlayerFields.lives
+    # is_alive: bool = PlayerFields.is_alive
 
     class Config:
         orm_mode = True
 
 
 class PlayerRead(PlayerCreate):
+    player_id: str = PlayerFields.player_id
+
     @pydantic.model_validator(mode="before")
     def _set_player_id(cls, data):
         if isinstance(data, dict):

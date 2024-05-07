@@ -8,6 +8,8 @@ import './assets/css/loading.css'
 import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 
+import * as logic from './logic/index.js';
+
 import App from './App.vue'
 import router from './router'
 

@@ -5,15 +5,17 @@ class Game {
     round_timer = 180; //current game timer in round in seconds
     round = 1;
     players = [];
-    current_player = 0;
+    current_player_id = 0;
     timer_running = false;
     active = false;
+    gameState = GameState.WAITING;
 
 
     constructor(round_timer, players) {
         this.round_timer = round_timer;
         this.setRoundTimer(round_timer);
         this.players = players;
+        this.active = true;
     }
 
     getLobbyId() {
@@ -50,11 +52,16 @@ class Game {
     addPlayer(player) {
         this.players.push(player);
     }
-    setCurrentPlayer(current_player) {
-        this.current_player = current_player;
+    setCurrentPlayer(current_player_id) {
+        this.current_player_id = current_player_id;
+        let player = this.players.find(player => player.id == current_player_id);
+        player.setPlayerState(PlayerState.ANSWERING);
     }
 
-
+    startGame() {
+        this.gameState = GameState.RUNNING;
+        this.startRound();
+    }
 
     startRound() {
         if (!this.round_started) {

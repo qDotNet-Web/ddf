@@ -4,7 +4,7 @@ from ...core.websockets import connection_manager
 router = APIRouter()
 
 
-@router.websocket("/")
+@router.websocket("/{lobby_code}")
 async def websocket_endpoint(websocket: WebSocket, lobby_code: str):
     await connection_manager.connect(websocket)
     try:

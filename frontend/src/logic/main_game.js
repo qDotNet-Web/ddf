@@ -21,8 +21,7 @@
 // }
 
 // export default ddf;
-
-const ws = new WebSocket('ws://localhost:8000/ws');
+const ws = new WebSocket('ws://localhost:8000/ws/12345678');
 ws.onopen = function() {
     console.log('Connected to the socket');
 }
@@ -33,4 +32,3 @@ ws.onmessage = function(event) {
 ws.onclose = function() {
     console.log('Disconnected from the server');
 }
-

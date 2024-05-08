@@ -6,6 +6,7 @@
     --main-border-radius: 0.313rem;
     --main-design-color: #57f1f7;
     --main-gradiant-color: linear-gradient(90deg, rgba(194,37,101,255) 0%, rgba(45,75,154,255) 100%);
+    --button-transition: cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 *{
@@ -42,14 +43,63 @@ body, html {
     color: var(--main-text-color) !important;
 }
 
+.btn-main-new {
+    font-family: inherit;
+    display: inline-block;
+    width: 10rem;
+    height: 3em;
+    line-height: 2em;
+    overflow: hidden;
+    cursor: pointer;
+    margin: 20px;
+    font-size: 18px;
+    font-weight: 700;
+    z-index: 1;
+    color: var(--main-design-color);
+    border: 2px solid var(--main-design-color);
+    border-radius: 6px;
+    position: relative;
+}
+
+button.btn-main-new::before {
+    position: absolute;
+    content: "";
+    background: var(--main-design-color);
+    width: 270px;
+    height: 150px;
+    z-index: -1;
+    border-radius: 50%;
+}
+
+button.btn-main-new:hover {
+    color: var(--main-bg-color);
+}
+
+button.btn-main-new:before{
+    top: 100%;
+    left: 100%;
+    transition: 0.3s all;
+}
+
+button.btn-main-new:hover::before {
+    top: -30px;
+    left: -30px;
+}
+
+.btn-modal-new {
+    padding: 10px 30px;
+    margin: unset;
+    line-height: unset;
+}
+
 .dff-padding-top {
     padding-top: 12rem;
 }
 
 .spin {
-    -webkit-animation:spin 4s linear infinite;
-    -moz-animation:spin 4s linear infinite;
-    animation:spin 4s linear infinite;
+    -webkit-animation:spin 2s linear infinite;
+    -moz-animation:spin 2s linear infinite;
+    animation:spin 2s linear infinite;
 }
 
 .center {
@@ -95,10 +145,9 @@ body, html {
 
 .btn-modal {
     background: var(--main-design-color) !important;
-    background-size: 150% 150%;
     border: none;
     border-radius: var(--main-border-radius) !important;
-    padding: 10px 30px;
+    padding: 1rem;
     font-weight: 800;
     transition: transform 0.5s;
     color: var(--main-bg-color) !important;
@@ -111,6 +160,7 @@ body, html {
 .btn-close {
     color: var(--main-sub-text-color) !important;
 }
+
 
 .icon {
     width: 200px;
@@ -225,6 +275,9 @@ input[type="range"]:hover {
     accent-color: var(--main-design-color);
 }
 
+.gap-5{
+    gap: 0.8rem !important;
+}
 
 .custom-link {
     color: inherit; /* Use the color of the parent element */
@@ -236,7 +289,24 @@ input[type="range"]:hover {
 }
 
 
+footer{
+    /* position: fixed;
+    bottom: 0; */
+    width: 100%;
+    background-color: var(--main-bg-color);
+    color: var(--main-sub-text-color);
+    text-align: center;
+}
+
 /* waitinglobby */
+
+#playerList{
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+    height: 40rem;
+    overflow: auto;
+}
 
 .player {
     display: flex;
@@ -246,13 +316,5 @@ input[type="range"]:hover {
     border-radius: var(--main-border-radius);
     background-color: #343a40;
     margin: 10px 0;
-}
-
-footer{
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background-color: var(--main-bg-color);
-    color: var(--main-sub-text-color);
-    text-align: center;
+    height: 3rem;
 }

@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
-from ...crud.game_repo import GameRepository
-from ...models.game_model import LobbyRead, LobbyCreate, LobbyUpdate
+from ..crud.game_repo import GameRepository
+from ..models.game_model import LobbyRead, LobbyCreate, LobbyUpdate
 from typing import List
 
 

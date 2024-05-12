@@ -3,7 +3,7 @@ from starlette.middleware.cors import CORSMiddleware
 
 from .core.database import db
 from .core.middleware import request_handler
-from .api.router import lobby_router, player_router, question_router, websocket_router
+from .router import lobby_router, player_router, question_router, websocket_router
 from .core.redis_client import redis_client
 
 

@@ -3,6 +3,7 @@ from ..models.game_model import *
 from ..core.exceptions import *
 from ..core.database import db
 from ..core.utils import get_uuid, get_lobby_id
+from .lobby_repo import lobby_manager
 from typing import List
 
 __all__ = ["GameRepository"]
@@ -59,19 +60,20 @@ class GameRepository:
         cursor = GameRepository.get_collection().find()
         return [LobbyRead(**document) for document in await cursor.to_list(length=None)]
 
-    @staticmethod
+    """@staticmethod
     async def create(create: LobbyCreate) -> LobbyRead:
-        """
+        
         Create a new lobby
         @param create: LobbyCreate
         @return: LobbyRead
-        """
+        
         document = create.dict()
         document["_id"] = get_uuid()
         document["code"] = await GameRepository.gen_unique_code()
+        lobby_manager.create_lobby(document["_id"], document)
         result = await GameRepository.get_collection().insert_one(document)
         assert result.acknowledged
-        return await GameRepository.get_by_id(str(result.inserted_id))
+        return await GameRepository.get_by_id(str(result.inserted_id))"""
 
     @staticmethod
     async def update(lobby_id: str, update: LobbyUpdate) -> None:

@@ -8,7 +8,7 @@ __all__ = ("LobbyCreate", "LobbyRead", "LobbyUpdate", "PlayerCreate", "PlayerRea
 
 class LobbyUpdate(BaseModel):
     code: Optional[str] = GameFields.code
-    # owner_id: Optional[str] = GameFields.owner_id
+    owner_id: Optional[str] = GameFields.owner_id
     owner_name: Optional[str] = GameFields.owner_name
     is_active: Optional[bool] = GameFields.is_active
     players: Optional[List[str]] = Field(default_factory=list)

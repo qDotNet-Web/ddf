@@ -10,6 +10,20 @@ class LobbyManager:
         self.active_connections: Dict[str, List[WebSocket]] = {}
         self.redis_instance = redis_instance
 
+    async def handle_message(self, message: str, websocket: WebSocket):
+        message_data = json.loads(message)
+        action = message_data.get('action')
+        lobby_id = message_data.get('lobby_id')
+        data = message_data.get('data', {})
+
+        if action == 'create_lobby':
+            await self.create_lobby(lobby_id, LobbyCreate(**data))
+        elif action == 'update_lobby':
+            await self.update_lobby(lobby_id, LobbyUpdate(**data))
+        elif action == 'get_lobby_data':
+            lobby_data = await self.get_lobby_data(lobby_id)
+            await websocket.send_text(json.dumps(lobby_data))
+
     async def connect(self, websocket: WebSocket, lobby_id: str):
         """WebSocket-Verbindung akzeptieren und zur Lobby hinzufügen."""
         await websocket.accept()

@@ -4,7 +4,8 @@
 
 Willkommen im Repository für das interaktive Quizspiel **"Der Dümmste Fliegt"**! Dieses Projekt kombiniert Spaß und Herausforderung, um dein Allgemeinwissen auf die Probe zu stellen und dich gegen Freunde antreten zu lassen. Basierend auf **FastAPI** und **MongoDB** bietet es eine dynamische Spielerfahrung.
 
-[![build](https://github.com/q96exe/ddf/actions/workflows/deploy_dev.yml)](https://github.com/q96exe/ddf/actions/workflows/deploy_dev.yml)
+[![build_dev](https://img.shields.io/github/actions/workflow/status/q96exe/ddf/deploy_dev.yml)](https://github.com/q96exe/ddf/actions)
+[![build_prod](https://img.shields.io/github/actions/workflow/status/q96exe/ddf/deploy_prod.yml)](https://github.com/q96exe/ddf/actions)
 [![release](https://img.shields.io/github/package-json/v/q96exe/ddf)](https://github.com/q96exe/ddf/releases)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 

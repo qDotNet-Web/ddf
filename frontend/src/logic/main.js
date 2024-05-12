@@ -3,7 +3,8 @@ import { useGameStore } from "@/store.js";
 import Cookies from 'js-cookie';
 let game;
 
-function createLobby(gameOptions){
+function createLobby(options){
+    let gameOptions = options;
     fetch('http://localhost:8000/lobby/create_lobby', {
         method: 'POST',
         headers: {
@@ -26,13 +27,20 @@ function createLobby(gameOptions){
         });
 }
 
-function joinLobby(round_timer, round, players){
-    game = new Game(round_timer, round, players);
-    
+function joinLobby(lobbyId){
+    let gameOptions;
+    connectWebSocket(lobbyId);
+    try {
+       gameOptions = send({type: 'joinLobby', lobbyId: lobbyId});
+    } catch (error) {
+        console.error(error);
+    }
+    game = new Game(gameOptions.round_timer, gameOptions.round, gameOptions.players);
+
 }
 
-function playerJoined(id, name, lives){
-    player = new Player(id, name, lives, false);
+function playerJoined(id, name, lives, self){
+    player = new Player(id, name, lives, self);
     game.addPlayer(player);
 }
 

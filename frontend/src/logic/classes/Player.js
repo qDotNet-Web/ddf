@@ -5,12 +5,14 @@ class Player {
     lobbyOwner = false;
     dead = false;
     playerState = PlayerState.WAITING;
+    self = false;
 
-    constructor(id, name, lives, lobbyOwner) {
+    constructor(id, name, lives, lobbyOwner, self) {
         this.id = id;
         this.name = name;
         this.lives = lives;
         this.lobbyOwner = lobbyOwner;
+        this.self = self;
     }
 
 

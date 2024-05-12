@@ -27,17 +27,27 @@ function createLobby(options){
         });
 }
 
-function joinLobby(lobbyId){
-    let gameOptions;
-    connectWebSocket(lobbyId);
+async function joinLobby(lobbyCode){
     try {
-       gameOptions = send({type: 'joinLobby', lobbyId: lobbyId});
-    } catch (error) {
-        console.error(error);
+        const response = await fetch('http://localhost:8000/lobby/get_by_code/'+lobbyCode);
+        if (response.ok) {
+            const data = await response.json();
+            // const gameStore = useGameStore();
+            // gameStore.setGameOptions(data);
+            // Cookies.set('gameOptions', JSON.stringify(gameStore.gameOptions));
+            // router.push('/waitingLobby');
+            // game = new Game(data.round_timer, data.round, data.players);
+            console.log(JSON.stringify(data));
+        } else {
+            // throw error
+            alert('Lobby not found');
+        }
+    } catch(error) {
     }
-    game = new Game(gameOptions.round_timer, gameOptions.round, gameOptions.players);
-
 }
+
+
+// event handlers
 
 function playerJoined(id, name, lives, self){
     player = new Player(id, name, lives, self);

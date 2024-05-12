@@ -1,4 +1,4 @@
-![Logo](https://imgur.com/a/HBiSpEY)
+![Logo](https://ibb.co/NK5t0n7)
 
 # Der Dümmste Fliegt 🚀
 

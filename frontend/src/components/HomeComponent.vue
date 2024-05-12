@@ -245,25 +245,7 @@ export default {
                 }
             // wait 3 seconds
             setTimeout(() => {
-                fetch('http://localhost:8000/lobby/create_lobby', {
-                    method: 'POST',
-                    headers: {
-                        'accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(gameOptions)
-                }).then(response => response.json())
-                    .then(data => {
-                        gameOptions['code'] = data.code;
-                        const gameStore = useGameStore();
-                        gameStore.setGameOptions(gameOptions);
-                        Cookies.set('gameOptions', JSON.stringify(gameStore.gameOptions));
-                        h1.classList.remove('fade-out');
-                        homeActions.classList.remove('fade-out');
-                        loading.classList.remove('fade-in');
-                        main_logo.classList.remove('spin');
-                        router.push('/waitingLobby');
-                    });
+                // createlobby using gamelogic in logic/game.js
             }, 3000);
         }
         return { createLobby, joinLobby}

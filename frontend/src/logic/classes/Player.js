@@ -4,7 +4,8 @@ class Player {
     lives = 3;
     lobbyOwner = false;
     dead = false;
-    active = true;
+    playerState = PlayerState.WAITING;
+
     constructor(id, name, lives, lobbyOwner) {
         this.id = id;
         this.name = name;
@@ -25,13 +26,8 @@ class Player {
     getIsOwner() {
         return this.lobbyOwner;
     }
-
-    setActive(active){
-        this.active = active;
-        if (!active){
-            // get player card and add class inactive
-            document.getElementById(this.id).classList.add("inactive");
-        }
+    setPlayerState(playerState) {
+        this.playerState = playerState;
     }
     setId(id) {
         this.id = id;

@@ -5,33 +5,49 @@ services:
       - "8000:8000"
     depends_on:
       - mongo
+      - redis
     environment:
       - MONGODB_URL=mongodb://admin:password@mongo:27017/ddf_db?authSource=admin
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - REDIS_USER=default
+      - REDIS_PASSWORD=changeme
+      - REDIS_DB=0
       - SECRET_KEY=TestSecretKey
     networks:
-        - ddf_network
+      - ddf_network
   mongo:
     image: mongo:latest
-    ports: 
+    ports:
       - "27017:27017"
     environment:
         - MONGO_INITDB_ROOT_USERNAME=admin
         - MONGO_INITDB_ROOT_PASSWORD=password
-    volumes: 
+    volumes:
       - mongo_data:/data/db
     networks:
-        - ddf_network
-
+      - ddf_network
+  redis:
+    image: redis:latest
+    command: ["redis-server", "--requirepass", "changeme"]
+    ports:
+      - "6379:6379"
+    networks:
+      - ddf_network
+    volumes:
+      - redis_data:/data
   frontend:
     build: ./frontend
+    depends_on:
+      - backend
     ports:
       - "80:80"
     networks:
       - ddf_network
-
-volumes: 
+volumes:
   mongo_data:
-
+  redis_data:
+  redis_insight_data:
 networks:
-  ddf_network:
-    driver: bridge
+    ddf_network:
+        driver: bridge

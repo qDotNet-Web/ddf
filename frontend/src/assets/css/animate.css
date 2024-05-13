@@ -1,0 +1,27 @@
+.fr-move-up {
+    transform: translateY(30px);
+}
+
+.fr-move-up {
+    transition-duration: .7s;
+    transition-timing-function: var(--button-transition);
+}
+
+body .fr-animate-init {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) translateX(0) scale(1) rotate(0);
+
+}
+
+.fr-delay-3 {
+    transition-delay: .2s;
+}
+
+.fr-delay-5 {
+    transition-delay: .4s;
+}
+
+.fr-delay-7 {
+    transition-delay: .6s;
+}

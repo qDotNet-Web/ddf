@@ -32,7 +32,8 @@ services:
     command: ["redis-server", "--requirepass", "changeme"]
     ports:
       - "6379:6379"
-    network_mode: host
+    networks:
+      - ddf_network
     volumes:
       - redis_data:/data
   frontend:

@@ -24,3 +24,18 @@
     top: .1rem;
     font-size: 12px;
 }
+
+.p-selectbutton .p-button.p-highlight {
+    background: var(--main-design-color-light);
+    border-color: var(--main-design-color-light);
+}
+
+.p-selectbutton .p-button.p-highlight::before {
+    background: var(--main-design-color);
+    border-color: var(--main-design-color);
+}
+
+.p-selectbutton .p-button {
+    background: var(--main-design-color-light);
+    border-color: var(--main-design-color-light);
+}

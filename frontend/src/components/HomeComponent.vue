@@ -83,57 +83,62 @@
                             <Slider name="ip_playerLives" id="ip_playerLives" v-model="ip_playerLives"
                                 class="w-full mb-3" :min="1" :max="10" />
                         </div>
-                    </div>
-                    <div class="modal-footer space-between">
-                        <button type="button" class="btn btn-main-new btn-modal-new"
-                            data-bs-dismiss="modal">Schließen</button>
-                        <button type="button" id="createLobbyButton" class="btn btn-main-new btn-modal-new"
-                            data-bs-dismiss="modal" @click="createLobby()">Starten</button>
+
+                        <div class="input-switch mb-3">
+                            <SelectButton v-model="ip_lobbyType" :options="lobbyType_options" aria-labelledby="basic" />
+                        </div>
+                        <div class="modal-footer space-between">
+                            <button type="button" class="btn btn-main-new btn-modal-new"
+                                data-bs-dismiss="modal">Schließen</button>
+                            <button type="button" id="createLobbyButton" class="btn btn-main-new btn-modal-new"
+                                data-bs-dismiss="modal" @click="createLobby()">Starten</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- Modal 4 JoinLobby -->
-        <div class="modal fade" id="joinLobbyModal" tabindex="-1" aria-labelledby="joinLobbyModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content bg-dark text-light">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="joinLobbyModalLabel">Lobby beitreten</h5>
-                    </div>
-                    <div class="modal-body">
-                        <div class="input-text input-text-bb mb-3">
-                            <FloatLabel class="ip_float">
-                                <InputText id="ip_lobbyID" name="ip_lobbyID" v-model="lobbyId"
-                                    class="w-full ip_float" />
-                                <label for="ip_playerName">Lobby-ID</label>
-                            </FloatLabel>
-                            <!-- <label for="ip_playerName">Lobby-ID</label>
+            </div>
+            <!-- Modal 4 JoinLobby -->
+            <div class="modal fade" id="joinLobbyModal" tabindex="-1" aria-labelledby="joinLobbyModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content bg-dark text-light">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="joinLobbyModalLabel">Lobby beitreten</h5>
+                        </div>
+                        <div class="modal-body">
+                            <div class="input-text input-text-bb mb-3">
+                                <FloatLabel class="ip_float">
+                                    <InputText id="ip_lobbyID" name="ip_lobbyID" v-model="lobbyId"
+                                        class="w-full ip_float" />
+                                    <label for="ip_playerName">Lobby-ID</label>
+                                </FloatLabel>
+                                <!-- <label for="ip_playerName">Lobby-ID</label>
                                 <input type="text" name="ip_lobbyID" placeholder="1B3C5D7E" maxlength="8"
                                     v-model="lobbyId"> -->
-                        </div>
-                        <div class="input-text input-text-bb mb-3">
-                            <FloatLabel class="ip_float">
-                                <InputText id="ip_playerName" name="ip_playerName" v-model="ip_playerName"
-                                    class="w-full ip_float" />
-                                <label for="ip_playerName">UserName</label>
-                            </FloatLabel>
-                            <!-- <label for="ip_playerName">Dein Name</label>
+                            </div>
+                            <div class="input-text input-text-bb mb-3">
+                                <FloatLabel class="ip_float">
+                                    <InputText id="ip_playerName" name="ip_playerName" v-model="ip_playerName"
+                                        class="w-full ip_float" />
+                                    <label for="ip_playerName">UserName</label>
+                                </FloatLabel>
+                                <!-- <label for="ip_playerName">Dein Name</label>
                                 <input type="text" name="ip_playerName" placeholder="Schlaubischlumpf" maxlength="20"
                                     v-model="playerName"> -->
+                            </div>
                         </div>
-                    </div>
-                    <div class="modal-footer space-between">
-                        <button type="button" class="btn btn-main-new btn-modal-new"
-                            data-bs-dismiss="modal">Schließen</button>
-                        <button type="button" class="btn btn-main-new btn-modal-new" data-bs-dismiss="modal"
-                            @click="joinLobby()">Beitreten</button>
+                        <div class="modal-footer space-between">
+                            <button type="button" class="btn btn-main-new btn-modal-new"
+                                data-bs-dismiss="modal">Schließen</button>
+                            <button type="button" class="btn btn-main-new btn-modal-new" data-bs-dismiss="modal"
+                                @click="joinLobby()">Beitreten</button>
+                        </div>
                     </div>
                 </div>
             </div>
+            <!-- Footer -->
         </div>
-        <!-- Footer -->
-    </div>
+    
 
 
 
@@ -199,6 +204,8 @@ export default {
         const ip_roundLength = ref(3);
         const ip_playerName = ref(null);
         const ip_playerLives = ref(3);
+        const ip_lobbyType = ref('Text');
+        const lobbyType_options = ref(['Text', 'Voice']);
 
         const data = reactive({
             lobbyId: '',
@@ -277,7 +284,7 @@ export default {
                 // createlobby using gamelogic in logic/game.js
             }, 3000);
         }
-        return { createLobby, joinLobby, ip_roundLength, ip_playerName, ip_playerLives }
+        return { createLobby, joinLobby, ip_roundLength, ip_playerName, ip_playerLives, ip_lobbyType, lobbyType_options }
 
     },
 }

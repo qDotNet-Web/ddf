@@ -202,6 +202,7 @@ button.btn-main-new:hover::before {
 
 .modal-footer {
     border: none;
+    padding: 0px !important;
 }
 
 .btn-close {
@@ -250,12 +251,23 @@ button.btn-main-new:hover::before {
 
 .input-text {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     width: 100%;
     padding: 10px;
     border-radius: var(--main-border-radius);
     border: none;
     background-color: #343a40;
+    color: var(--main-text-color);
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+.input-switch {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 10px;
+    border-radius: var(--main-border-radius);
+    border: none;
     color: var(--main-text-color);
     font-size: 1.2rem;
     font-weight: 500;

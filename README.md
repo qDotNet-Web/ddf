@@ -1,3 +1,5 @@
+![Logo](https://ibb.co/NK5t0n7)
+
 # Der Dümmste Fliegt 🚀
 
 Dies ist das Repository für das interaktive Quizspiel "Der Dümmste Fliegt", basierend auf FastAPI und MongoDB. Das Spiel bietet eine lustige und herausfordernde Weise, Allgemeinwissen zu testen und gegen Freunde anzutreten.

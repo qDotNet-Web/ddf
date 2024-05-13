@@ -1,4 +1,5 @@
-class Game {
+import { GameState } from '@/logic/classes/Enums.js';
+export class Game {
     lobby_id = 0;
     round_started = false;
     set_round_timer = 180; //seconds per round
@@ -66,6 +67,18 @@ class Game {
     startRound() {
         if (!this.round_started) {
             this.round_started = true;
+
+            let alive = 0;
+            for (let i = 0; i < this.players.length; i++) {
+                if (this.players[i].getLives() > 0) {
+                    alive++;
+                }
+            }
+            if (alive <= 1) {
+                
+                this.endGame();
+            }
+
             while (true) {
                 if ((this.timer_running) && (this.getRoundTimer() > 0)){
                     this.setRoundTimer(this.getRoundTimer() - 1);
@@ -102,4 +115,13 @@ class Game {
         this.timer_running = true;
     }
     
+
+    getInfo(){
+        return {
+            lobby_id: this.lobby_id,
+            round_timer: this.round_timer,
+            round: this.round,
+            players: this.players
+        }
+    }
 }

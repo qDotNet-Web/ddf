@@ -1,1 +1,1 @@
-export {default as main_game} from './main.js';
+export {default as logic} from './main.js';

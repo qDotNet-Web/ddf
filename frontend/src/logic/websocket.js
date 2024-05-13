@@ -22,12 +22,6 @@ async function send(action, data) {
 function receive(data){
     const {type, msg} = data;
     switch (type) {
-        case 'createdLobby':
-            createdLobby(msg.round_timer, msg.round, msg.players);
-            return;
-        case 'joinLobby':
-            joinedLobby(msg.round_timer, msg.round, msg.players);
-            return;
         case 'playerJoined':
             playerJoined(msg.id, msg.name, msg.lives);
             return;

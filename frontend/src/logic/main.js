@@ -2,6 +2,7 @@ import router from '@/router/index.js'
 import { useGameStore } from "@/store.js";
 import Cookies from 'js-cookie';
 let game;
+let player;
 
 function createLobby(gameOptions){
     fetch('http://localhost:8000/lobby/create_lobby', {
@@ -26,9 +27,8 @@ function createLobby(gameOptions){
         });
 }
 
-function joinLobby(round_timer, round, players){
+function joinedLobby(round_timer, round, players){
     game = new Game(round_timer, round, players);
-    
 }
 
 function playerJoined(id, name, lives){

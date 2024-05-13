@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
-from ...crud.player_repo import PlayerRepository
-from ...models.game_model import PlayerRead, PlayerCreate, PlayerUpdate
+from ..crud.player_repo import PlayerRepository
+from ..models.game_model import PlayerRead, PlayerCreate, PlayerUpdate
 from typing import List
 
 

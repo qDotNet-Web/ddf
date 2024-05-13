@@ -1,8 +1,8 @@
-from fastapi import HTTPException
 from ..models.game_model import *
 from ..core.exceptions import *
 from ..core.database import db
 from ..core.utils import get_uuid, get_lobby_id
+from .lobby_repo import lobby_manager
 from typing import List
 
 __all__ = ["GameRepository"]
@@ -38,6 +38,13 @@ class GameRepository:
         return LobbyRead(**document)
 
     @staticmethod
+    async def get_player_by_id(player_id: str) -> PlayerRead:
+        document = await GameRepository.get_collection().find_one({"_id": player_id})
+        if not document:
+            raise NotFoundException("Spieler nicht gefunden")
+        return PlayerRead(**document)
+
+    @staticmethod
     async def get_by_code(code: str) -> LobbyRead:
         """
         Get a lobby by its code
@@ -69,9 +76,19 @@ class GameRepository:
         document = create.dict()
         document["_id"] = get_uuid()
         document["code"] = await GameRepository.gen_unique_code()
+        lobby_manager.create_lobby(document["_id"], document)
         result = await GameRepository.get_collection().insert_one(document)
         assert result.acknowledged
         return await GameRepository.get_by_id(str(result.inserted_id))
+
+    @staticmethod
+    async def create_player(player_create: PlayerCreate) -> PlayerRead:
+        document = player_create.dict()
+        document["_id"] = get_uuid()
+        result = await GameRepository.get_collection().insert_one(document)
+        assert result.acknowledged
+        await lobby_manager.create_player(document["_id"], document["name"], document["lobby_id"])
+        return await GameRepository.get_player_by_id(str(result.inserted_id))
 
     @staticmethod
     async def update(lobby_id: str, update: LobbyUpdate) -> None:
@@ -126,3 +143,13 @@ class GameRepository:
         if not result.modified_count:
             raise NotFoundException("Lobby not found or player already in lobby")
         return await GameRepository.get_by_code(code)
+
+    @staticmethod
+    async def save_lobby_from_redis(lobby_id: str, lobby_data: LobbyRead) -> None:
+        """
+        Save a lobby from Redis to the database
+        @param lobby_id: str
+        @param lobby_data: LobbyRead
+        """
+        await GameRepository.get_collection().insert_one(lobby_data)
+        await lobby_manager.delete_lobby(lobby_id)

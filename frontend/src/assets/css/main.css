@@ -334,7 +334,6 @@ footer{
     flex-direction: column;
     margin-top: 2rem;
     height: 60vh;
-    overflow: auto;
 }
 
 .player {

@@ -138,10 +138,6 @@
             </div>
             <!-- Footer -->
         </div>
-    
-
-
-
 </template>
 
 
@@ -150,6 +146,7 @@ import router from '@/router/index.js'
 import { reactive, ref } from 'vue';
 import { useGameStore } from "@/store.js";
 import Cookies from 'js-cookie';
+import {logic} from '@/logic/main.js';
 
 
 Element.prototype.remove = function () {
@@ -190,8 +187,7 @@ export default {
         // see if cookies  are set
         let gameStore = useGameStore();
         if (Cookies.get('gameOptions') != null) {
-            gameStore = JSON.parse(Cookies.get('gameOptions'));
-            // console.log(JSON.stringify(gameStore.gameOptions), Cookies.get('gameOptions'));
+            gameStore.setGameOptions(JSON.parse(Cookies.get('gameOptions')));
         }
 
         setTimeout(() => {
@@ -212,6 +208,7 @@ export default {
             playerName: '',
             currentView: null
         });
+
         function joinLobby() {
             if (data.lobbyId.length != 6) {
                 // this.$swal({
@@ -268,21 +265,13 @@ export default {
                 'round_timer': roundLength * 60,
                 'lives_per_player': playerLives
             }
-            // wait 3 seconds
-            setTimeout(() => {
-                fetch('http://localhost:8000/lobby/create_lobby', {
-                    method: 'POST',
-                    headers: {
-                        'accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(gameOptions)
-                }).then(response => response.json())
-                    .then(data => {
-
-                    });
-                // createlobby using gamelogic in logic/game.js
-            }, 3000);
+            let delay = new Promise(resolve => setTimeout(resolve, 1500));
+            let [created] = await Promise.all([logic.createLobby(gameOptions), delay]);
+            h1.classList.remove('fade-out');
+            homeActions.classList.remove('fade-out');
+            loading.classList.remove('fade-in');
+            main_logo.classList.remove('spin');
+            router.push("/waitingLobby");
         }
         return { createLobby, joinLobby, ip_roundLength, ip_playerName, ip_playerLives, ip_lobbyType, lobbyType_options }
 

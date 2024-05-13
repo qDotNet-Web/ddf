@@ -1,7 +1,12 @@
+import {Game} from '@/logic/classes/Game.js'
+import {GameState, PlayerState} from '@/logic/classes/Enums.js'
+import {Player} from '@/logic/classes/Player.js'
+
 import router from '@/router/index.js'
 import { useGameStore } from "@/store.js";
 import Cookies from 'js-cookie';
 let game;
+let player;
 
 function createLobby(options){
     let gameOptions = options;
@@ -18,14 +23,11 @@ function createLobby(options){
             const gameStore = useGameStore();
             gameStore.setGameOptions(gameOptions);
             Cookies.set('gameOptions', JSON.stringify(gameStore.gameOptions));
-            // h1.classList.remove('fade-out');
-            // homeActions.classList.remove('fade-out');
-            // loading.classList.remove('fade-in');
-            // main_logo.classList.remove('spin');
-            router.push('/waitingLobby');
             game = new Game(gameOptions.round_timer, gameOptions.round, gameOptions.players);
+            return true;
         });
 }
+
 
 async function joinLobby(lobbyCode){
     try {
@@ -49,14 +51,14 @@ async function joinLobby(lobbyCode){
 
 // event handlers
 
-function playerJoined(id, name, lives, self){
-    player = new Player(id, name, lives, self);
+function playerJoined(id, name, avatar_id, lives, self){
+    player = new Player(id, name, avatar_id, lives, self);
     game.addPlayer(player);
 }
 
 function playerLeft(id, new_owner_id){
     player = game.players.find(player => player.id == id);
-    player.setActive(false);
+    player.setPlayerState(PlayerState.DISCONNECTED);
     player.setLobbyOwner(false);
     if (new_owner_id) {
         let newOwner = new_owner_id;
@@ -80,5 +82,18 @@ function endedRound(){
     game.endRound();
 }
 
-function votedForPlayer(){
+function votedForPlayer(votingPlayerId, votedPlayerId){
+    game.players.find(player => player.id == votingPlayerId).voteForPlayer(game.players.find(player => player.id == votedPlayerId));
+}
+
+export const logic = {
+    createLobby,
+    joinLobby,
+    playerJoined,
+    playerLeft,
+    startedGame,
+    endedGame,
+    startedRound,
+    endedRound,
+    votedForPlayer
 }

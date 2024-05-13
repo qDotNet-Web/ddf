@@ -1,7 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="PYTHON_MODULE" version="4">
   <component name="NewModuleRootManager">
-    <content url="file://$MODULE_DIR$" />
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/frontend/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/node_modules/.bin" />
+      <excludeFolder url="file://$MODULE_DIR$/node_modules/bufferutil" />
+      <excludeFolder url="file://$MODULE_DIR$/node_modules/d" />
+      <excludeFolder url="file://$MODULE_DIR$/node_modules/debug" />
+      <excludeFolder url="file://$MODULE_DIR$/node_modules/es5-ext" />
+      <excludeFolder url="file://$MODULE_DIR$/node_modules/es6-iterator" />
+      <excludeFolder url="file://$MODULE_DIR$/node_modules/es6-symbol" />
+      <excludeFolder url="file://$MODULE_DIR$/node_modules/es6-symbol/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/node_modules/esniff" />
+      <excludeFolder url="file://$MODULE_DIR$/node_modules/esniff/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/node_modules/event-emitter" />
+      <excludeFolder url="file://$MODULE_DIR$/node_modules/ext" />
+      <excludeFolder url="file://$MODULE_DIR$/node_modules/ext/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/node_modules/is-typedarray" />
+      <excludeFolder url="file://$MODULE_DIR$/node_modules/ms" />
+      <excludeFolder url="file://$MODULE_DIR$/node_modules/next-tick" />
+      <excludeFolder url="file://$MODULE_DIR$/node_modules/node-gyp-build" />
+      <excludeFolder url="file://$MODULE_DIR$/node_modules/type" />
+      <excludeFolder url="file://$MODULE_DIR$/node_modules/type/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/node_modules/typedarray-to-buffer" />
+      <excludeFolder url="file://$MODULE_DIR$/node_modules/utf-8-validate" />
+      <excludeFolder url="file://$MODULE_DIR$/node_modules/websocket" />
+      <excludeFolder url="file://$MODULE_DIR$/node_modules/websocket/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/node_modules/yaeti" />
+      <excludeFolder url="file://$MODULE_DIR$/node_modules/yaeti/lib" />
+    </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>

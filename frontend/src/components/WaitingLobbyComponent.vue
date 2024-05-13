@@ -56,6 +56,7 @@ export default {
     playerList.appendChild(player1);
     player1.classList.add('player', 'fr-animate-2', 'fr-move-up', 'fr-delay-3');
     player1.setAttribute("id", "singlePlayer");
+
     // add player status and append it to the player div
     let player1Status = document.createElement('div');
     player1Status.innerHTML = 'Status: Bereit';

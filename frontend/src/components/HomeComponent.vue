@@ -162,15 +162,6 @@ export default {
     components: {
 
     },
-    beforeRouteEnter(to, from, next) {
-        next(vm => {
-            vm.$nextTick(() => {
-                document.querySelectorAll(".fr-animate").forEach((el) => {
-                    el.classList.add('fr-animate-init');
-                });
-            });
-        });
-    },
     data() {
 
         return {
@@ -185,6 +176,9 @@ export default {
             document.querySelector('label[for="ip_roundLength"]').innerText = `Rundenlänge: ${originalEvent.value} min`;
         },
         animateElement() {
+            document.querySelectorAll(".fr-animate").forEach((el) => {
+                el.classList.add('fr-animate-init');
+            });
         },
     },
     mounted() {
@@ -194,6 +188,10 @@ export default {
             gameStore = JSON.parse(Cookies.get('gameOptions'));
             // console.log(JSON.stringify(gameStore.gameOptions), Cookies.get('gameOptions'));
         }
+
+        setTimeout(() => {
+            this.animateElement()
+        }, 100);
 
     },
     setup() {

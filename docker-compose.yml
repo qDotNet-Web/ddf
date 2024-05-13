@@ -33,7 +33,6 @@ services:
     network_mode: host
     volumes:
       - redis_data:/data
-
   frontend:
     build: ./frontend
     depends_on:
@@ -41,7 +40,6 @@ services:
     ports:
       - "80:80"
     network_mode: host
-
 volumes:
   mongo_data:
   redis_data:

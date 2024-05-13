@@ -14,7 +14,8 @@ services:
       - REDIS_PASSWORD=changeme
       - REDIS_DB=0
       - SECRET_KEY=TestSecretKey
-    network_mode: host
+    networks:
+      - ddf_network
   mongo:
     image: mongo:latest
     ports:
@@ -24,7 +25,8 @@ services:
         - MONGO_INITDB_ROOT_PASSWORD=password
     volumes:
       - mongo_data:/data/db
-    network_mode: host
+    networks:
+      - ddf_network
   redis:
     image: redis:latest
     command: ["redis-server", "--requirepass", "changeme"]
@@ -39,8 +41,12 @@ services:
       - backend
     ports:
       - "80:80"
-    network_mode: host
+    networks:
+      - ddf_network
 volumes:
   mongo_data:
   redis_data:
   redis_insight_data:
+networks:
+    ddf_network:
+        driver: bridge

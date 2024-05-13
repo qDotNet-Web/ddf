@@ -1,0 +1,26 @@
+.ip_float {
+    width: 100%;
+}
+
+.ip_float label {
+    text-align: left;
+    right: 10px;
+}
+
+.p-slider .p-slider-range {
+    background: var(--main-design-color);
+}
+
+.p-slider .p-slider-handle::before {
+    background-color: #343a40;
+}
+
+.p-float-label:has(input:focus) label {
+    top: .1rem;
+    font-size: 12px;
+}
+
+.p-float-label:has(input.p-filled) label {
+    top: .1rem;
+    font-size: 12px;
+}

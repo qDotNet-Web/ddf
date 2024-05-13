@@ -13,9 +13,10 @@ function connectWebSocket(lobbyId){
     });
 }
 
-async function send(message) {
+async function send(action, data) {
     await wsConnected;
-    ws.send(JSON.stringify(message));
+    const msg = {action, data};
+    ws.send(JSON.stringify(msg));
 }
 
 function receive(data){

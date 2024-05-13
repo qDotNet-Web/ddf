@@ -1,4 +1,4 @@
-from ..models.game_model import PlayerRead, PlayerCreate, PlayerUpdate, PlayerJoin
+from ..models.game_model import PlayerRead, PlayerCreate, PlayerUpdate
 from ..core.exceptions import *
 from ..core.utils import get_uuid
 from ..core.database import db

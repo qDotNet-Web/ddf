@@ -6,6 +6,7 @@ import router from '@/router/index.js'
 import { useGameStore } from "@/store.js";
 import Cookies from 'js-cookie';
 let game;
+let player;
 
 function createLobby(options){
     let gameOptions = options;
@@ -26,6 +27,7 @@ function createLobby(options){
             return true;
         });
 }
+
 
 async function joinLobby(lobbyCode){
     try {

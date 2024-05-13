@@ -145,8 +145,6 @@ import Cookies from 'js-cookie';
 import {logic} from '@/logic/main.js';
 
 
-// testMain();
-
 Element.prototype.remove = function () {
     this.parentElement.removeChild(this);
 }
@@ -206,6 +204,7 @@ export default {
             playerName: '',
             currentView: null
         });
+
         function joinLobby() {
             if (data.lobbyId.length != 6) {
                 // this.$swal({

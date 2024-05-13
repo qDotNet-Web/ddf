@@ -1,0 +1,1 @@
+export {default as logic} from './main.js';

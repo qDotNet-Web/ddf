@@ -8,12 +8,13 @@ __all__ = ("LobbyCreate", "LobbyRead", "LobbyUpdate", "PlayerCreate", "PlayerRea
 
 class LobbyUpdate(BaseModel):
     code: Optional[str] = GameFields.code
-    # owner_id: Optional[str] = GameFields.owner_id
+    owner_id: Optional[str] = GameFields.owner_id
     owner_name: Optional[str] = GameFields.owner_name
     is_active: Optional[bool] = GameFields.is_active
     players: Optional[List[str]] = Field(default_factory=list)
     round_timer: Optional[int] = GameFields.round_timer
     lives_per_player: Optional[int] = GameFields.lives_per_player
+    text_based: Optional[bool] = GameFields.text_based
 
 
 class LobbyCreate(BaseModel):
@@ -22,9 +23,17 @@ class LobbyCreate(BaseModel):
     players: List[str] = Field(default_factory=list)
     round_timer: int = GameFields.round_timer
     lives_per_player: int = GameFields.lives_per_player
+    text_based: Optional[bool] = GameFields.text_based
+    used_questions: Optional[List[str]] = Field(default_factory=list)
 
     class Config:
         orm_mode = True
+
+
+class LobbyQuestions(BaseModel):
+    lobby_id: str = GameFields.lobby_id
+    question_id: List[str] = QuestionFields.question_id
+    used: bool = QuestionFields.used
 
 
 class LobbyRead(LobbyUpdate):
@@ -48,33 +57,33 @@ class PlayerUpdate(BaseModel):
     name: Optional[str] = PlayerFields.name
     lives: Optional[int] = PlayerFields.lives
     is_alive: Optional[bool] = PlayerFields.is_alive
+    avatar_id: Optional[int] = PlayerFields.avatar_id
 
 
-class PlayerCreate(PlayerUpdate):
+class PlayerCreate(BaseModel):
     name: str = PlayerFields.name
-    lives: int = PlayerFields.lives
-    is_alive: bool = PlayerFields.is_alive
+    lobby_id: str = GameFields.lobby_id
+    avatar_id: int = PlayerFields.avatar_id
 
     class Config:
         orm_mode = True
 
 
 class PlayerRead(PlayerCreate):
-    @pydantic.root_validator(pre=True)
+    player_id: str = PlayerFields.player_id
+    player_name: str = PlayerFields.name
+    avatar_id: int = PlayerFields.avatar_id
+
+    @pydantic.model_validator(mode="before")
     def _set_player_id(cls, data):
-        document_id = data.get("_id")
-        if document_id:
-            data["player_id"] = document_id
+        if isinstance(data, dict):
+            document_id = data.get("_id")
+            if document_id:
+                data["player_id"] = document_id
         return data
 
     class Config(PlayerCreate.Config):
         extra = pydantic.Extra.ignore
-
-
-class PlayerJoin(BaseModel):
-    player_id: str = PlayerFields.player_id
-    player_name: str = PlayerFields.name
-    lobby_id: str = GameFields.lobby_id
 
 
 class QuestionRead(BaseModel):

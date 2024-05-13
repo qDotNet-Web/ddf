@@ -19,7 +19,8 @@ export default defineConfig({
   },
   build: {
     rollupOptions: {
-      external: ['sweetalert2']
+      external: ['sweetalert2'],
+      external: ['primevue']
     }
   }
 })

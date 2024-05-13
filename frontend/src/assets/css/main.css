@@ -5,8 +5,10 @@
     --main-highlight-color: #ffbf48;
     --main-border-radius: 0.313rem;
     --main-design-color: #57f1f7;
+    --main-design-color-light: hsl(182, 91%, 65%, .5);
     --main-gradiant-color: linear-gradient(90deg, rgba(194,37,101,255) 0%, rgba(45,75,154,255) 100%);
     --button-transition: cubic-bezier(0.165, 0.84, 0.44, 1);
+
 }
 
 *{
@@ -94,6 +96,15 @@ button.btn-main-new:hover::before {
 
 .dff-padding-top {
     padding-top: 12rem;
+}
+
+.dff-padding-top-3 {
+    padding-top: 3rem;
+}
+
+.dff-padding-vh {
+    padding-top: 20vh;
+    padding-bottom: 15vh;
 }
 
 .spin {
@@ -250,6 +261,11 @@ button.btn-main-new:hover::before {
     font-weight: 500;
 }
 
+.input-text-bb {
+    border: 1px solid;
+    border-color: var(--main-design-color-light);
+}
+
 .input-text input {
     border-radius: var(--main-border-radius);
     border: none;
@@ -257,13 +273,14 @@ button.btn-main-new:hover::before {
     color: var(--main-text-color);
     font-size: 1.2rem;
     font-weight: 500;
-    text-align: right;
+    text-align: left;
 }
 
 .input-text input:focus {
     outline: none;
     border-bottom: #181818;
 }
+
 
 input[type="range"] {
     accent-color: var(--main-design-color);
@@ -304,7 +321,7 @@ footer{
     display: flex;
     flex-direction: column;
     margin-top: 2rem;
-    height: 40rem;
+    height: 60vh;
     overflow: auto;
 }
 
@@ -317,4 +334,5 @@ footer{
     background-color: #343a40;
     margin: 10px 0;
     height: 3rem;
+    border: 1px solid var(--main-design-color-light);
 }

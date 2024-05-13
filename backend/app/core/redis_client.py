@@ -18,7 +18,7 @@ class RedisClient:
     async def initialize(self):
         self.client = redis.from_url(redis_url, encoding="utf-8", decode_responses=True)
 
-    def close(self):
+    async def close(self):
         self.client.close()
 
 

@@ -1,0 +1,1 @@
+export {default as main_game} from './main.js';

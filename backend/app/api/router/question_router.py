@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from typing import List
-from ...crud.repositories import QuestionRepository
+from ...crud.question_repo import QuestionRepository
 from ...models.game_model import QuestionRead
 
 router = APIRouter()

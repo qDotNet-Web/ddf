@@ -15,6 +15,7 @@ import Slider from 'primevue/slider'
 import InputText from 'primevue/inputtext'
 import FloatLabel from 'primevue/floatlabel';
 import 'primevue/resources/themes/aura-light-green/theme.css'
+
 import App from './App.vue'
 import router from './router'
 

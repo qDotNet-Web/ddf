@@ -95,8 +95,3 @@ export const logic = {
     endedRound,
     votedForPlayer
 }
-
-// get .main_logo
-document.querySelector(".main_logo").addEventListener("click", function(){
-    console.log("clicked")
-});

@@ -14,6 +14,8 @@ class Database:
             await cls.db.create_collection("game")
         if "questions" not in await cls.db.list_collection_names():
             await cls.db.create_collection("questions")
+        if "players" not in await cls.db.list_collection_names():
+            await cls.db.create_collection("players")
         if "accounts" not in await cls.db.list_collection_names():
             await cls.db.create_collection("accounts")
 

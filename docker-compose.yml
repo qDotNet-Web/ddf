@@ -8,7 +8,7 @@ services:
     environment:
       - MONGODB_URL=mongodb://admin:password@mongo:27017/ddf_db?authSource=admin
       - SECRET_KEY=TestSecretKey
-    networks_mode: host
+    network_mode: host
   mongo:
     image: mongo:latest
     ports: 
@@ -18,13 +18,13 @@ services:
         - MONGO_INITDB_ROOT_PASSWORD=password
     volumes: 
       - mongo_data:/data/db
-    networks_mode: host
+    network_mode: host
 
   frontend:
     build: ./frontend
     ports:
       - "80:80"
-    networks_mode: host
+    network_mode: host
 
 volumes: 
   mongo_data:

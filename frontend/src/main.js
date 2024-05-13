@@ -13,7 +13,8 @@ import 'sweetalert2/dist/sweetalert2.min.css'
 import PrimeVue from 'primevue/config'
 import Slider from 'primevue/slider'
 import InputText from 'primevue/inputtext'
-import FloatLabel from 'primevue/floatlabel';
+import FloatLabel from 'primevue/floatlabel'
+import SelectButton from 'primevue/selectbutton'
 import 'primevue/resources/themes/aura-light-green/theme.css'
 
 import App from './App.vue'
@@ -29,6 +30,7 @@ app.use(PrimeVue)
 app.component('Slider', Slider)
 app.component('InputText', InputText)
 app.component('FloatLabel', FloatLabel)
+app.component('SelectButton', SelectButton)
 
 
 

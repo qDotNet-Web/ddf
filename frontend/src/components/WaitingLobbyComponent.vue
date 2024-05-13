@@ -21,19 +21,12 @@ import { useGameStore } from "@/store.js";
 import Cookies from 'js-cookie';
 
 export default {
-  beforeRouteEnter(to, from, next) {
-        next(vm => {
-            vm.$nextTick(() => {
-                document.querySelectorAll(".fr-animate").forEach((el) => {
-                    el.classList.add('fr-animate-init');
-                });
-            });
-        });
-    },
   name: 'WaitingLobbyComponent',
   methods: {
     animateElement() {
-      
+      document.querySelectorAll(".fr-animate-2").forEach((el) => {
+        el.classList.add('fr-animate-init');
+      });
     },
   },
   mounted() {
@@ -61,7 +54,7 @@ export default {
     let player1 = document.createElement('div');
     player1.innerHTML = 'Spieler 1: ' + gameOptions.owner_name;
     playerList.appendChild(player1);
-    player1.classList.add('player', 'fr-animate', 'fr-move-up', 'fr-delay-3');
+    player1.classList.add('player', 'fr-animate-2', 'fr-move-up', 'fr-delay-3');
     player1.setAttribute("id", "singlePlayer");
 
     // add player status and append it to the player div
@@ -69,7 +62,9 @@ export default {
     player1Status.innerHTML = 'Status: Bereit';
     player1Status.classList.add('player-status');
     player1.appendChild(player1Status);
-    this.animateElement();
+    setTimeout(() => {
+      this.animateElement()
+    }, 100); // 100 Millisekunden Verzögerung
   }
 };
 </script>

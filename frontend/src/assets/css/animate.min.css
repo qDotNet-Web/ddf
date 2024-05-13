@@ -1,4 +1,4 @@
-.fr-animate {
+.fr-animate, .fr-animate-2{
     opacity: 0;
     visibility: hidden; 
     transition-property: opacity, transform;

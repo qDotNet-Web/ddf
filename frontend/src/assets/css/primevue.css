@@ -30,22 +30,27 @@
 }
 
 .p-selectbutton .p-button.p-highlight {
-    background: var(--main-design-color);
-    border-color: var(--main-design-color-light);
-    color: var(--main-text-color);
+    background: var(--main-bg-color);
+    border-color: var(--main-bg-color);
+    color: var(--main-bg-color);
 }
 
 .p-selectbutton .p-button.p-highlight::before {
-    background: var(--main-bg-color);
-    border-color: var(--main-design-color);
+    background: var(--main-design-color);
+    border-color: var(--main-bg-color);
 }
 
 .p-selectbutton .p-button {
-    background: var(--main-design-color);
-    border-color: var(--main-design-color-light);
-    color: var(--main-bg-color-light);
+    background: var(--main-bg-color);
+    border-color: var(--main-bg-color);
+    color: var(--main-design-color-light);
 }
 .p-selectbutton .p-button:not(.p-disabled):not(.p-highlight):hover{
-    color: var(--main-bg-color);
+    color: var(--main-design-color);
+}
+
+.p-selectbutton.p-component {
+    border: 1px solid var(--main-design-color);
+    border-radius: 6px;
 }
 

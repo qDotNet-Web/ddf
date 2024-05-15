@@ -18,6 +18,7 @@ class LobbyUpdate(BaseModel):
 
 
 class LobbyCreate(BaseModel):
+    owner_id: str = GameFields.owner_id
     owner_name: str = GameFields.owner_name
     is_active: bool = GameFields.is_active
     players: List[str] = Field(default_factory=list)
@@ -62,7 +63,7 @@ class PlayerUpdate(BaseModel):
 
 class PlayerCreate(BaseModel):
     name: str = PlayerFields.name
-    lobby_id: str = GameFields.lobby_id
+    # lobby_id: str = GameFields.lobby_id
     avatar_id: int = PlayerFields.avatar_id
 
     class Config:

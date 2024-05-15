@@ -85,7 +85,8 @@
                         </div>
 
                         <div class="input-switch mb-3">
-                            <SelectButton :unselectable="false" v-model="ip_lobbyType" :options="lobbyType_options" aria-labelledby="basic" />
+                            <SelectButton :unselectable="false" v-model="ip_lobbyType" :options="lobbyType_options"
+                                aria-labelledby="basic" />
                         </div>
                         <div class="modal-footer space-between">
                             <button type="button" class="btn btn-main-new btn-modal-new"
@@ -257,15 +258,30 @@ export default {
             loading.classList.add('fade-in');
             main_logo.classList.add('spin');
 
+            const playerResponse = await fetch('http://localhost:8000/player/create_player/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ name: playerName, avatar_id: 1 })
+            });
+            if (!playerResponse.ok) {
+                throw new Error('Failed to create player');
+            }
+
+            const playerData = await playerResponse.json();
+
 
             let gameOptions = {
-                'owner_name': playerName,
-                'is_active': true,
-                'players': [
+                "owner_name": playerName,
+                "owner_id": playerData.player_id,
+                "is_active": true,
+                "players": [
                     playerName,
                 ],
-                'round_timer': roundLength * 60,
-                'lives_per_player': playerLives
+                "round_timer": roundLength * 60,
+                "lives_per_player": playerLives,
+                "text_based": true
             }
             let delay = new Promise(resolve => setTimeout(resolve, 1500));
             let [created] = await Promise.all([logic.createLobby(gameOptions), delay]);

@@ -67,22 +67,15 @@ class GameRepository:
         return [LobbyRead(**document) for document in await cursor.to_list(length=None)]
 
     @staticmethod
-    async def create(create: LobbyCreate, owner_name: str, owner_avatar_id: int = None) -> LobbyRead:
+    async def create(create: LobbyCreate) -> LobbyRead:
         """
         Create a new lobby
         @param create: LobbyCreate
-        @param owner_name:
-        @param owner_avatar_id:
         @return: LobbyRead
         """
-        player = PlayerCreate(name=owner_name, avatar_id=owner_avatar_id)
-        player = await GameRepository.create_player(player)
-
         document = create.dict()
         document["_id"] = get_uuid()
         document["code"] = await GameRepository.gen_unique_code()
-        document["owner_id"] = player.player_id
-        document["owner_name"] = player.name
 
         lobby_manager.create_lobby(document["_id"], document)
         result = await GameRepository.get_collection().insert_one(document)

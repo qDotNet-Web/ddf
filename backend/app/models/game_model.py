@@ -18,7 +18,7 @@ class LobbyUpdate(BaseModel):
 
 
 class LobbyCreate(BaseModel):
-    # owner_id: Optional[str] = GameFields.owner_id
+    owner_id: Optional[str] = GameFields.owner_id
     owner_name: str = GameFields.owner_name
     is_active: bool = GameFields.is_active
     players: List[str] = Field(default_factory=list)
@@ -71,8 +71,8 @@ class PlayerCreate(BaseModel):
 
 
 class PlayerRead(PlayerCreate):
+    name: str = PlayerFields.name
     player_id: str = PlayerFields.player_id
-    player_name: str = PlayerFields.name
     avatar_id: int = PlayerFields.avatar_id
 
     @pydantic.model_validator(mode="before")

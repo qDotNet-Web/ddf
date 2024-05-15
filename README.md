@@ -4,7 +4,9 @@
 [![release](https://img.shields.io/github/package-json/v/q96exe/ddf)](https://github.com/q96exe/ddf/releases)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
-[<img src="frontend/src/assets/logo.png" width="250" heigth="250"/>](frontend/src/assets/logo.png)
+<div style="align: center">
+  [<img src="frontend/src/assets/logo.png" width="250" heigth="250"/>](frontend/src/assets/logo.png)
+</div>
 
 # Der Dümmste Fliegt 🚀
 

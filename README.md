@@ -5,7 +5,7 @@
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
 
-![Logo](fragezeichen02.png)
+<img src="frontend/src/asstes/logo.png" width="250" height="250" />
 
 # Der Dümmste Fliegt 🚀
 

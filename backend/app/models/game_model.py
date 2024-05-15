@@ -18,7 +18,7 @@ class LobbyUpdate(BaseModel):
 
 
 class LobbyCreate(BaseModel):
-    owner_id: str = GameFields.owner_id
+    owner_id: Optional[str] = GameFields.owner_id
     owner_name: str = GameFields.owner_name
     is_active: bool = GameFields.is_active
     players: List[str] = Field(default_factory=list)

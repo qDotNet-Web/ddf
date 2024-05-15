@@ -83,11 +83,3 @@ async def add_player_to_lobby_by_code(code: str, player_name: str):
         return await GameRepository.add_player_to_lobby_by_code(code, player_name)
     except Exception as e:
         raise HTTPException(status_code=404, detail=str(e))
-
-
-@router.post("/create_player/")
-async def create_player(player_create: PlayerCreate) -> PlayerRead:
-    try:
-        return await GameRepository.create_player(player_create)
-    except Exception as e:
-        raise HTTPException(status_code=404, detail=str(e))

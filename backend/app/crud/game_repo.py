@@ -83,20 +83,6 @@ class GameRepository:
         return await GameRepository.get_by_id(str(result.inserted_id))
 
     @staticmethod
-    async def create_player(player_create: PlayerCreate) -> PlayerRead:
-        """
-        Create a new player
-        @param player_create:
-        @return:
-        """
-        document = player_create.dict()
-        document["_id"] = get_uuid()
-        result = await GameRepository.get_collection().insert_one(document)
-        assert result.acknowledged
-        await lobby_manager.create_player(document["_id"], document["name"], document["lobby_id"])
-        return await GameRepository.get_player_by_id(str(result.inserted_id))
-
-    @staticmethod
     async def update(lobby_id: str, update: LobbyUpdate) -> None:
         """
         Update a lobby

@@ -50,7 +50,7 @@
 }
 
 .p-selectbutton.p-component {
-    border: 1px solid var(--main-design-color);
+    border: 2px solid var(--main-design-color);
     border-radius: 6px;
 }
 

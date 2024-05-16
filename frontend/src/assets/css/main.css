@@ -95,6 +95,10 @@ button.btn-main-new:hover::before {
     line-height: unset;
 }
 
+.btn:hover {
+    border-color: var(--main-design-color);
+}
+
 .dff-padding-top {
     padding-top: 12rem;
 }

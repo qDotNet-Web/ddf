@@ -40,3 +40,4 @@ jobs:
             git pull origin dev &&
             docker-compose up --build -d
           EOF
+

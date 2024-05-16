@@ -30,11 +30,14 @@ jobs:
 
       - name: Deploy to Test Server
         run: |
-          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_ed25519 root@45.138.49.163 "
-          cd /home/ddf && 
-          docker-compose down && 
-          git stash && 
-          git remote set-url origin git@github.com:qDotNet-Web/ddf.git &&
-          git config --global core.sshCommand "ssh -i ~/.ssh/actions_ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no" && 
-          git config pull.rebase false && git pull origin dev && docker-compose up --build -d"
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_ed25519 root@45.138.49.163 << 'EOF'
+            cd /home/ddf &&
+            docker-compose down &&
+            git stash &&
+            git remote set-url origin git@github.com:your-organization/your-repository.git &&
+            git config --global core.sshCommand "ssh -i ~/.ssh/actions_ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no" &&
+            git config pull.rebase false &&
+            git pull origin dev &&
+            docker-compose up --build -d
+          EOF
 

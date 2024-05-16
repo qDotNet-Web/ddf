@@ -28,6 +28,9 @@ jobs:
           chmod 600 ~/.ssh/actions_ssh
           ssh-keyscan github.com >> ~/.ssh/known_hosts
           git config --global core.sshCommand "ssh -i ~/.ssh/actions_ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
+
+      - name: Change remote URL to SSH
+        run: |
           git remote set-url origin git@github.com:qDotNet-Web/ddf.git
 
       - name: Deploy to Test Server

@@ -237,6 +237,7 @@ export default {
             let playerName = ip_playerName.value;
             let roundLength = ip_roundLength.value;
             let playerLives = ip_playerLives.value;
+            let lobbyType = ip_lobbyType.value;
 
 
 
@@ -253,6 +254,7 @@ export default {
             let h1 = document.querySelector('h1');
             let homeActions = document.querySelector('.homeActions');
             let main_logo = document.getElementById('main_logo');
+            let isTextBased = true;
             h1.classList.add('fade-out');
             homeActions.classList.add('fade-out');
             loading.classList.add('fade-in');
@@ -271,6 +273,11 @@ export default {
 
             const playerData = await playerResponse.json();
 
+            if (lobbyType.value = 'Text') {
+                isTextBased = true;
+            } else {
+                isTextBased = false;
+            }
 
             let gameOptions = {
                 "owner_name": playerName,
@@ -281,7 +288,7 @@ export default {
                 ],
                 "round_timer": roundLength * 60,
                 "lives_per_player": playerLives,
-                "text_based": true
+                "text_based": isTextBased,
             }
             let delay = new Promise(resolve => setTimeout(resolve, 1500));
             let [created] = await Promise.all([logic.createLobby(gameOptions), delay]);

@@ -1,4 +1,4 @@
-import { GameState } from '@/logic/classes/Enums.js';
+import { GameState, GameType } from '@/logic/classes/Enums.js';
 export class Game {
     lobby_id = 0;
     round_started = false;
@@ -10,13 +10,15 @@ export class Game {
     timer_running = false;
     active = false;
     gameState = GameState.WAITING;
+    gameType = GameType.TEXT;
 
 
-    constructor(round_timer, players) {
+    constructor(round_timer, players, gameType) {
         this.round_timer = round_timer;
         this.setRoundTimer(round_timer);
         this.players = players;
         this.active = true;
+        this.gameType = gameType;
     }
 
     getLobbyId() {

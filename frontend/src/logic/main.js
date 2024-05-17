@@ -1,5 +1,5 @@
 import {Game} from '@/logic/classes/Game.js'
-import {GameState, PlayerState} from '@/logic/classes/Enums.js'
+import {GameState, PlayerState, GameType} from '@/logic/classes/Enums.js'
 import {Player} from '@/logic/classes/Player.js'
 import { useGameStore } from "@/store.js";
 import Cookies from 'js-cookie';
@@ -43,7 +43,8 @@ async function createLobby(options, avatar_id){
             Cookies.set('gameOptions', JSON.stringify(gameStore.gameOptions));
             let players = [];
             players.push(player);
-            game = new Game(gameOptions.round_timer, gameOptions.round, players);
+            let gameType = gameOptions.text_based ? GameType.TEXT : GameType.VOICE;
+            game = new Game(gameOptions.round_timer, gameOptions.round, players, gameType);
             return true;
         });
 }

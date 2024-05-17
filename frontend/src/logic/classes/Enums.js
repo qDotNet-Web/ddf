@@ -9,5 +9,10 @@ export const PlayerState = {
     ANSWERING: 1,
     VOTING: 2,
     VOTED: 3,
-    DISCONNECTED: 4,
+    DISCONNECTED: 4
+}
+
+export const GameType = {
+    TEXT: 0,
+    VOICE: 1
 }

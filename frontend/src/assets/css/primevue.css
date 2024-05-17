@@ -54,3 +54,11 @@
     border-radius: 6px;
 }
 
+/* https://primevue.org/toast/ */
+
+.p-toast {
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+/* https://primevue.org/confirmdialog */

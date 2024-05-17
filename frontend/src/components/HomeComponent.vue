@@ -261,8 +261,11 @@ export default {
                 'text_based': ip_lobbyType.value == 'Text' ? true : false,
                 'used_questions': []
             }
+            // pick number between 0 and 19
+            let ownerAvatarId = Math.floor(Math.random() * 20);
+
             let delay = new Promise(resolve => setTimeout(resolve, 1500));
-            let [created] = await Promise.all([logic.createLobby(gameOptions), delay]);
+            let [created] = await Promise.all([logic.createLobby(gameOptions, ownerAvatarId), delay]);
             h1.classList.remove('fade-out');
             homeActions.classList.remove('fade-out');
             loading.classList.remove('fade-in');

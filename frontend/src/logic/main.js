@@ -7,8 +7,26 @@ import { sendWsMessage } from '@/logic/websocket.js';
 let game;
 let player;
 
-function createLobby(options){
+async function createLobby(options, avatar_id){
     let gameOptions = options;
+    let playerResponse = await fetch('http://localhost:8000/player/create_player', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({name: gameOptions.owner_name, avatar_id: avatar_id})
+    });
+
+    if (playerResponse.ok) {
+        const playerData = await playerResponse.json();
+        player = new Player(playerData.id, playerData.name, playerData.avatar_id, gameOptions.lives_per_player, true, true);
+        gameOptions['owner_id'] = playerData.id;
+    } else {    
+        // throw error @TODO
+        return false;
+    }
+
+
     fetch('http://localhost:8000/lobby/create_lobby', {
         method: 'POST',
         headers: {

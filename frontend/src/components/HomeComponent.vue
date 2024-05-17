@@ -150,7 +150,6 @@ import { useGameStore } from "@/store.js";
 import Cookies from 'js-cookie';
 import { logic } from '@/logic/main.js';
 
-
 Element.prototype.remove = function () {
     this.parentElement.removeChild(this);
 }
@@ -186,12 +185,14 @@ export default {
         },
     },
     mounted() {
-        // see if cookies  are set
-        let gameStore = useGameStore();
-        if (Cookies.get('gameOptions') != null) {
-            gameStore.setGameOptions(JSON.parse(Cookies.get('gameOptions')));
-        }
+        // check for cookies and if lobby is still active
+        let gameOptions = Cookies.get('gameOptions');
+        if (gameOptions) {
+            let gameOptionsObj = JSON.parse(gameOptions);
+            let lobbyId = gameOptionsObj.lobby_id;
 
+        }
+        // animate elements
         setTimeout(() => {
             this.animateElement()
         }, 100);
@@ -235,19 +236,13 @@ export default {
 
         async function createLobby() {
             let playerName = ip_playerName.value;
-            let roundLength = ip_roundLength.value;
-            let playerLives = ip_playerLives.value;
-            let lobbyType = ip_lobbyType.value;
+            let roundLength = parseInt(ip_roundLength.value);
+            let playerLives = parseInt(ip_playerLives.value);
+
 
 
 
             if (playerName.length < 1) {
-                // this.$swal({
-                //     title: 'Fehler',
-                //     text: 'Bitte gib deinen Namen ein.',
-                //     icon: 'error',
-                //     confirmButtonText: 'OK'
-                // });
                 return;
             }
             let loading = document.querySelector('.loading');
@@ -260,25 +255,6 @@ export default {
             loading.classList.add('fade-in');
             main_logo.classList.add('spin');
 
-            const playerResponse = await fetch('http://localhost:8000/player/create_player/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ name: playerName, avatar_id: 1 })
-            });
-            if (!playerResponse.ok) {
-                throw new Error('Failed to create player');
-            }
-
-            const playerData = await playerResponse.json();
-
-            if (lobbyType.value = 'Text') {
-                isTextBased = true;
-            } else {
-                isTextBased = false;
-            }
-
             let gameOptions = {
                 "owner_name": playerName,
                 "owner_id": playerData.player_id,
@@ -286,12 +262,17 @@ export default {
                 "players": [
                     playerName,
                 ],
-                "round_timer": roundLength * 60,
-                "lives_per_player": playerLives,
-                "text_based": isTextBased,
+                'round_timer': roundLength * 60,
+                'lives_per_player': playerLives,
+                'text_based': ip_lobbyType.value == 'Text' ? true : false,
+                'used_questions': []
+
             }
+            // pick number between 0 and 19
+            let ownerAvatarId = Math.floor(Math.random() * 20);
+
             let delay = new Promise(resolve => setTimeout(resolve, 1500));
-            let [created] = await Promise.all([logic.createLobby(gameOptions), delay]);
+            let [created] = await Promise.all([logic.createLobby(gameOptions, ownerAvatarId), delay]);
             h1.classList.remove('fade-out');
             homeActions.classList.remove('fade-out');
             loading.classList.remove('fade-in');

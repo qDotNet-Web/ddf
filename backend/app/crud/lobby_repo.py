@@ -17,9 +17,7 @@ class LobbyManager:
         lobby_id = message_data.get('lobby_id')
         data = message_data.get('data', {})
 
-        if action == 'create_lobby':
-            await self.create_lobby(lobby_id, LobbyCreate(**data))
-        elif action == 'update_lobby':
+        if action == 'update_lobby':
             await self.update_lobby(lobby_id, LobbyUpdate(**data))
         elif action == 'get_lobby_data':
             lobby_data = await self.get_lobby_data(lobby_id)

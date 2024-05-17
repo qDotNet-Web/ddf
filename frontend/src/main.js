@@ -35,5 +35,3 @@ app.component('SelectButton', SelectButton)
 
 
 app.mount('#app')
-
-

@@ -1,10 +1,9 @@
 import {Game} from '@/logic/classes/Game.js'
 import {GameState, PlayerState} from '@/logic/classes/Enums.js'
 import {Player} from '@/logic/classes/Player.js'
-
-import router from '@/router/index.js'
 import { useGameStore } from "@/store.js";
 import Cookies from 'js-cookie';
+import { sendWsMessage } from '@/logic/websocket.js';
 let game;
 let player;
 
@@ -17,7 +16,7 @@ function createLobby(options){
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(gameOptions)
-    }).then(response => response.json())
+    }).then(response => console.log(response.json()))
         .then(data => {
             gameOptions['code'] = data.code;
             const gameStore = useGameStore();
@@ -34,15 +33,9 @@ async function joinLobby(lobbyCode){
         const response = await fetch('http://localhost:8000/lobby/get_by_code/'+lobbyCode);
         if (response.ok) {
             const data = await response.json();
-            // const gameStore = useGameStore();
-            // gameStore.setGameOptions(data);
-            // Cookies.set('gameOptions', JSON.stringify(gameStore.gameOptions));
-            // router.push('/waitingLobby');
-            // game = new Game(data.round_timer, data.round, data.players);
             console.log(JSON.stringify(data));
         } else {
-            // throw error
-            alert('Lobby not found');
+            // throw error @TODO
         }
     } catch(error) {
     }

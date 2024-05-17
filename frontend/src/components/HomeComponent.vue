@@ -148,7 +148,6 @@ import { useGameStore } from "@/store.js";
 import Cookies from 'js-cookie';
 import {logic} from '@/logic/main.js';
 
-
 Element.prototype.remove = function () {
     this.parentElement.removeChild(this);
 }
@@ -184,12 +183,14 @@ export default {
         },
     },
     mounted() {
-        // see if cookies  are set
-        let gameStore = useGameStore();
-        if (Cookies.get('gameOptions') != null) {
-            gameStore.setGameOptions(JSON.parse(Cookies.get('gameOptions')));
-        }
+        // check for cookies and if lobby is still active
+        let gameOptions = Cookies.get('gameOptions');
+        if (gameOptions) {
+            let gameOptionsObj = JSON.parse(gameOptions);
+            let lobbyId = gameOptionsObj.lobby_id;
 
+        }
+        // animate elements
         setTimeout(() => {
             this.animateElement()
         }, 100);
@@ -232,18 +233,12 @@ export default {
 
         async function createLobby() {
             let playerName = ip_playerName.value;
-            let roundLength = ip_roundLength.value;
-            let playerLives = ip_playerLives.value;
+            let roundLength = parseInt(ip_roundLength.value);
+            let playerLives = parseInt(ip_playerLives.value);
 
 
 
             if (playerName.length < 1) {
-                // this.$swal({
-                //     title: 'Fehler',
-                //     text: 'Bitte gib deinen Namen ein.',
-                //     icon: 'error',
-                //     confirmButtonText: 'OK'
-                // });
                 return;
             }
             let loading = document.querySelector('.loading');
@@ -255,7 +250,6 @@ export default {
             loading.classList.add('fade-in');
             main_logo.classList.add('spin');
 
-
             let gameOptions = {
                 'owner_name': playerName,
                 'is_active': true,
@@ -263,7 +257,9 @@ export default {
                     playerName,
                 ],
                 'round_timer': roundLength * 60,
-                'lives_per_player': playerLives
+                'lives_per_player': playerLives,
+                'text_based': ip_lobbyType.value == 'Text' ? true : false,
+                'used_questions': []
             }
             let delay = new Promise(resolve => setTimeout(resolve, 1500));
             let [created] = await Promise.all([logic.createLobby(gameOptions), delay]);

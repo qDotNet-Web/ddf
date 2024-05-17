@@ -36,7 +36,9 @@ async def list_active_lobbies():
              tags=["lobby"])
 async def create_lobby(lobby: LobbyCreate):
     try:
-        return await GameRepository.create(lobby)
+        lobby_read = await GameRepository.create(lobby)
+        await lobby_manager.create_lobby(lobby_read.lobby_id, lobby)
+        return lobby_read
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
 

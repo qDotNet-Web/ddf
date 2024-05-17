@@ -3,6 +3,7 @@ from ..core.exceptions import *
 from ..core.utils import get_uuid
 from ..core.database import db
 from .game_repo import GameRepository
+from .lobby_repo import lobby_manager
 from typing import List
 
 __all__ = ["PlayerRepository"]
@@ -28,13 +29,18 @@ class PlayerRepository:
         return [PlayerRead(**document) for document in await cursor.to_list(length=None)]
 
     @staticmethod
-    async def create(create: PlayerCreate) -> PlayerRead:
-        collection = await PlayerRepository.get_collection()
-        document = create.dict()
+    async def create_player(player_create: PlayerCreate) -> PlayerRead:
+        """
+        Create a new player
+        @param player_create:
+        @return:
+        """
+        document = player_create.dict()
         document["_id"] = get_uuid()
-        result = await collection.insert_one(document)
+        result = await GameRepository.get_collection().insert_one(document)
         assert result.acknowledged
-        return await PlayerRepository.get(str(result.inserted_id))
+        await lobby_manager.create_player(document["_id"], document["name"], document["lobby_id"])
+        return await GameRepository.get_player_by_id(str(result.inserted_id))
 
     @staticmethod
     async def update(player_id: str, update: PlayerUpdate) -> None:

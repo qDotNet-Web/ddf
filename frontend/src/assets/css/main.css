@@ -1,5 +1,6 @@
 :root {
     --main-bg-color: #212121;
+    --main-bg-color-light: rgb(33, 33, 33, .5);
     --main-text-color: rgb(238, 238, 238);
     --main-sub-text-color: #dedede;
     --main-highlight-color: #ffbf48;
@@ -92,6 +93,10 @@ button.btn-main-new:hover::before {
     padding: 10px 30px;
     margin: unset;
     line-height: unset;
+}
+
+.btn:hover {
+    border-color: var(--main-design-color);
 }
 
 .dff-padding-top {

@@ -76,19 +76,11 @@ class GameRepository:
         document = create.dict()
         document["_id"] = get_uuid()
         document["code"] = await GameRepository.gen_unique_code()
+
         lobby_manager.create_lobby(document["_id"], document)
         result = await GameRepository.get_collection().insert_one(document)
         assert result.acknowledged
         return await GameRepository.get_by_id(str(result.inserted_id))
-
-    @staticmethod
-    async def create_player(player_create: PlayerCreate) -> PlayerRead:
-        document = player_create.dict()
-        document["_id"] = get_uuid()
-        result = await GameRepository.get_collection().insert_one(document)
-        assert result.acknowledged
-        await lobby_manager.create_player(document["_id"], document["name"], document["lobby_id"])
-        return await GameRepository.get_player_by_id(str(result.inserted_id))
 
     @staticmethod
     async def update(lobby_id: str, update: LobbyUpdate) -> None:

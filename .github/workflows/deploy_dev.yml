@@ -4,20 +4,40 @@ on:
   push:
     branches:
       - dev
-      - 4-create-frontend
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Set up SSH
-        uses: webfactory/ssh-agent@v0.9.0
         with:
-          ssh-private-key: ${{ secrets.DEPLOY_KEY }}
+          persist-credentials: false
+          fetch-depth: 0
+
+      - name: Setup SSH for server
+        run: |
+          mkdir -p ~/.ssh/
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+
+      - name: Setup SSH for GitHub
+        run: |
+          echo "${{ secrets.GH_DEPLOY_KEY }}" > ~/.ssh/actions_ssh
+          chmod 600 ~/.ssh/actions_ssh
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
 
       - name: Deploy to Test Server
         run: |
-          ssh -o StrictHostKeyChecking=no root@45.138.49.163 "cd /home/ddf && docker-compose down && git stash && git config pull.rebase false && git pull origin dev && docker-compose up --build -d"
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_ed25519 root@45.138.49.163 << 'EOF'
+            cd /home/ddf &&
+            docker-compose down &&
+            git stash &&
+            git remote set-url origin git@github.com:qDotNet-Web/ddf.git &&
+            git config --global core.sshCommand "ssh -i ~/.ssh/actions_ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no" &&
+            git config pull.rebase false &&
+            git pull origin dev &&
+            docker-compose up --build -d
+          EOF
+

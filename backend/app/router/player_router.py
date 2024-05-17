@@ -19,13 +19,12 @@ async def list_players_route():
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@router.post("/create_player",
+@router.post("/create_player/",
              response_model=PlayerRead,
-             summary="Create a player",
-             description="Create a new player in the database",
+             description="Create a new player",
              tags=["player"])
-async def create_player_route(player: PlayerCreate):
+async def create_player(player_create: PlayerCreate) -> PlayerRead:
     try:
-        return await PlayerRepository.create(player)
+        return await PlayerRepository.create_player(player_create)
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        raise HTTPException(status_code=404, detail=str(e))

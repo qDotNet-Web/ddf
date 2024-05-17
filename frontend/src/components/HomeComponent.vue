@@ -238,10 +238,6 @@ export default {
             let playerName = ip_playerName.value;
             let roundLength = parseInt(ip_roundLength.value);
             let playerLives = parseInt(ip_playerLives.value);
-
-
-
-
             if (playerName.length < 1) {
                 return;
             }
@@ -257,7 +253,6 @@ export default {
 
             let gameOptions = {
                 "owner_name": playerName,
-                "owner_id": playerData.player_id,
                 "is_active": true,
                 "players": [
                     playerName,

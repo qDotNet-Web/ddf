@@ -20,7 +20,7 @@ async function createLobby(options, avatar_id){
     if (playerResponse.ok) {
         const playerData = await playerResponse.json();
         player = new Player(playerData.id, playerData.name, playerData.avatar_id, gameOptions.lives_per_player, true, true);
-        gameOptions['owner_id'] = playerData.id;
+        gameOptions['owner_id'] = playerData.player_id;
     } else {    
         // throw error @TODO
         return false;
@@ -34,13 +34,16 @@ async function createLobby(options, avatar_id){
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(gameOptions)
-    }).then(response => console.log(response.json()))
+    }).then(response => response.json())
         .then(data => {
+            console.log(data)
             gameOptions['code'] = data.code;
             const gameStore = useGameStore();
             gameStore.setGameOptions(gameOptions);
             Cookies.set('gameOptions', JSON.stringify(gameStore.gameOptions));
-            game = new Game(gameOptions.round_timer, gameOptions.round, gameOptions.players);
+            let players = [];
+            players.push(player);
+            game = new Game(gameOptions.round_timer, gameOptions.round, players);
             return true;
         });
 }

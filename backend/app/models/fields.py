@@ -26,9 +26,9 @@ class GameFields:
         example="John Doe",
         **_string
     )
-    is_active = Field(
+    game_state = Field(
         description="The status of the lobby",
-        example=True
+        example=0
     )
     players: List[str] = Field(
         description="The list of players in the lobby",

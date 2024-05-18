@@ -19,7 +19,7 @@ services:
       - REDIS_DB=0
       - SECRET_KEY=TestSecretKey
     networks:
-      - ddf_network
+      - ddf
 
   mongo:
     image: mongo:latest
@@ -33,7 +33,7 @@ services:
     volumes:
       - mongo_data:/data/db
     networks:
-      - ddf_network
+      - ddf
 
   redis:
     image: redis:latest
@@ -43,7 +43,7 @@ services:
     ports:
       - "6379:6379"
     networks:
-      - ddf_network
+      - ddf
     volumes:
       - redis_data:/data
 
@@ -58,12 +58,13 @@ services:
     ports:
       - "80:80"
     networks:
-      - ddf_network
+      - ddf
 
 volumes:
   mongo_data:
   redis_data:
   redis_insight_data:
+
 networks:
-    ddf_network:
-        driver: bridge
+  ddf:
+    external: true

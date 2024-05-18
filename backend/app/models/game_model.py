@@ -71,6 +71,7 @@ class PlayerCreate(BaseModel):
     name: str = PlayerFields.name
     avatar_id: int = PlayerFields.avatar_id
 
+
     class Config:
         orm_mode = True
 

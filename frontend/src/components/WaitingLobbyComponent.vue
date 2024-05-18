@@ -11,7 +11,7 @@ h2:hover {
       <h1>Wartelobby</h1>
       <h2 @click="copyLobbyCode">Lobby-ID: {{ lobby_code }}</h2>
     </div>
-    <div id="playerList">
+    <!--<div id="playerList">
       <div v-for="(player, index) in players" :key="index" class="player fr-animate-2 fr-move-up fr-delay-3">
         <img :src="logo" class="avatar">
         <span class="player-name">
@@ -21,17 +21,38 @@ h2:hover {
         </span>
         <div class="player-status">Bereit</div>
       </div>
+    </div> -->
+    <div id="playerList" class="mb-5">
+    
+        <Card v-for="(player, index) in players" :key="index" stlye="overflow: hidden" class="fr-animate-2 fr-move-up fr-delay-3">
+          <template #header>
+            <img :src="logo" class="avatar">
+          </template>
+          <template #title>
+            <hr>
+            <span v-if="player.getIsOwner()" v-tooltip.top="'Spielbesitzer'"><i class="pi pi-crown" style="font-size: 30px;"></i></span>
+          </template>
+          <template #subtitle>
+            {{ player.getName() }}
+                <span v-if="player.getIsSelf()"> (Du)</span>
+          </template>
+          <template #content>
+            <span>{{ player.getLives() }} <i style="font-size: 26px;" class="pi pi-heart-fill"></i></span>
+          </template>
+        </Card>
+ 
     </div>
+
   </div>
 </template>
 
 <script>
 import { computed } from 'vue';
-import {getGameStore} from "@/store.js";
+import { getGameStore } from "@/store.js";
 import Cookies from 'js-cookie';
-import {logic} from '@/logic/main.js';
+import { logic } from '@/logic/main.js';
 import logo from '@/assets/logo.png';
-import {notify, showDialog} from '@/main.js';
+import { notify, showDialog } from '@/main.js';
 
 export default {
   name: 'WaitingLobbyComponent',
@@ -65,7 +86,7 @@ export default {
   mounted() {
     setTimeout(() => {
       this.animateElement()
-    }, 100);
+    }, 50);
   },
 }
 

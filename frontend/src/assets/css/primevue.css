@@ -54,6 +54,56 @@
     border-radius: 6px;
 }
 
+/* https://primevue.org/card/ */
+
+.p-card{
+    width: 20rem;
+    background-color: #1a1a1a;
+}
+
+.p-card-header{
+    text-align: center;
+}
+
+.p-card-title{
+    text-align: center;
+}
+
+.p-card-header, .p-card-title{
+    font-size: 25px;
+}
+
+.p-card .p-card-body{
+    gap: 0px;
+    color: var(--main-text-color);
+    padding: 1rem;
+    padding-top: 0;
+}
+
+.p-card-content {
+    text-align: center;
+    font-size: 30px;
+}
+
+.p-card-subtitle {
+    text-align: center;
+    font-size: 25px;
+    color: var(--main-text-color);
+    font-weight: 600;
+}
+
+.p-card .p-card-caption{
+    gap: 0rem;
+}
+
+.pi-heart-fill {
+    color: red;
+}
+
+.pi-crown {
+    color: #FFD700;
+}
+
 /* https://primevue.org/toast/ */
 
 .p-toast {

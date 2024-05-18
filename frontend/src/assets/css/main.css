@@ -336,9 +336,9 @@ footer{
 
 #playerList{
     display: flex;
-    flex-direction: column;
     margin-top: 2rem;
-    height: 60vh;
+    max-height: 60vh;
+    gap: 1.5rem;
 }
 
 .player {
@@ -359,7 +359,8 @@ footer{
 }
 
 .avatar {
-    height: 2rem;
-    width: 2rem;
-    margin-right: 0.8rem;
+    height: 6rem;
+    width: 6rem;
+    margin-top: 1rem;
 }
+

@@ -51,7 +51,7 @@
                         <div class="input-text input-text-bb mb-3">
                             <FloatLabel class="ip_float">
                                 <InputText id="ip_playerName" name="ip_playerName" v-model="ip_playerName"
-                                    class="w-full ip_float" />
+                                    class="w-full ip_float" maxlength = "20"/>
                                 <label for="ip_playerName">Username</label>
                             </FloatLabel>
                             <!--<label for="ip_playerName">Dein Name</label>
@@ -120,7 +120,7 @@
                         <div class="input-text input-text-bb mb-3">
                             <FloatLabel class="ip_float">
                                 <InputText id="ip_playerName" name="ip_playerName" v-model="ip_playerName"
-                                    class="w-full ip_float" />
+                                    class="w-full ip_float" maxlength = "20"/>
                                 <label for="ip_playerName">Username</label>
                             </FloatLabel>
                             <!-- <label for="ip_playerName">Dein Name</label>

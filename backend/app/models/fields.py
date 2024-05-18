@@ -49,7 +49,7 @@ class GameFields:
     )
     game_type = Field(
         description="The status of the lobby",
-        example=False
+        example=0
     )
 
 

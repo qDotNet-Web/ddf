@@ -20,8 +20,11 @@ services:
       - SECRET_KEY=TestSecretKey
     networks:
       - ddf_network
+
   mongo:
     image: mongo:latest
+    labels:
+      - "traefik.enable=false"
     ports:
       - "27017:27017"
     environment:
@@ -31,8 +34,11 @@ services:
       - mongo_data:/data/db
     networks:
       - ddf_network
+
   redis:
     image: redis:latest
+    labels:
+      - "traefik.enable=false"
     command: ["redis-server", "--requirepass", "changeme"]
     ports:
       - "6379:6379"
@@ -40,14 +46,20 @@ services:
       - ddf_network
     volumes:
       - redis_data:/data
+
   frontend:
     build: ./frontend
     depends_on:
       - backend
+    labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.frontend.rule=Host(`derduemmstefliegt.online`)"
+        - "traefik.http.services.frontend.loadbalancer.server.port=443"
     ports:
       - "80:80"
     networks:
       - ddf_network
+
 volumes:
   mongo_data:
   redis_data:

@@ -15,21 +15,21 @@ class LobbyUpdate(BaseModel):
     code: Optional[str] = GameFields.code
     owner_id: Optional[str] = GameFields.owner_id
     owner_name: Optional[str] = GameFields.owner_name
-    is_active: Optional[bool] = GameFields.is_active
+    game_state: Optional[int] = GameFields.game_state
     players: Optional[List[Player]] = Field(default_factory=list)
     round_timer: Optional[int] = GameFields.round_timer
     lives_per_player: Optional[int] = GameFields.lives_per_player
-    text_based: Optional[bool] = GameFields.text_based
+    game_type: Optional[int] = GameFields.game_type
 
 
 class LobbyCreate(BaseModel):
     owner_id: Optional[str] = GameFields.owner_id
     owner_name: str = GameFields.owner_name
-    is_active: bool = GameFields.is_active
+    game_state: int = GameFields.game_state
     players: List[Player] = Field(default_factory=list)
     round_timer: int = GameFields.round_timer
     lives_per_player: int = GameFields.lives_per_player
-    text_based: bool = GameFields.text_based
+    game_type: int = GameFields.game_type
     used_questions: Optional[List[str]] = Field(default_factory=list)
 
     class Config:

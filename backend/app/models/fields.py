@@ -26,9 +26,9 @@ class GameFields:
         example="John Doe",
         **_string
     )
-    is_active = Field(
+    game_state = Field(
         description="The status of the lobby",
-        example=True
+        example=0
     )
     players: List[str] = Field(
         description="The list of players in the lobby",
@@ -47,7 +47,7 @@ class GameFields:
         description="The maximum number of players allowed in the lobby",
         example=10
     )
-    text_based = Field(
+    game_type = Field(
         description="The status of the lobby",
         example=False
     )

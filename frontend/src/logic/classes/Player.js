@@ -93,10 +93,11 @@ export class Player {
         // Answer question using websockets
     }
 
-    getInfo(){
+    toArray(){
         return {
             id: this.id,
             name: this.name,
+            avatar_id: this.avatar_id,
             lives: this.lives,
             lobbyOwner: this.lobbyOwner,
             dead: this.dead,

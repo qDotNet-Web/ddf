@@ -149,7 +149,7 @@ import { reactive, ref } from 'vue';
 import Cookies from 'js-cookie';
 import { logic } from '@/logic/main.js';
 import {notify, showDialog} from '@/main.js';
-import {Modal} from 'bootstrap';
+import { GameState } from '@/logic/classes/Enums';
 
 Element.prototype.remove = function () {
     this.parentElement.removeChild(this);
@@ -187,11 +187,44 @@ export default {
     },
     mounted() {
         // check for cookies and if lobby is still active
-        let gameOptions = Cookies.get('gameOptions');
-        if (gameOptions) {
-            let gameOptionsObj = JSON.parse(gameOptions);
-            let lobbyId = gameOptionsObj.lobby_id;
+        let gameCookies = Cookies.get('game');
+        let playerDataCookies = Cookies.get('playerData')
+        if (gameCookies && playerDataCookies) {
+            let gameOptionsObj = JSON.parse(gameCookies);
+            let lobbyCode = gameOptionsObj.lobby_code;
+            // get if lobby is still active
+            fetch(`http://localhost:8000/lobby/get_by_code/${lobbyCode}`, {
+                method: 'GET',
+                headers: {
+                    'accept': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    return response.json();
+                }
+                console.log("Error: ", response.status);
+                return false;
+            }, networkError => console.log(networkError.message))
+            .then(async jsonResponse => {
+                console.log(jsonResponse);
+                if (jsonResponse.is_active) {
+                    let decision = await showDialog("Aktive Lobby gefunden", "Eine von dir betretene Runde läuft noch. Möchtest du wieder beitreten? (Wenn nicht, kannst du danach NICHT mehr beitreten!)");
+                    console.log(decision)
+                    if(decision){
+                        logic.joinLobby(lobbyCode, gameOptionsObj.playerName);
+                        router.push("/waitingLobby");
+                    } else {
+                        Cookies.remove('game');
+                        Cookies.remove('playerData');
+                    }
+                }
+            });
 
+
+
+        } else {
+            Cookies.remove('game');
+            Cookies.remove('playerData')
         }
         // animate elements
         setTimeout(() => {

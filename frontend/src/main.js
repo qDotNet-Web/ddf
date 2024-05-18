@@ -52,20 +52,23 @@ export function notify(msgtype, header, message, life, closable, sticky) {
     app.config.globalProperties.$toast.add({severity:type, summary:header, detail:message, life:lifeSpan, closable:isClosable, sticky:isSticky});
 }
 
-export function showDialog(message, msgtype, callbackAccept, callbackReject) {
-    app.config.globalProperties.$confirm.require({
+export function showDialog(header, message) {
+    return new Promise((resolve, reject) => {
+      app.config.globalProperties.$confirm.require({
         message: message,
-        header: msgtype,
+        header: header,
         icon: 'pi pi-exclamation-triangle',
+        acceptLabel: "Ja",
+        rejectLabel: "Nein",
         accept: () => {
-            if (callbackAccept) {
-                callbackAccept();
-            }
+          resolve(true);
         },
         reject: () => {
-            if (callbackReject) {
-                callbackReject();
-            }
+          resolve(false);
+        },
+        beforeClose: (event) => {
+            console.log(event)
         }
+      });
     });
-}
+  }

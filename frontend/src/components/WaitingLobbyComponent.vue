@@ -8,8 +8,8 @@ h2:hover {
 <template>
   <div class="container my-auto dff-padding-top-3" id="app">
     <div class="heading center mb-4">
-      <h1>Wartelobby</h1>
-      <h2 @click="copyLobbyCode">Lobby-ID: {{ lobby_code }}</h2>
+      <h1>Warten <i class="pi pi-spin pi-sync" style="font-size: 0.8em"></i></h1>
+      <h2 @click="copyLobbyCode" v-tooltip.top="'Klicke um den Code zu kopieren!'">Lobby-ID: {{ lobby_code }}</h2>
     </div>
     <div id="playerList">
       <div v-for="(player, index) in players" :key="index" class="player fr-animate-2 fr-move-up fr-delay-3">
@@ -26,6 +26,7 @@ h2:hover {
 </template>
 
 <script>
+import router from '@/router/index.js'
 import { computed } from 'vue';
 import {getGameStore} from "@/store.js";
 import Cookies from 'js-cookie';
@@ -38,6 +39,10 @@ export default {
   setup() {
     const gameStore = getGameStore();
     const game = gameStore.getGame();
+
+    if (!game) {
+      router.push({path: '/'});
+    }
 
     const logoSrc = logo;
 

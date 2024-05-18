@@ -77,11 +77,11 @@ async def add_player_to_lobby_by_id(lobby_id: str, player_name: str):
 
 
 @router.post("/join_code/{code}",
-             response_model=LobbyRead,
+             response_model=LobbyUpdate,
              description="Add a player to a lobby by code",
              tags=["lobby"])
-async def add_player_to_lobby_by_code(code: str, player_name: str):
+async def add_player_to_lobby_by_code(code: str, lobby_data: LobbyUpdate):
     try:
-        return await GameRepository.add_player_to_lobby_by_code(code, player_name)
+        return lobby_manager.update_lobby(code, lobby_data)
     except Exception as e:
         raise HTTPException(status_code=404, detail=str(e))

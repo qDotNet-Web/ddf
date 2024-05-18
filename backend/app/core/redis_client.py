@@ -16,10 +16,15 @@ class RedisClient:
         self.client = None
 
     async def initialize(self):
-        self.client = redis.from_url(redis_url, encoding="utf-8", decode_responses=True)
+        self.client = await redis.from_url(redis_url, encoding="utf-8", decode_responses=True)
 
     async def close(self):
-        self.client.close()
+        await self.client.close()
+
+    def __getattr__(self, name):
+        if self.client:
+            return getattr(self.client, name)
+        raise AttributeError("Redis client: object has no attribute {name}")
 
 
 redis_client = RedisClient()

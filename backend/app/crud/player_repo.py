@@ -20,6 +20,9 @@ class PlayerRepository:
         document = await collection.find_one({"_id": player_id})
         if not document:
             raise NotFoundException("Spieler nicht gefunden")
+        document["_id"] = str(document.pop("_id"))
+        document.setdefault("avatar_id", None)
+        document.setdefault("lobby_id", None)
         return PlayerRead(**document)
 
     @staticmethod
@@ -46,7 +49,8 @@ class PlayerRepository:
         """
         document = player_create.dict()
         document["_id"] = get_uuid()
-        result = await GameRepository.get_collection().insert_one(document)
+        collection = await PlayerRepository.get_collection()
+        result = await collection.insert_one(document)
         assert result.acknowledged
         return await PlayerRepository.get(str(result.inserted_id))
 

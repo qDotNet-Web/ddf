@@ -48,7 +48,7 @@ class PlayerRepository:
         document["_id"] = get_uuid()
         result = await GameRepository.get_collection().insert_one(document)
         assert result.acknowledged
-        return await GameRepository.get_player_by_id(str(result.inserted_id))
+        return await PlayerRepository.get(str(result.inserted_id))
 
     @staticmethod
     async def update(player_id: str, update: PlayerUpdate) -> None:

@@ -352,3 +352,14 @@ footer{
     height: 3rem;
     border: 1px solid var(--main-design-color-light);
 }
+
+.player-name {
+    flex-grow: 1;
+    text-align: left;
+}
+
+.avatar {
+    height: 2rem;
+    width: 2rem;
+    margin-right: 0.8rem;
+}

@@ -1,13 +1,19 @@
 import { defineStore } from 'pinia';
-
-export const useGameStore = defineStore({
+import {Game} from './logic/classes/Game.js';
+export const getGameStore = defineStore({
   id: 'game',
   state: () => ({
-    gameOptions: null,
+    game: new Game(0, 0, [], 0),
   }),
   actions: {
-    setGameOptions(options) {
-      this.gameOptions = options;
+    setGame(game) {
+      this.game = game;
     },
+    destroyGame() {
+      this.game = null;
+    },
+    getGame() {
+      return this.game;
+    }
   },
 });

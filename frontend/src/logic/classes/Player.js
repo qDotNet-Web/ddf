@@ -34,6 +34,9 @@ export class Player {
     getAvatarId() {
         return this.avatar_id;
     }
+    getIsSelf() {
+        return this.self;
+    }
 
 
     setAvatarId(avatar_id) {

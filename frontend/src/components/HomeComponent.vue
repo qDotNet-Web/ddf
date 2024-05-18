@@ -90,9 +90,9 @@
                         </div>
                         <div class="modal-footer space-between">
                             <button type="button" class="btn btn-main-new btn-modal-new"
-                                data-bs-dismiss="modal">Schließen</button>
+                            data-bs-dismiss="modal">Schließen</button>
                             <button type="button" id="createLobbyButton" class="btn btn-main-new btn-modal-new"
-                                data-bs-dismiss="modal" @click="createLobby()">Starten</button>
+                                @click="createLobby()">Starten</button>
                         </div>
                     </div>
                 </div>
@@ -129,8 +129,8 @@
                         </div>
                         <div class="modal-footer space-between">
                             <button type="button" class="btn btn-main-new btn-modal-new"
-                                data-bs-dismiss="modal">Schließen</button>
-                            <button type="button" class="btn btn-main-new btn-modal-new" data-bs-dismiss="modal"
+                            data-bs-dismiss="modal">Schließen</button>
+                            <button type="button" class="btn btn-main-new btn-modal-new"
                                 @click="joinLobby()">Beitreten</button>
                         </div>
                     </div>
@@ -146,9 +146,10 @@
 <script>
 import router from '@/router/index.js'
 import { reactive, ref } from 'vue';
-import { useGameStore } from "@/store.js";
 import Cookies from 'js-cookie';
 import { logic } from '@/logic/main.js';
+import {notify, showDialog} from '@/main.js';
+import {Modal} from 'bootstrap';
 
 Element.prototype.remove = function () {
     this.parentElement.removeChild(this);
@@ -213,43 +214,69 @@ export default {
             currentView: null
         });
 
-        function joinLobby() {
-            if (data.lobbyId.length != 6) {
-                // this.$swal({
-                //     title: 'Fehler',
-                //     text: 'Die Lobby-ID muss 6 Zeichen lang sein.',
-                //     icon: 'error',
-                //     confirmButtonText: 'OK'
-                // });
-                return;
-            }
-            if (data.playerName.length < 1) {
-                // this.$swal({
-                //     title: 'Fehler',
-                //     text: 'Bitte gib deinen Namen ein.',
-                //     icon: 'error',
-                //     confirmButtonText: 'OK'
-                // });
-                return;
-            }
-        }
-
-        async function createLobby() {
-            let playerName = ip_playerName.value;
-            let roundLength = parseInt(ip_roundLength.value);
-            let playerLives = parseInt(ip_playerLives.value);
-            if (playerName.length < 1) {
-                return;
-            }
+        function toggleLoadingScreen(toggle){
             let loading = document.querySelector('.loading');
             let h1 = document.querySelector('h1');
             let homeActions = document.querySelector('.homeActions');
             let main_logo = document.getElementById('main_logo');
+            if(toggle){
+                h1.classList.add('fade-out');
+                homeActions.classList.add('fade-out');
+                loading.classList.add('fade-in');
+                main_logo.classList.add('spin');
+            }else{
+                h1.classList.remove('fade-out');
+                homeActions.classList.remove('fade-out');
+                loading.classList.remove('fade-in');
+                main_logo.classList.remove('spin');
+            }
+        }
+
+        async function joinLobby() {
+            let lobbyId = ip_lobbyID.value;
+            let playerName = ip_playerName.value;
+            if (!lobbyId || lobbyId.length != 8) {
+                notify("error", "Fehler", "Bitte gib eine gültige Lobby-ID ein.");
+                return;
+            }
+            if (!playerName || playerName.length < 1) {
+                notify("error", "Fehler", "Bitte gib einen gültigen Namen ein.");
+                return;
+            }
+
+            let modalElement = document.getElementById('joinLobbyModal');
+            let closeButton = modalElement.querySelector('[data-bs-dismiss="modal"]');
+            closeButton.click();
+
+            toggleLoadingScreen(true);
+            
+            let delay = new Promise(resolve => setTimeout(resolve, 1500));
+            let joinResult = logic.joinLobby(lobbyId, playerName);
+            let [joined] = await Promise.all([joinResult, delay]);
+            toggleLoadingScreen(false);
+            if (!joined) {
+                notify("error", "Fehler", "Die Lobby konnte nicht gefunden werden.");
+                return;
+            }
+            router.push("/waitingLobby");
+        }
+
+        async function createLobby() {
+            let playerName = ip_playerName.value;
+            if (!playerName || playerName.length < 1) {
+                notify("error", "Fehler", "Bitte gib einen gültigen Namen ein.");
+                return;
+            }
+
+            let modalElement = document.getElementById('createLobbyModal');
+            let closeButton = modalElement.querySelector('[data-bs-dismiss="modal"]');
+            closeButton.click();
+
+            let roundLength = parseInt(ip_roundLength.value);
+            let playerLives = parseInt(ip_playerLives.value);
             let isTextBased = true;
-            h1.classList.add('fade-out');
-            homeActions.classList.add('fade-out');
-            loading.classList.add('fade-in');
-            main_logo.classList.add('spin');
+            
+            toggleLoadingScreen(true);
 
             let gameOptions = {
                 "owner_name": playerName,
@@ -266,12 +293,9 @@ export default {
             // pick number between 0 and 19
             let ownerAvatarId = Math.floor(Math.random() * 20);
 
-            let delay = new Promise(resolve => setTimeout(resolve, 1500));
+            let delay = new Promise(resolve => setTimeout(resolve, 2000));
             let [created] = await Promise.all([logic.createLobby(gameOptions, ownerAvatarId), delay]);
-            h1.classList.remove('fade-out');
-            homeActions.classList.remove('fade-out');
-            loading.classList.remove('fade-in');
-            main_logo.classList.remove('spin');
+            toggleLoadingScreen(false);
             router.push("/waitingLobby");
         }
         return { createLobby, joinLobby, ip_roundLength, ip_playerName, ip_playerLives, ip_lobbyType, lobbyType_options, ip_lobbyID }

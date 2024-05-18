@@ -28,8 +28,6 @@ const router = createRouter({
 
 
 router.afterEach(() => {
-  console.log("Wird Aufgerufen!");
-
   const observer = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
       if (mutation.addedNodes) {

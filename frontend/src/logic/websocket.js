@@ -1,5 +1,6 @@
 let ws;
 let wsConnected;
+import {logic} from './main.js';
 function connectWebSocket(lobbyId){
     ws = new WebSocket('ws://localhost:8000/ws/'+ lobbyId);
     wsConnected = new Promise((resolve) => {
@@ -19,26 +20,10 @@ export async function sendWsMessage(action, data) {
     ws.send(JSON.stringify(msg));
 }
 
-function receive(data){
-    const {type, msg} = data;
+function receive(type, data){
     switch (type) {
-        case 'playerJoined':
-            playerJoined(msg.id, msg.name, msg.lives);
-            return;
-        case 'playerLeft':
-            playerLeft(msg.id, msg.new_owner_id);
-            return;
-        case 'startRound':
-            startedRound();
-            return;
-        case 'endRound':
-            endedRound();
-            return;
-        case 'endGame':
-            endedGame();
-            return;
-        case 'votedForPlayer':
-            votedForPlayer(msg.votingPlayerId, msg.votedPlayerId);
+        case "updateLobby":
+            logic.updateLobby(data);
             return;
         default:
             return;

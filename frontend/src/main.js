@@ -8,6 +8,7 @@ import './assets/css/animate.min.css'
 import './assets/css/main.css'
 import './assets/css/loading.css'
 import './assets/css/primevue.css'
+import 'primeicons/primeicons.css'
 
 import PrimeVue from 'primevue/config'
 import Slider from 'primevue/slider'
@@ -17,6 +18,7 @@ import SelectButton from 'primevue/selectbutton'
 import ToastService from 'primevue/toastservice';
 import ConfirmDialog from 'primevue/confirmdialog';
 import ConfirmationService from 'primevue/confirmationservice';
+import Tooltip from 'primevue/tooltip';
 
 import 'primevue/resources/themes/aura-light-green/theme.css'
 
@@ -31,15 +33,18 @@ app.use(router)
 app.use(PrimeVue)
 app.use(ToastService)
 app.use(ConfirmationService);
+
 app.component('ConfirmDialog', ConfirmDialog);
 app.component('Slider', Slider)
 app.component('InputText', InputText)
 app.component('FloatLabel', FloatLabel)
 app.component('SelectButton', SelectButton)
 
+app.directive('tooltip', Tooltip);
+
 app.mount('#app')
 
-export function notify(message, header, msgtype, life, closable, sticky) {
+export function notify(msgtype, header, message, life, closable, sticky) {
     let type = msgtype || 'info';
     let lifeSpan = life || 3000;
     let isClosable = closable || false;
@@ -47,16 +52,20 @@ export function notify(message, header, msgtype, life, closable, sticky) {
     app.config.globalProperties.$toast.add({severity:type, summary:header, detail:message, life:lifeSpan, closable:isClosable, sticky:isSticky});
 }
 
-export function showDialog(message, msgtype) {
+export function showDialog(message, msgtype, callbackAccept, callbackReject) {
     app.config.globalProperties.$confirm.require({
         message: message,
         header: msgtype,
         icon: 'pi pi-exclamation-triangle',
         accept: () => {
-            // logic to execute on confirmation
+            if (callbackAccept) {
+                callbackAccept();
+            }
         },
         reject: () => {
-            // logic to execute on rejection
+            if (callbackReject) {
+                callbackReject();
+            }
         }
     });
 }

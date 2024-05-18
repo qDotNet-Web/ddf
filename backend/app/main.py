@@ -32,7 +32,7 @@ async def startup_event() -> None:
 
 @app.on_event("shutdown")
 async def shutdown_event() -> None:
-    redis_client.close()
+    await redis_client.close()
     db.close()
 
 '''

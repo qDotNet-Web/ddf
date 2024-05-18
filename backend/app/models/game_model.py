@@ -6,12 +6,17 @@ from .fields import GameFields, PlayerFields, QuestionFields
 __all__ = ("LobbyCreate", "LobbyRead", "LobbyUpdate", "PlayerCreate", "PlayerRead", "PlayerUpdate", "QuestionRead")
 
 
+class Player(BaseModel):
+    player_id: str = PlayerFields.player_id
+    player_name: str = PlayerFields.name
+
+
 class LobbyUpdate(BaseModel):
     code: Optional[str] = GameFields.code
     owner_id: Optional[str] = GameFields.owner_id
     owner_name: Optional[str] = GameFields.owner_name
     is_active: Optional[bool] = GameFields.is_active
-    players: Optional[List[str]] = Field(default_factory=list)
+    players: Optional[List[Player]] = Field(default_factory=list)
     round_timer: Optional[int] = GameFields.round_timer
     lives_per_player: Optional[int] = GameFields.lives_per_player
     text_based: Optional[bool] = GameFields.text_based
@@ -21,7 +26,7 @@ class LobbyCreate(BaseModel):
     owner_id: Optional[str] = GameFields.owner_id
     owner_name: str = GameFields.owner_name
     is_active: bool = GameFields.is_active
-    players: List[str] = Field(default_factory=list)
+    players: List[Player] = Field(default_factory=list)
     round_timer: int = GameFields.round_timer
     lives_per_player: int = GameFields.lives_per_player
     text_based: bool = GameFields.text_based
@@ -55,7 +60,7 @@ class LobbyRead(LobbyUpdate):
 
 
 class PlayerUpdate(BaseModel):
-    name: Optional[str] = PlayerFields.name
+    player_name: Optional[str] = PlayerFields.name
     lobby_id: Optional[str] = GameFields.lobby_id
     lives: Optional[int] = PlayerFields.lives
     is_alive: Optional[bool] = PlayerFields.is_alive
@@ -64,7 +69,6 @@ class PlayerUpdate(BaseModel):
 
 class PlayerCreate(BaseModel):
     name: str = PlayerFields.name
-    # lobby_id: str = GameFields.lobby_id
     avatar_id: int = PlayerFields.avatar_id
 
     class Config:
@@ -72,9 +76,8 @@ class PlayerCreate(BaseModel):
 
 
 class PlayerRead(PlayerCreate):
-    name: str = PlayerFields.name
-    player_id: Optional[str] = PlayerFields.player_id
-    avatar_id: Optional[int] = PlayerFields.avatar_id
+    player_id: str = PlayerFields.player_id
+    lobby_id: Optional[str] = GameFields.lobby_id
 
     @pydantic.model_validator(mode="before")
     def _set_player_id(cls, data):

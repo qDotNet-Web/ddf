@@ -1,7 +1,7 @@
 
-[![build_dev](https://img.shields.io/github/actions/workflow/status/q96exe/ddf/deploy_dev.yml)](https://github.com/q96exe/ddf/actions)
-[![build_prod](https://img.shields.io/github/actions/workflow/status/q96exe/ddf/deploy_prod.yml)](https://github.com/q96exe/ddf/actions)
-[![release](https://img.shields.io/github/package-json/v/q96exe/ddf)](https://github.com/q96exe/ddf/releases)
+[![build_dev](https://img.shields.io/github/actions/workflow/status/qDotNet-Web/ddf/deploy_dev.yml)](https://github.com/qDotNet-Web/ddf/actions)
+[![build_prod](https://img.shields.io/github/actions/workflow/status/qDotNet-Web/ddf/deploy_prod.yml)](https://github.com/qDotNet-Web/ddf/actions)
+[![release](https://img.shields.io/github/package-json/v/qDotNet-Web/ddf)](https://github.com/qDotNet-Web/ddf/releases)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
 [<img src="frontend/src/assets/logo.png" width="250" heigth="250"/>](frontend/src/assets/logo.png)

@@ -24,15 +24,24 @@ class PlayerRepository:
 
     @staticmethod
     async def list() -> List[PlayerRead]:
+        """collection = await PlayerRepository.get_collection()
+        cursor = collection.find()
+        return [PlayerRead(**document) for document in await cursor.to_list(length=None)]"""
         collection = await PlayerRepository.get_collection()
         cursor = collection.find()
-        return [PlayerRead(**document) for document in await cursor.to_list(length=None)]
+        players = []
+        for document in await cursor.to_list(length=None):
+            document["_id"] = str(document.pop("_id"))
+            document.setdefault("avatar_id", None)
+            document.setdefault("lobby_id", None)
+            players.append(PlayerRead(**document))
+        return players
 
     @staticmethod
     async def create_player(player_create: PlayerCreate) -> PlayerRead:
         """
         Create a new player
-        @param player_create:
+        @param player_create: PlayerCreate
         @return: PlayerRead
         """
         document = player_create.dict()

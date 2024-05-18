@@ -19,7 +19,7 @@ class LobbyUpdate(BaseModel):
     players: Optional[List[Player]] = Field(default_factory=list)
     round_timer: Optional[int] = GameFields.round_timer
     lives_per_player: Optional[int] = GameFields.lives_per_player
-    text_based: Optional[bool] = GameFields.text_based
+    game_type: Optional[int] = GameFields.game_type
 
 
 class LobbyCreate(BaseModel):
@@ -29,7 +29,7 @@ class LobbyCreate(BaseModel):
     players: List[Player] = Field(default_factory=list)
     round_timer: int = GameFields.round_timer
     lives_per_player: int = GameFields.lives_per_player
-    text_based: bool = GameFields.text_based
+    game_type: int = GameFields.game_type
     used_questions: Optional[List[str]] = Field(default_factory=list)
 
     class Config:

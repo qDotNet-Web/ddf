@@ -47,7 +47,7 @@ class GameFields:
         description="The maximum number of players allowed in the lobby",
         example=10
     )
-    text_based = Field(
+    game_type = Field(
         description="The status of the lobby",
         example=False
     )

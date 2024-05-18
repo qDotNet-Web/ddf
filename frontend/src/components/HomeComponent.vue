@@ -16,7 +16,7 @@
         <h1 class="dff-h1 mb-4 transition-05">Der Dümmste fliegt!</h1>
         <div class="d-flex justify-content-center gap-5 homeActions">
             <button class="btn btn-main-new fr-animate fr-move-up fr-delay-3" id="startButton" data-bs-toggle="modal"
-                data-bs-target="#createLobbyModal">Erstellen</button>
+                data-bs-target="#createLobbyModal" @click="modalCreate_visible = true">Erstellen</button>
             <button class="btn btn-main-new fr-animate fr-move-up fr-delay-5" data-bs-toggle="modal"
                 data-bs-target="#joinLobbyModal">Beitreten</button>
         </div>
@@ -40,64 +40,45 @@
             </div>
         </div>
         <!-- Modal 3 / createLobby-->
-        <div class="modal fade" id="createLobbyModal" tabindex="-1" aria-labelledby="createLobbyModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content bg-dark text-light">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="createLobbyModalLabel">Lobby erstellen</h5>
+
+        <Dialog v-model:visible="modalCreate_visible" modal :pt="{
+            root: 'border-none',
+            mask: {
+                style: 'backdrop-filter: blur(3px)'
+            }
+        }">
+            <template #container="{ closeCallback }">
+                <div id="createLobbyModal" class="flex flex-column px-5 py-5 gap-4"
+                    style="border-radius: 12px; background-color: var(--main-bg-color)">
+                    <div class="inline-flex flex-column gap-2 mb-3" style="text-align: center;">
+                        <i class="pi pi-plus text-5xl"></i>
                     </div>
-                    <div class="modal-body">
-                        <div class="input-text input-text-bb mb-3">
-                            <FloatLabel class="ip_float">
-                                <InputText id="ip_playerName" name="ip_playerName" v-model="ip_playerName"
-                                    class="w-full ip_float" maxlength = "20"/>
-                                <label for="ip_playerName">Username</label>
-                            </FloatLabel>
-                            <!--<label for="ip_playerName">Dein Name</label>
-                                <input type="text" id="ip_playerName" name="ip_playerName"
-                                    placeholder="Schlaubischlumpf" maxlength="20">-->
-                        </div>
-
-                        <div class="input-slide input-text input-text-bb mb-3">
-
-                            <label for="ip_roundLength" class="mb-3">Rundenlänge: {{ ip_roundLength }} min</label>
-                            <!-- <input type="range" id="ip_roundLength" name="ip_roundLength" min="1" max="10" value="3"
-                                    @input="updateRoundlength"> -->
-                            <!-- <div class="input-label">
-                                    <InputText name="ip_roundLength" id="ip_roundLength" v-model.number="value" class="mb-3" @vnode-updated="updateRoundlength"/>
-                                </div>-->
-
-                            <Slider name="ip_roundLength" id="ip_roundLength" v-model="ip_roundLength"
-                                class="w-full mb-3" :min="1" :max="10" />
-
-                        </div>
-
-
-
-                        <div class="input-slide input-text input-text-bb mb-3">
-                            <label for="ip_playerLives" class="mb-3">Spielerleben: {{ ip_playerLives }}</label>
-                            <!-- <input type="range" id="ip_playerLives" name="ip_playerLives" min="1" max="10" value="3"
-                                    @input="updatePlayerLives"> -->
-
-                            <Slider name="ip_playerLives" id="ip_playerLives" v-model="ip_playerLives"
-                                class="w-full mb-3" :min="1" :max="10" />
-                        </div>
-
-                        <div class="input-switch mb-3">
-                            <SelectButton :unselectable="false" v-model="ip_lobbyType" :options="lobbyType_options"
-                                aria-labelledby="basic" />
-                        </div>
-                        <div class="modal-footer space-between">
-                            <button type="button" class="btn btn-main-new btn-modal-new"
-                            data-bs-dismiss="modal">Schließen</button>
-                            <button type="button" id="createLobbyButton" class="btn btn-main-new btn-modal-new"
-                                @click="createLobby()">Starten</button>
-                        </div>
+                    <div class="inline-flex flex-column gap-2 mb-3">
+                        <FloatLabel class="ip_float">
+                            <InputText id="ip_playerName" name="ip_playerName" v-model="ip_playerName"
+                                class="w-full ip_float bg-white-alpha-20" maxlength="20" />
+                            <label for="ip_playerName">Username</label>
+                        </FloatLabel>
+                    </div>
+                    <div class="inline-flex flex-column gap-2 mb-3">
+                        <label for="ip_roundLength" class="mb-3">Rundenlänge: {{ ip_roundLength }} min</label>
+                        <Slider name="ip_roundLength" id="ip_roundLength" v-model="ip_roundLength" class="w-full mb-3"
+                            :min="1" :max="10" />
+                    </div>
+                    <div class="inline-flex flex-column gap-2 mb-5">
+                        <label for="ip_playerLives" class="mb-3">Spielerleben: {{ ip_playerLives }}</label>
+                        <Slider name="ip_playerLives" id="ip_playerLives" v-model="ip_playerLives" class="w-full mb-3"
+                            :min="1" :max="10" />
+                    </div>
+                    <div class="flex align-items-center gap-3">
+                        <button type="button" class="btn btn-main-new btn-modal-new" data-bs-dismiss="modal"
+                            @click="closeCallback">Schließen</button>
+                        <button type="button" id="createLobbyButton" class="btn btn-main-new btn-modal-new"
+                            @click="createLobby()">Starten</button>
                     </div>
                 </div>
-            </div>
-        </div>
+            </template>
+        </Dialog>
         <!-- Modal 4 JoinLobby -->
         <div class="modal fade" id="joinLobbyModal" tabindex="-1" aria-labelledby="joinLobbyModalLabel"
             aria-hidden="true">
@@ -120,7 +101,7 @@
                         <div class="input-text input-text-bb mb-3">
                             <FloatLabel class="ip_float">
                                 <InputText id="ip_playerName" name="ip_playerName" v-model="ip_playerName"
-                                    class="w-full ip_float" maxlength = "20"/>
+                                    class="w-full ip_float" maxlength="20" />
                                 <label for="ip_playerName">Username</label>
                             </FloatLabel>
                             <!-- <label for="ip_playerName">Dein Name</label>
@@ -129,7 +110,7 @@
                         </div>
                         <div class="modal-footer space-between">
                             <button type="button" class="btn btn-main-new btn-modal-new"
-                            data-bs-dismiss="modal">Schließen</button>
+                                data-bs-dismiss="modal">Schließen</button>
                             <button type="button" class="btn btn-main-new btn-modal-new"
                                 @click="joinLobby()">Beitreten</button>
                         </div>
@@ -148,8 +129,8 @@ import router from '@/router/index.js'
 import { reactive, ref } from 'vue';
 import Cookies from 'js-cookie';
 import { logic } from '@/logic/main.js';
-import {notify, showDialog} from '@/main.js';
-import {Modal} from 'bootstrap';
+import { notify, showDialog } from '@/main.js';
+import { Modal } from 'bootstrap';
 
 Element.prototype.remove = function () {
     this.parentElement.removeChild(this);
@@ -207,6 +188,7 @@ export default {
         const ip_lobbyType = ref('Text');
         const lobbyType_options = ref(['Text', 'Voice']);
         const ip_lobbyID = ref(null);
+        const modalCreate_visible = ref(false);
 
         const data = reactive({
             lobbyId: '',
@@ -214,17 +196,17 @@ export default {
             currentView: null
         });
 
-        function toggleLoadingScreen(toggle){
+        function toggleLoadingScreen(toggle) {
             let loading = document.querySelector('.loading');
             let h1 = document.querySelector('h1');
             let homeActions = document.querySelector('.homeActions');
             let main_logo = document.getElementById('main_logo');
-            if(toggle){
+            if (toggle) {
                 h1.classList.add('fade-out');
                 homeActions.classList.add('fade-out');
                 loading.classList.add('fade-in');
                 main_logo.classList.add('spin');
-            }else{
+            } else {
                 h1.classList.remove('fade-out');
                 homeActions.classList.remove('fade-out');
                 loading.classList.remove('fade-in');
@@ -249,7 +231,7 @@ export default {
             closeButton.click();
 
             toggleLoadingScreen(true);
-            
+
             let delay = new Promise(resolve => setTimeout(resolve, 1500));
             let joinResult = logic.joinLobby(lobbyId, playerName);
             let [joined] = await Promise.all([joinResult, delay]);
@@ -275,7 +257,7 @@ export default {
             let roundLength = parseInt(ip_roundLength.value);
             let playerLives = parseInt(ip_playerLives.value);
             let isTextBased = true;
-            
+
             toggleLoadingScreen(true);
 
             let gameOptions = {
@@ -298,7 +280,7 @@ export default {
             toggleLoadingScreen(false);
             router.push("/waitingLobby");
         }
-        return { createLobby, joinLobby, ip_roundLength, ip_playerName, ip_playerLives, ip_lobbyType, lobbyType_options, ip_lobbyID }
+        return { createLobby, joinLobby, ip_roundLength, ip_playerName, ip_playerLives, ip_lobbyType, lobbyType_options, ip_lobbyID, modalCreate_visible }
 
     },
 }

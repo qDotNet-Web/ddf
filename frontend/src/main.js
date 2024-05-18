@@ -20,6 +20,7 @@ import ConfirmDialog from 'primevue/confirmdialog';
 import ConfirmationService from 'primevue/confirmationservice';
 import Tooltip from 'primevue/tooltip';
 import Card from 'primevue/card';
+import Dialog from 'primevue/dialog';
 
 import 'primevue/resources/themes/aura-light-green/theme.css'
 
@@ -41,6 +42,7 @@ app.component('InputText', InputText)
 app.component('FloatLabel', FloatLabel)
 app.component('SelectButton', SelectButton)
 app.component('Card', Card)
+app.component('Dialog', Dialog)
 
 app.directive('tooltip', Tooltip);
 

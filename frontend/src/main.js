@@ -15,12 +15,20 @@ import Slider from 'primevue/slider'
 import InputText from 'primevue/inputtext'
 import FloatLabel from 'primevue/floatlabel'
 import SelectButton from 'primevue/selectbutton'
-import ToastService from 'primevue/toastservice';
-import ConfirmDialog from 'primevue/confirmdialog';
-import ConfirmationService from 'primevue/confirmationservice';
-import Tooltip from 'primevue/tooltip';
-import Card from 'primevue/card';
-import Dialog from 'primevue/dialog';
+import ToastService from 'primevue/toastservice'
+import ConfirmDialog from 'primevue/confirmdialog'
+import ConfirmationService from 'primevue/confirmationservice'
+import Tooltip from 'primevue/tooltip'
+import Card from 'primevue/card'
+import Dialog from 'primevue/dialog'
+import DialogService from 'primevue/dialogservice'
+import AnimateOnScroll from 'primevue/animateonscroll'
+import BadgeDirective from "primevue/badgedirective"
+import Ripple from 'primevue/ripple'
+import StyleClass from 'primevue/styleclass'
+import FocusTrap from 'primevue/focustrap'
+
+
 
 import 'primevue/resources/themes/aura-light-green/theme.css'
 
@@ -34,9 +42,17 @@ app.use(createPinia())
 app.use(router)
 app.use(PrimeVue)
 app.use(ToastService)
-app.use(ConfirmationService);
+app.use(ConfirmationService)
+app.use(DialogService)
 
-app.component('ConfirmDialog', ConfirmDialog);
+app.directive('tooltip', Tooltip);
+app.directive('badge', BadgeDirective);
+app.directive('ripple', Ripple);
+app.directive('styleclass', StyleClass);
+app.directive('focustrap', FocusTrap);
+app.directive('animateonscroll', AnimateOnScroll);
+
+app.component('ConfirmDialog', ConfirmDialog)
 app.component('Slider', Slider)
 app.component('InputText', InputText)
 app.component('FloatLabel', FloatLabel)
@@ -44,7 +60,7 @@ app.component('SelectButton', SelectButton)
 app.component('Card', Card)
 app.component('Dialog', Dialog)
 
-app.directive('tooltip', Tooltip);
+app.directive('tooltip', Tooltip)
 
 app.mount('#app')
 

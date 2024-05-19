@@ -41,12 +41,16 @@
         </div>
         <!-- Modal 3 / createLobby-->
 
-        <Dialog v-model:visible="modalCreate_visible" modal :pt="{
-            root: 'border-none',
-            mask: {
-                style: 'backdrop-filter: blur(3px)'
+        <Dialog 
+            v-model:visible="modalCreate_visible" 
+            modal 
+            :pt="{
+                root: 'border-none',
+                mask: {
+                    style: 'backdrop-filter: blur(2px)'
             }
-        }">
+        }"
+        >
             <template #container="{ closeCallback }">
                 <div id="createLobbyModal" class="flex flex-column px-3 py-3 gap-4"
                     style="border-radius: 12px; background-color: var(--main-bg-color)" aria-labelledby="createLobbyModalLabel">
@@ -89,7 +93,7 @@
         <Dialog v-model:visible="modalJoin_visible" modal :pt="{
             root: 'border-none',
             mask: {
-                style: 'backdrop-filter: blur(3px)'
+                style: 'backdrop-filter: blur(2px)'
             }
         }">
             <template #container="{ closeCallback }">

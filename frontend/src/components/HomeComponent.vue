@@ -41,19 +41,16 @@
         </div>
         <!-- Modal 3 / createLobby-->
 
-        <Dialog 
-            v-model:visible="modalCreate_visible" 
-            modal 
-            :pt="{
-                root: 'border-none',
-                mask: {
-                    style: 'backdrop-filter: blur(2px)'
+        <Dialog v-model:visible="modalCreate_visible" modal :pt="{
+            root: 'border-none',
+            mask: {
+                style: 'backdrop-filter: blur(2px)'
             }
-        }"
-        >
+        }">
             <template #container="{ closeCallback }">
                 <div id="createLobbyModal" class="flex flex-column px-3 py-3 gap-4"
-                    style="border-radius: 12px; background-color: var(--main-bg-color)" aria-labelledby="createLobbyModalLabel">
+                    style="border-radius: 12px; background-color: var(--main-bg-color)"
+                    aria-labelledby="createLobbyModalLabel">
                     <div class="gap-2 mb-pi" style="justify-content: center; display: flex;">
                         <div class="iconBox" style="display: inline-flex;">
                             <i class="pi pi-plus-circle text-5xl is-size-35 is-main-design-color"></i>
@@ -75,13 +72,19 @@
                         <Slider name="ip_roundLength" id="ip_roundLength" v-model="ip_roundLength" class="w-full mb-3"
                             :min="1" :max="10" />
                     </div>
-                    <div class="inline-flex flex-column gap-2 mb-5">
+                    <div class="inline-flex flex-column gap-2 mb-3">
                         <label for="ip_playerLives" class="mb-3">Spielerleben: {{ ip_playerLives }}</label>
                         <Slider name="ip_playerLives" id="ip_playerLives" v-model="ip_playerLives" class="w-full mb-3"
                             :min="1" :max="10" />
                     </div>
+                    <div class="inline-flex flex-column gap-2 mb-3">
+                        <div class="input-switch mb-3">
+                            <SelectButton :unselectable="false" v-model="ip_lobbyType" :options="lobbyType_options"
+                                aria-labelledby="basic" />
+                        </div>
+                    </div>
                     <div class="flex align-items-center gap-3" style="display: flex;">
-                        <button type="button" class="btn btn-main-new btn-modal-new" data-bs-dismiss="modal" 
+                        <button type="button" class="btn btn-main-new btn-modal-new" data-bs-dismiss="modal"
                             @click="closeCallback">Schließen</button>
                         <button type="button" id="createLobbyButton" class="btn btn-main-new btn-modal-new"
                             @click="createLobby()">Starten</button>
@@ -98,7 +101,8 @@
         }">
             <template #container="{ closeCallback }">
                 <div id="joinLobbyModal" class="flex flex-column px-3 py-3 gap-4"
-                    style="border-radius: 12px; background-color: var(--main-bg-color)" aria-labelledby="joinLobbyModalLabel">
+                    style="border-radius: 12px; background-color: var(--main-bg-color)"
+                    aria-labelledby="joinLobbyModalLabel">
                     <div class="gap-2 mb-pi" style="justify-content: center; display: flex;">
                         <div class="iconBox" style="display: inline-flex;">
                             <i class="pi pi-arrow-circle-right text-5xl is-size-35 is-main-design-color"></i>

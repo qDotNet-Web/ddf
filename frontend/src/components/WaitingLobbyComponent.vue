@@ -38,6 +38,7 @@ h2:hover {
           </template>
           <template #content>
             <span>{{ player.getLives() }} <i style="font-size: 26px;" class="pi pi-heart-fill"></i></span>
+            <div class="player-status" style="font-size: 18px;">Bereit</div>
           </template>
         </Card>
  

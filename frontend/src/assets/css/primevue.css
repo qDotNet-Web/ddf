@@ -20,13 +20,15 @@
 }
 
 .p-float-label:has(input:focus) label {
-    top: .1rem;
-    font-size: 12px;
+    top: -.8rem;
+    font-size: 14px;
+    color: var(--main-design-color);
 }
 
 .p-float-label:has(input.p-filled) label {
-    top: .1rem;
-    font-size: 12px;
+    top: -.8rem;
+    font-size: 14px;
+    color: var(--main-design-color);
 }
 
 .p-selectbutton .p-button.p-highlight {
@@ -102,6 +104,37 @@
 
 .pi-crown {
     color: #FFD700;
+}
+
+.is-size-35 {
+    font-size: 35px;
+}
+
+.p-inputtext{
+    background: #343a40;
+    color: var(--main-text-color);
+}
+
+.p-inputtext:enabled:focus{
+    outline: 1px solid var(--main-design-color);
+}
+
+.mb-pi {
+    margin-bottom: .5rem !important;
+}
+
+
+
+/* https://primevue.org/dialog/ */
+
+.py-3 {
+    padding-top: 1.8rem !important;
+    padding-bottom: 1.8rem !important;
+}
+
+.px-3 {
+    padding-right: 1.8rem !important;
+    padding-left: 1.8rem !important;
 }
 
 /* https://primevue.org/toast/ */

@@ -364,3 +364,16 @@ footer{
     margin-top: 1rem;
 }
 
+.iconBox {
+    border-radius: 50%;
+    padding: 25px;
+    background-color: #343a40;
+}
+
+.mb-custom-4 {
+    margin-bottom: 2rem !important;
+}
+
+.is-main-design-color {
+    color: var(--main-design-color);
+}

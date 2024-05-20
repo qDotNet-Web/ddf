@@ -2,8 +2,6 @@ from ..models.game_model import PlayerRead, PlayerCreate, PlayerUpdate
 from ..core.exceptions import *
 from ..core.utils import get_uuid
 from ..core.database import db
-from .game_repo import GameRepository
-from .lobby_repo import lobby_manager
 from typing import List
 
 __all__ = ["PlayerRepository"]
@@ -17,9 +15,9 @@ class PlayerRepository:
     @staticmethod
     async def get(player_id: str) -> PlayerRead:
         collection = await PlayerRepository.get_collection()
-        document = await collection.find_one({"_id": player_id})
+        document = await collection.find_one({"_id": str(player_id)})
         if not document:
-            raise NotFoundException("Spieler nicht gefunden")
+            raise NotFoundException("Player not found")
         document["_id"] = str(document.pop("_id"))
         document.setdefault("avatar_id", None)
         document.setdefault("lobby_id", None)
@@ -60,11 +58,11 @@ class PlayerRepository:
         document = update.dict(exclude_unset=True)
         result = await collection.update_one({"_id": player_id}, {"$set": document})
         if not result.modified_count:
-            raise NotFoundException("Spieler nicht gefunden")
+            raise NotFoundException("Player not found")
 
     @staticmethod
     async def delete(player_id: str) -> None:
         collection = await PlayerRepository.get_collection()
         result = await collection.delete_one({"_id": player_id})
         if not result.deleted_count:
-            raise NotFoundException("Spieler nicht gefunden")
+            raise NotFoundException("Player not found")

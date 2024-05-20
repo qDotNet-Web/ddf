@@ -336,9 +336,9 @@ footer{
 
 #playerList{
     display: flex;
-    flex-direction: column;
     margin-top: 2rem;
-    height: 60vh;
+    max-height: 60vh;
+    gap: 2rem;
 }
 
 .player {
@@ -359,7 +359,33 @@ footer{
 }
 
 .avatar {
-    height: 2rem;
-    width: 2rem;
-    margin-right: 0.8rem;
+    height: 6rem;
+    width: 6rem;
+    margin-top: 1rem;
+}
+
+.iconBox {
+    border-radius: 50%;
+    padding: 25px;
+    background-color: #343a40;
+}
+
+.mb-custom-4 {
+    margin-bottom: 2rem !important;
+}
+
+.is-main-design-color {
+    color: var(--main-design-color);
+}
+
+.is-header-waitingLobby {
+    background: #1a1a1a;
+    border-radius: 12px;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border: 1px solid var(--main-design-color-light)
+}
+
+.is-main-highlight-color{
+    color: var(--main-highlight-color);
 }

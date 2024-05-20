@@ -7,11 +7,13 @@ h2 span:hover {
 
 <template>
   <div class="container my-auto dff-padding-top-3" id="app">
-    <div class="heading center mb-4">
-      <h1>Warten <i class="pi pi-spin pi-sync" style="font-size: 0.8em"></i></h1>
-      <h2 @click="copyLobbyCode">Lobby-ID: <span v-tooltip.top="'Klicke um den Code zu kopieren!'">{{ lobby_code }}</span></h2>
+    <div class="heading center mb-4 is-header-waitingLobby">
+      <h1 style="margin-bottom: 0;">Wartelobby</h1>
+      <hr style="width: 50%; color: var(--gray-400)">
+      <h2 @click="copyLobbyCode">Lobby-ID: {{ lobby_code }} <i class="pi pi-copy" style="font-size: 30px;"></i></h2>
+
     </div>
-    <div id="playerList">
+    <!--<div id="playerList">
       <div v-for="(player, index) in players" :key="index" class="player fr-animate-2 fr-move-up fr-delay-3">
         <img :src="logo" class="avatar">
         <span class="player-name">
@@ -21,7 +23,29 @@ h2 span:hover {
         </span>
         <div class="player-status">Bereit</div>
       </div>
+    </div> -->
+    <div id="playerList" class="mb-5">
+    
+        <Card v-for="(player, index) in players" :key="index" stlye="overflow: hidden" class="fr-animate-2 fr-move-up fr-delay-3">
+          <template #header>
+            <img :src="logo" class="avatar">
+          </template>
+          <template #title>
+            <hr>
+            <span v-if="player.getIsOwner()" v-tooltip.top="'Spielbesitzer'"><i class="pi pi-crown" style="font-size: 30px;"></i></span>
+          </template>
+          <template #subtitle>
+            {{ player.getName() }}
+                <span v-if="player.getIsSelf()"> (Du)</span>
+          </template>
+          <template #content>
+            <span>{{ player.getLives() }} <i style="font-size: 26px;" class="pi pi-heart-fill"></i></span>
+            <div class="player-status" style="font-size: 18px;">Bereit</div>
+          </template>
+        </Card>
+ 
     </div>
+
   </div>
 </template>
 
@@ -30,8 +54,9 @@ import router from '@/router/index.js'
 import { computed } from 'vue';
 import {getGameStore} from "@/store.js";
 import {logic} from '@/logic/main.js';
+
 import logo from '@/assets/logo.png';
-import {notify, showDialog} from '@/main.js';
+import { notify, showDialog } from '@/main.js';
 
 export default {
   name: 'WaitingLobbyComponent',
@@ -70,7 +95,7 @@ export default {
   mounted() {
     setTimeout(() => {
       this.animateElement()
-    }, 100);
+    }, 50);
   },
 }
 

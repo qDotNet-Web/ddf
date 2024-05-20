@@ -36,7 +36,7 @@ Dieses Projekt nutzt:
 So startest du das Projekt:
 
 ```bash
-git clone https://github.com/q96exe/ddf
+git clone https://github.com/qDotNet-Web/ddf.git
 cd ddf
 docker-compose up -d
 ```

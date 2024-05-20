@@ -3,7 +3,6 @@ from ..models.game_model import QuestionRead
 from ..core.exceptions import *
 from ..core.database import db
 from typing import List
-from ..core.redis_client import redis_client
 from ..models.game_model import LobbyQuestions
 
 __all__ = ["QuestionRepository", "RedisLobbyQuestionRepository"]

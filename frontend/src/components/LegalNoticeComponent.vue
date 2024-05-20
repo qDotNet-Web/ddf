@@ -5,7 +5,7 @@
 </style>
 
 <template>
-    <div class="container my-auto" id="app">
+    <div class="container my-auto vertical-center dff-padding-vh" id="app">
         <div class="container mb-4 center" @click="goHome">
             <img src="@/assets/logo.png" alt="Logo" class="icon mb-4">
             <h1 class="dff-h1">Der Dümmste fliegt!</h1>

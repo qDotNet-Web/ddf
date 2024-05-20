@@ -30,7 +30,7 @@ import FocusTrap from 'primevue/focustrap'
 
 
 
-import 'primevue/resources/themes/aura-light-green/theme.css'
+import 'primevue/resources/themes/aura-dark-green/theme.css'
 
 import App from './App.vue'
 import router from './router'

@@ -12,11 +12,11 @@
 }
 
 .p-slider .p-slider-handle::before {
-    background-color: #343a40;
+    background-color: #3f3f46;
 }
 
 .p-slider .p-slider-handle:focus-visible {
-    box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--main-design-color), 0 1px 2px #000;
+    box-shadow: 0 0 0 2px var(--main-design-color), 0 0 0 4px var(--main-design-color), 0 1px 2px #000;
 }
 
 .p-float-label:has(input:focus) label {

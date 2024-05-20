@@ -71,4 +71,17 @@ export function showDialog(header, message) {
         }
       });
     });
+}
+
+window.addEventListener('beforeunload', function (e) {
+  // Get the current URL path
+  const path = window.location.pathname;
+
+  // Check if the path is '/waitingLobby' or '/gameLobby'
+  if (path === '/waitingLobby' || path === '/gameLobby') {
+    // Cancel the event
+    e.preventDefault();
+    // Chrome requires returnValue to be set
+    e.returnValue = '';
   }
+});

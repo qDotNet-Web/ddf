@@ -144,7 +144,8 @@
 
 
 <script>
-import router from '@/router/index.js'
+import { useRouter, useRoute } from 'vue-router';
+import router from '@/router/index.js';
 import { reactive, ref } from 'vue';
 import Cookies from 'js-cookie';
 import { logic } from '@/logic/main.js';
@@ -161,6 +162,7 @@ NodeList.prototype.remove = HTMLCollection.prototype.remove = function () {
         }
     }
 }
+
 
 export default {
     components: {
@@ -202,17 +204,14 @@ export default {
                 if (response.ok) {
                     return response.json();
                 }
-                console.log("Error: ", response.status);
+                console.clear();
                 return false;
             }, networkError => console.log(networkError.message))
             .then(async jsonResponse => {
-                console.log(jsonResponse);
-                if (jsonResponse.is_active) {
+                if (jsonResponse.game_state != 2) {
                     let decision = await showDialog("Aktive Lobby gefunden", "Eine von dir betretene Runde läuft noch. Möchtest du wieder beitreten? (Wenn nicht, kannst du danach NICHT mehr beitreten!)");
-                    console.log(decision)
                     if(decision){
                         logic.joinLobby(lobbyCode, gameOptionsObj.playerName);
-                        router.push("/waitingLobby");
                     } else {
                         Cookies.remove('game');
                         Cookies.remove('playerData');
@@ -233,7 +232,9 @@ export default {
 
     },
     setup() {
-
+        const route = useRoute();
+        let param = route.query.lobby_id;
+        if (param) {}
         const ip_roundLength = ref(3);
         const ip_playerName = ref(null);
         const ip_playerLives = ref(3);
@@ -284,14 +285,18 @@ export default {
             toggleLoadingScreen(true);
             
             let delay = new Promise(resolve => setTimeout(resolve, 1500));
-            let joinResult = logic.joinLobby(lobbyId, playerName);
+            let joinResult, gameState = logic.joinLobby(lobbyId, playerName);
             let [joined] = await Promise.all([joinResult, delay]);
             toggleLoadingScreen(false);
             if (!joined) {
                 notify("error", "Fehler", "Die Lobby konnte nicht gefunden werden.");
                 return;
             }
-            router.push("/waitingLobby");
+            if (gameState == GameState.WAITING) {
+                router.push("/waitingLobby");
+            } else {
+                router.push("/gameLobby");
+            }
         }
 
         async function createLobby() {
@@ -307,21 +312,20 @@ export default {
 
             let roundLength = parseInt(ip_roundLength.value);
             let playerLives = parseInt(ip_playerLives.value);
-            let isTextBased = true;
+            // TEXT: 0, VOICE: 1
+            let gameType = ip_lobbyType.value == 'Text' ? 0 : 1;
             
             toggleLoadingScreen(true);
 
             let gameOptions = {
+                // owner id will be set in logic
                 "owner_name": playerName,
-                "is_active": true,
-                "players": [
-                    playerName,
-                ],
+                'game_state': 0,
+                "players": [], // set in logic
                 'round_timer': roundLength * 60,
                 'lives_per_player': playerLives,
-                'text_based': ip_lobbyType.value == 'Text' ? true : false,
-                'used_questions': []
-
+                'game_type': gameType, // 0: text, 1: voice
+                'used_questions': [],
             }
             // pick number between 0 and 19
             let ownerAvatarId = Math.floor(Math.random() * 20);

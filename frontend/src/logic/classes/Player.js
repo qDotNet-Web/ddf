@@ -1,20 +1,17 @@
 import { PlayerState } from "@/logic/classes/Enums.js";
 export class Player {
     id = "0";
-    name = "Schlaubischlumpf";
+    player_name = "Schlaubischlumpf";
     lives = 3;
-    lobbyOwner = false;
-    dead = false;
-    playerState = PlayerState.WAITING;
+    player_state = PlayerState.WAITING;
     self = false;
     avatar_id = 0;
 
-    constructor(id, name, avatar_id, lives, lobbyOwner, self) {
+    constructor(id, name, avatar_id, lives, self) {
         this.id = id;
         this.name = name;
         this.avatar_id = avatar_id;
         this.lives = lives;
-        this.lobbyOwner = lobbyOwner;
         this.self = self;
     }
 
@@ -27,9 +24,6 @@ export class Player {
     }
     getLives() {
         return this.lives;
-    }
-    getIsOwner() {
-        return this.lobbyOwner;
     }
     getAvatarId() {
         return this.avatar_id;
@@ -71,15 +65,6 @@ export class Player {
     setLives(lives) {
         this.lives = lives;
     }
-    setLobbyOwner(lobbyOwner) {
-        this.lobbyOwner = lobbyOwner;
-        if (lobbyOwner) {
-            //TODO: add owner class
-        } else {
-            //TODO: remove owner class 
-        }
-    }
-
     removeLive() {
         this.lives--;
         if (this.lives <= 0) {
@@ -99,8 +84,7 @@ export class Player {
             name: this.name,
             avatar_id: this.avatar_id,
             lives: this.lives,
-            lobbyOwner: this.lobbyOwner,
-            dead: this.dead,
+            is_alive: this.is_alive,
             playerState: this.playerState,
             self: this.self
         }

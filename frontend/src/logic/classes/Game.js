@@ -1,6 +1,7 @@
 import { GameState, GameType } from '@/logic/classes/Enums.js';
 export class Game {
     lobby_code = 0;
+    lobby_owner = 0;
     round_started = false;
     set_round_timer = 180; //seconds per round
     round_timer = 180; //current game timer in round in seconds
@@ -13,13 +14,14 @@ export class Game {
     gameType = GameType.TEXT;
 
 
-    constructor(lobby_code, round_timer, players, gameType) {
+    constructor(lobby_code, round_timer, players, gameType, lobby_owner) {
         this.lobby_code = lobby_code;
         this.round_timer = round_timer;
         this.set_round_timer = round_timer;
         this.players = players;
         this.active = true;
         this.gameType = gameType;
+        this.lobby_owner = lobby_owner;
     }
 
     getLobbyCode() {
@@ -37,7 +39,14 @@ export class Game {
     getCurrentPlayer() {
         return this.players[this.current_player];
     }
+    getLobbyOwner() {
+        return this.lobby_owner;
+    }
 
+
+    setLobbyOwner(lobby_owner) {  
+        this.lobby_owner = lobby_owner;
+    }
     setLobbyCode(lobby_code) {
         this.lobby_code = lobby_code;
     }

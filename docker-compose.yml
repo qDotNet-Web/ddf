@@ -1,6 +1,7 @@
 services:
   backend:
     build: ./backend
+    restart: unless-stopped
     depends_on:
       - mongo
       - redis
@@ -22,6 +23,7 @@ services:
 
   mongo:
     image: mongo:latest
+    restart: unless-stopped
     labels:
       - "traefik.enable=false"
     ports:
@@ -36,6 +38,7 @@ services:
 
   redis:
     image: redis:latest
+    restart: unless-stopped
     labels:
       - "traefik.enable=false"
     command: ["redis-server", "--requirepass", "changeme"]
@@ -48,6 +51,7 @@ services:
 
   frontend:
     build: ./frontend
+    restart: unless-stopped
     depends_on:
       - backend
     labels:

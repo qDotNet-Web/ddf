@@ -58,7 +58,7 @@ class PlayerFields:
         description="The unique identifier of the player",
         example=get_uuid()
     )
-    name = Field(
+    player_name = Field(
         description="The name of the player",
         example="John Doe",
         **_string
@@ -74,6 +74,10 @@ class PlayerFields:
     avatar_id = Field(
         description="The id of the avatar",
         example=1
+    )
+    player_state = Field(
+        description="The status of the player",
+        example=0
     )
 
 

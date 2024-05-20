@@ -1,7 +1,6 @@
 from fastapi import APIRouter, HTTPException
 from ..crud.game_repo import GameRepository
 from ..models.game_model import LobbyRead, LobbyCreate, LobbyUpdate, PlayerRead, PlayerCreate
-from ..crud.lobby_repo import lobby_manager
 from typing import List
 
 
@@ -25,7 +24,7 @@ async def list_lobbies():
             tags=["lobby"])
 async def list_active_lobbies():
     try:
-        return await lobby_manager.get_active_lobbies()
+        return await GameRepository.list_active_lobbies()
     except Exception as e:
         raise HTTPException(status_code=404, detail=str(e))
 
@@ -36,9 +35,7 @@ async def list_active_lobbies():
              tags=["lobby"])
 async def create_lobby(lobby: LobbyCreate):
     try:
-        lobby_read = await GameRepository.create(lobby)
-        await lobby_manager.create_lobby(lobby_read.lobby_id, lobby)
-        return lobby_read
+        return await GameRepository.create(lobby)
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
 
@@ -69,9 +66,9 @@ async def get_lobby_by_code(code: str):
              response_model=LobbyRead,
              description="Add a player to a lobby by id",
              tags=["lobby"])
-async def add_player_to_lobby_by_id(lobby_id: str, player_name: str):
+async def add_player_to_lobby_by_id(lobby_id: str, player_id: str):
     try:
-        return await GameRepository.add_player_to_lobby_by_id(lobby_id, player_name)
+        return await GameRepository.add_player_to_lobby_by_id(lobby_id, player_id)
     except Exception as e:
         raise HTTPException(status_code=404, detail=str(e))
 
@@ -80,8 +77,8 @@ async def add_player_to_lobby_by_id(lobby_id: str, player_name: str):
              response_model=LobbyUpdate,
              description="Add a player to a lobby by code",
              tags=["lobby"])
-async def add_player_to_lobby_by_code(code: str, lobby_data: LobbyUpdate):
+async def add_player_to_lobby_by_code(code: str, player_id: str):
     try:
-        return lobby_manager.update_lobby(code, lobby_data)
+        return await GameRepository.add_player_to_lobby_by_code(code, player_id)
     except Exception as e:
         raise HTTPException(status_code=404, detail=str(e))

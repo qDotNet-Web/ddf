@@ -70,4 +70,5 @@ volumes:
 
 networks:
   ddf:
-    external: true
+    # external: true
+    driver: bridge

@@ -12,21 +12,23 @@
 }
 
 .p-slider .p-slider-handle::before {
-    background-color: #343a40;
+    background-color: #3f3f46;
 }
 
 .p-slider .p-slider-handle:focus-visible {
-    box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--main-design-color), 0 1px 2px #000;
+    box-shadow: 0 0 0 2px var(--main-design-color), 0 0 0 4px var(--main-design-color), 0 1px 2px #000;
 }
 
 .p-float-label:has(input:focus) label {
-    top: .1rem;
-    font-size: 12px;
+    top: -.8rem;
+    font-size: 14px;
+    color: var(--main-design-color);
 }
 
 .p-float-label:has(input.p-filled) label {
-    top: .1rem;
-    font-size: 12px;
+    top: -.8rem;
+    font-size: 14px;
+    color: var(--main-design-color);
 }
 
 .p-selectbutton .p-button.p-highlight {
@@ -52,6 +54,92 @@
 .p-selectbutton.p-component {
     border: 2px solid var(--main-design-color);
     border-radius: 6px;
+}
+
+/* https://primevue.org/card/ */
+
+.p-card{
+    width: 23,3%;
+    background-color: #1a1a1a;
+}
+
+.p-card-header{
+    text-align: center;
+}
+
+.p-card-title{
+    text-align: center;
+}
+
+.p-card-header, .p-card-title{
+    font-size: 25px;
+}
+
+.p-card .p-card-body{
+    gap: 0px;
+    color: var(--main-text-color);
+    padding: 1rem;
+    padding-top: 0;
+}
+
+.p-card-content {
+    text-align: center;
+    font-size: 30px;
+}
+
+.p-card-subtitle {
+    text-align: center;
+    font-size: 25px;
+    color: var(--main-text-color);
+    font-weight: 600;
+}
+
+.p-card .p-card-caption{
+    gap: 0rem;
+}
+
+.pi-heart-fill {
+    color: red;
+}
+
+.pi-crown {
+    color: #FFD700;
+}
+
+
+/* https://primevue.org/dialog/ */
+
+.is-size-35 {
+    font-size: 35px;
+}
+
+.p-inputtext{
+    background: #343a40;
+    color: var(--main-text-color);
+    border: none
+}
+
+.p-inputtext:enabled:focus{
+    outline: 1px solid var(--main-design-color);
+}
+
+.mb-pi {
+    margin-bottom: .5rem !important;
+}
+
+.py-3 {
+    padding-top: 1.8rem !important;
+    padding-bottom: 1.8rem !important;
+}
+
+.px-3 {
+    padding-right: 1.8rem !important;
+    padding-left: 1.8rem !important;
+}
+
+.p-dialog {
+    background-color: unset;
+    border: none;
 }
 
 /* https://primevue.org/toast/ */

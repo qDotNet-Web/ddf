@@ -377,3 +377,10 @@ footer{
 .is-main-design-color {
     color: var(--main-design-color);
 }
+
+.is-header-waitingLobby {
+    background: #1a1a1a;
+    border-radius: 12px;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}

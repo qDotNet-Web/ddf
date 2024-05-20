@@ -7,7 +7,7 @@ h2:hover {
 
 <template>
   <div class="container my-auto dff-padding-top-3" id="app">
-    <div class="heading center mb-4">
+    <div class="heading center mb-4 is-header-waitingLobby">
       <h1>Wartelobby</h1>
       <h2 @click="copyLobbyCode">Lobby-ID: {{ lobby_code }}</h2>
     </div>

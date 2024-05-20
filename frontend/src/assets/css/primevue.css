@@ -106,6 +106,9 @@
     color: #FFD700;
 }
 
+
+/* https://primevue.org/dialog/ */
+
 .is-size-35 {
     font-size: 35px;
 }
@@ -113,6 +116,7 @@
 .p-inputtext{
     background: #343a40;
     color: var(--main-text-color);
+    border: none
 }
 
 .p-inputtext:enabled:focus{
@@ -123,10 +127,6 @@
     margin-bottom: .5rem !important;
 }
 
-
-
-/* https://primevue.org/dialog/ */
-
 .py-3 {
     padding-top: 1.8rem !important;
     padding-bottom: 1.8rem !important;
@@ -135,6 +135,11 @@
 .px-3 {
     padding-right: 1.8rem !important;
     padding-left: 1.8rem !important;
+}
+
+.p-dialog {
+    background-color: unset;
+    border: none;
 }
 
 /* https://primevue.org/toast/ */

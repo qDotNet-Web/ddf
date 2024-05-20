@@ -4,7 +4,7 @@ services:
     restart: unless-stopped
     depends_on:
       - mongo
-      - redis
+      #- redis
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.ddf_backend.rule=Host(`api.derduemmstefliegt.online`)"

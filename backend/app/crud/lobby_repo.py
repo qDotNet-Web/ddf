@@ -1,5 +1,4 @@
 from fastapi import WebSocket
-from ..core.redis_client import redis_client
 from typing import List, Dict
 from ..models.game_model import LobbyCreate, LobbyUpdate, Player, LobbyRead
 import json

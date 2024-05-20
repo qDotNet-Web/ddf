@@ -338,7 +338,7 @@ footer{
     display: flex;
     margin-top: 2rem;
     max-height: 60vh;
-    gap: 1.5rem;
+    gap: 2rem;
 }
 
 .player {

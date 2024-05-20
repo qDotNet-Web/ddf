@@ -1,16 +1,14 @@
 services:
   backend:
     build: ./backend
-    ports: 
-      - "8000:8000"
     depends_on:
       - mongo
       - redis
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.backend.rule=Host(`api.derduemmstefliegt.online`)"
-      - "traefik.http.routers.backend.entrypoints=websecure"
-      - "traefik.http.services.backend.loadbalancer.server.port=8000"
+      - "traefik.http.routers.ddf.rule=Host(`api.derduemmstefliegt.online`)"
+      - "traefik.http.routers.ddf.entrypoints=websecure"
+      - "traefik.http.services.ddf.loadbalancer.server.port=8000"
     environment:
       - MONGODB_URL=mongodb://admin:password@mongo:27017/ddf_db?authSource=admin
       - REDIS_HOST=redis
@@ -54,16 +52,15 @@ services:
       - backend
     labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.frontend.rule=Host(`derduemmstefliegt.online`)"
-        - "traefik.http.routers.frontend.entrypoints=web"
-        - "traefik.http.services.frontend.loadbalancer.server.port=80"
+        - "traefik.http.routers.ddf.rule=Host(`derduemmstefliegt.online`)"
+        - "traefik.http.routers.ddf.entrypoints=web"
+        - "traefik.http.services.ddf.loadbalancer.server.port=80"
     networks:
       - ddf
 
 volumes:
   mongo_data:
   redis_data:
-  redis_insight_data:
 
 networks:
   ddf:

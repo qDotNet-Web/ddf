@@ -23,13 +23,21 @@ const router = createRouter({
       component: WaitingLobbyComponent,
       props: true
     },
+    {
+      path: '/:pathMatch(.*)*',
+      redirect: to => {
+        // Get the string behind the '/'
+        const param = to.path.split('/')[1];
+  
+        // Redirect to home page with the string as a param
+        return { path: '/', query: { lobby_id: param } };
+      },
+    },
   ]
 })
 
 
 router.afterEach(() => {
-  console.log("Wird Aufgerufen!");
-
   const observer = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
       if (mutation.addedNodes) {

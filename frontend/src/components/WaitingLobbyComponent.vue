@@ -1,7 +1,6 @@
 <style scoped>
-h2:hover {
+h2 span:hover {
   cursor: pointer;
-  /* underline */
   text-decoration: underline;
 }
 </style>
@@ -9,62 +8,142 @@ h2:hover {
 <template>
   <div class="container my-auto dff-padding-top-3" id="app">
     <div class="heading center mb-4">
-      <h1>Wartelobby</h1>
-      <h2 @click="">Lobby-ID: Laden...</h2>
+      <h1>Warten <i class="pi pi-spin pi-sync" style="font-size: 0.8em"></i></h1>
+      <h2 @click="copyLobbyCode">Lobby-ID: <span v-tooltip.top="'Klicke um den Code zu kopieren!'">{{ lobby_code }}</span></h2>
     </div>
-    <div id="playerList"></div>
+    <div id="playerList">
+      <div v-for="(player, index) in players" :key="index" class="player fr-animate-2 fr-move-up fr-delay-3">
+        <img :src="logo" class="avatar">
+        <span class="player-name">
+          <span v-if="(player.getId() == lobby_owner)" v-tooltip.top="'Spielbesitzer'"><i class="pi pi-crown"></i></span>
+          {{ player.getName() }}
+          <span v-if="player.getIsSelf()">(Du)</span>
+        </span>
+        <div class="player-status">Bereit</div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import { useGameStore } from "@/store.js";
-import Cookies from 'js-cookie';
+import router from '@/router/index.js'
+import { computed } from 'vue';
+import {getGameStore} from "@/store.js";
+import {logic} from '@/logic/main.js';
+import logo from '@/assets/logo.png';
+import {notify, showDialog} from '@/main.js';
 
 export default {
   name: 'WaitingLobbyComponent',
+  setup() {
+    const gameStore = getGameStore();
+    const game = gameStore.getGame();
+
+    if (!game) {
+      router.push({path: '/'});
+    }
+
+    const logoSrc = logo;
+
+    return {
+      players: computed(() => game.getPlayers()),
+      lobby_code: computed(() => game.getLobbyCode()),
+      lobby_owner: computed(() => game.getLobbyOwner()),
+      logo: logoSrc
+    };
+  },
+  data() {
+    return {}
+  },
   methods: {
     animateElement() {
       document.querySelectorAll(".fr-animate-2").forEach((el) => {
         el.classList.add('fr-animate-init');
       });
     },
+    copyLobbyCode() {
+      let lobby_code = this.lobby_code;
+      navigator.clipboard.writeText(lobby_code);
+      notify('success', 'Lobby-ID kopiert', 'Die Lobby-ID wurde in die Zwischenablage kopiert.');
+    }
   },
   mounted() {
-    const gameStore = useGameStore();
-    let gameOptions = gameStore.gameOptions;
-    if (gameOptions == null) {
-      if (Cookies.get('gameOptions') != null) {
-        gameOptions = JSON.parse(Cookies.get('gameOptions'));
-        gameStore.gameOptions = gameOptions;
-        console.log("substituted gameOptions from cookies")
-        // set lobby id to h2
-        let h2 = document.querySelector('h2');
-        h2.innerHTML = 'Lobby-ID: ' + gameOptions.code;
-      } else {
-        this.$router.push('/');
-      }
-    } else {
-      // set lobby id to h2
-      let h2 = document.querySelector('h2');
-      h2.innerHTML = 'Lobby-ID: ' + gameOptions.code;
-    }
-    // console.log(JSON.stringify(gameOptions));
-
-    let playerList = document.getElementById('playerList');
-    let player1 = document.createElement('div');
-    player1.innerHTML = 'Spieler 1: ' + gameOptions.owner_name;
-    playerList.appendChild(player1);
-    player1.classList.add('player', 'fr-animate-2', 'fr-move-up', 'fr-delay-3');
-    player1.setAttribute("id", "singlePlayer");
-
-    // add player status and append it to the player div
-    let player1Status = document.createElement('div');
-    player1Status.innerHTML = 'Status: Bereit';
-    player1Status.classList.add('player-status');
-    player1.appendChild(player1Status);
     setTimeout(() => {
       this.animateElement()
-    }, 100); // 100 Millisekunden Verzögerung
-  }
-};
+    }, 100);
+  },
+}
+
+
+
+
+
+
+// export default {
+//   name: 'WaitingLobbyComponent',
+//   data() {
+//     return {
+//         logo: logo,
+//     };
+//   },
+//   methods: {
+//     animateElement() {
+//       document.querySelectorAll(".fr-animate-2").forEach((el) => {
+//         el.classList.add('fr-animate-init');
+//       });
+//     },
+//   },
+//   mounted() {
+//     let game = logic.getGame();
+//     let lobby_code = game.getLobbyCode();
+
+//     let h2 = document.querySelector('h2');
+//     h2.innerHTML = 'Lobby-ID: ' + lobby_code;
+//     let players = game.getPlayers();
+//     console.log(players);
+//     for (let i = 0; i < players.length; i++) {
+//       console.log(players[i])
+//       let playerList = document.getElementById('playerList');
+//       let player = document.createElement('div');
+//       // avatar: use logo for now and player name
+//       player.innerHTML = '<img src="'+logo+'" class="avatar"><span class="player-name">' + players[i].name + '</span>'
+//       if (players[i].getIsOwner()) {
+//         player.querySelector('.player-name').innerHTML = '👑 ' + player.querySelector('.player-name').innerHTML;
+//         // add v-tooltip to owner
+//         player.setAttribute('v-tooltip', '"Spielbesitzer"');
+//       }
+//       if (players[i].getIsSelf()) {
+//         player.querySelector('.player-name').innerHTML += ' (Du)';
+//       }
+//       playerList.appendChild(player);
+//       player.classList.add('player', 'fr-animate-2', 'fr-move-up', 'fr-delay-3');
+
+//       // add player status and append it to the player div
+//       let playerStatus = document.createElement('div');
+//       playerStatus.innerHTML = 'Status: Bereit';
+//       playerStatus.classList.add('player-status');
+//       player.appendChild(playerStatus);
+//     }
+//     setTimeout(() => {
+//       this.animateElement()
+//     }, 100); // 100 Millisekunden Verzögerung
+
+
+//     // let playerList = document.getElementById('playerList');
+//     // let player1 = document.createElement('div');
+//     // player1.innerHTML = '#1: ' + gameOptions.owner_name;
+//     // playerList.appendChild(player1);
+//     // player1.classList.add('player', 'fr-animate-2', 'fr-move-up', 'fr-delay-3');
+//     // player1.setAttribute("id", "singlePlayer");
+
+//     // // add player status and append it to the player div
+//     // let player1Status = document.createElement('div');
+//     // player1Status.innerHTML = 'Status: Bereit';
+//     // player1Status.classList.add('player-status');
+//     // player1.appendChild(player1Status);
+//     // setTimeout(() => {
+//     //   this.animateElement()
+//     // }, 100); // 100 Millisekunden Verzögerung
+//   }
+// };
 </script>

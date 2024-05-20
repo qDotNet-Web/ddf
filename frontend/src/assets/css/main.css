@@ -383,6 +383,7 @@ footer{
     border-radius: 12px;
     padding-top: 1rem;
     padding-bottom: 1rem;
+    border: 1px solid var(--main-design-color-light)
 }
 
 .is-main-highlight-color{

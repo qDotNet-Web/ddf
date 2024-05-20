@@ -9,8 +9,8 @@ h2:hover {
   <div class="container my-auto dff-padding-top-3" id="app">
     <div class="heading center mb-4 is-header-waitingLobby">
       <h1 style="margin-bottom: 0;">Wartelobby</h1>
-      <hr style="width: 50%;">
-      <h2 @click="copyLobbyCode">Lobby-ID: {{ lobby_code }}</h2>
+      <hr style="width: 50%; color: var(--gray-400)">
+      <h2 @click="copyLobbyCode">Lobby-ID: {{ lobby_code }} <i class="pi pi-copy" style="font-size: 30px;"></i></h2>
     </div>
     <!--<div id="playerList">
       <div v-for="(player, index) in players" :key="index" class="player fr-animate-2 fr-move-up fr-delay-3">

@@ -13,11 +13,11 @@ services:
       - "traefik.http.services.ddf_backend.loadbalancer.server.port=8000"
     environment:
       - MONGODB_URL=mongodb://admin:password@mongo:27017/ddf_db?authSource=admin
-      - REDIS_HOST=redis
-      - REDIS_PORT=6379
-      - REDIS_USER=default
-      - REDIS_PASSWORD=changeme
-      - REDIS_DB=0
+      #- REDIS_HOST=redis
+      #- REDIS_PORT=6379
+      #- REDIS_USER=default
+      #- REDIS_PASSWORD=changeme
+      #- REDIS_DB=0
       - SECRET_KEY=TestSecretKey
     networks:
       - ddf
@@ -37,18 +37,18 @@ services:
     networks:
       - ddf
 
-  redis:
-    image: redis:latest
-    restart: unless-stopped
-    labels:
-      - "traefik.enable=false"
-    command: ["redis-server", "--requirepass", "changeme"]
-    ports:
-      - "6379:6379"
-    networks:
-      - ddf
-    volumes:
-      - redis_data:/data
+  #redis:
+    #image: redis:latest
+    #restart: unless-stopped
+    #labels:
+      #- "traefik.enable=false"
+    #command: ["redis-server", "--requirepass", "changeme"]
+    #ports:
+      #- "6379:6379"
+    #networks:
+      #- ddf
+    #volumes:
+      #- redis_data:/data
 
   frontend:
     build: ./frontend
@@ -66,9 +66,9 @@ services:
 
 volumes:
   mongo_data:
-  redis_data:
+  #redis_data:
 
 networks:
   ddf:
-    # external: true
-    driver: bridge
+    external: true
+    #driver: bridge

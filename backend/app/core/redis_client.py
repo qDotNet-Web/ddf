@@ -2,7 +2,7 @@ import redis.asyncio as redis
 from ..core.config import settings
 
 
-redis_host = settings.REDIS_HOST
+"""redis_host = settings.REDIS_HOST
 redis_port = settings.REDIS_PORT
 redis_password = settings.REDIS_PASSWORD
 redis_user = settings.REDIS_USER
@@ -28,3 +28,4 @@ class RedisClient:
 
 
 redis_client = RedisClient()
+"""

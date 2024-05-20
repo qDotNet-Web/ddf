@@ -53,7 +53,7 @@
                     aria-labelledby="createLobbyModalLabel">
                     <div class="gap-2 mb-pi" style="justify-content: center; display: flex;">
                         <div class="iconBox" style="display: inline-flex;">
-                            <i class="pi pi-plus-circle text-5xl is-size-35 is-main-design-color"></i>
+                            <i class="pi pi-plus-circle text-5xl is-size-35 is-main-highlight-color"></i>
                         </div>
 
                     </div>
@@ -68,12 +68,12 @@
                         </FloatLabel>
                     </div>
                     <div class="inline-flex flex-column gap-2 mb-3">
-                        <label for="ip_roundLength" class="mb-3">Rundenlänge: {{ ip_roundLength }} min</label>
+                        <label for="ip_roundLength" class="mb-3">Rundenlänge: {{ ip_roundLength }} min <i style="font-size: 14px;" class="pi pi-clock"></i></label>
                         <Slider name="ip_roundLength" id="ip_roundLength" v-model="ip_roundLength" class="w-full mb-3"
                             :min="1" :max="10" />
                     </div>
                     <div class="inline-flex flex-column gap-2 mb-3">
-                        <label for="ip_playerLives" class="mb-3">Spielerleben: {{ ip_playerLives }}</label>
+                        <label for="ip_playerLives" class="mb-3">Spielerleben: {{ ip_playerLives }} <i style="font-size: 14px;" class="pi pi-heart-fill"></i></label>
                         <Slider name="ip_playerLives" id="ip_playerLives" v-model="ip_playerLives" class="w-full mb-3"
                             :min="1" :max="10" />
                     </div>
@@ -105,7 +105,7 @@
                     aria-labelledby="joinLobbyModalLabel">
                     <div class="gap-2 mb-pi" style="justify-content: center; display: flex;">
                         <div class="iconBox" style="display: inline-flex;">
-                            <i class="pi pi-arrow-circle-right text-5xl is-size-35 is-main-design-color"></i>
+                            <i class="pi pi-arrow-circle-right text-5xl is-size-35 is-main-highlight-color"></i>
                         </div>
 
                     </div>

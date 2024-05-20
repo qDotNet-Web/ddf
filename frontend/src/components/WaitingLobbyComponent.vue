@@ -8,7 +8,8 @@ h2:hover {
 <template>
   <div class="container my-auto dff-padding-top-3" id="app">
     <div class="heading center mb-4 is-header-waitingLobby">
-      <h1>Wartelobby</h1>
+      <h1 style="margin-bottom: 0;">Wartelobby</h1>
+      <hr style="width: 50%;">
       <h2 @click="copyLobbyCode">Lobby-ID: {{ lobby_code }}</h2>
     </div>
     <!--<div id="playerList">

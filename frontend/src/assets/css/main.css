@@ -384,3 +384,7 @@ footer{
     padding-top: 1rem;
     padding-bottom: 1rem;
 }
+
+.is-main-highlight-color{
+    color: var(--main-highlight-color);
+}

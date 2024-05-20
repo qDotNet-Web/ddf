@@ -26,13 +26,13 @@ app.include_router(websocket_router.router, prefix="/ws")
 
 @app.on_event("startup")
 async def startup_event() -> None:
-    await redis_client.initialize()
+    # await redis_client.initialize()
     await db.initialize()
 
 
 @app.on_event("shutdown")
 async def shutdown_event() -> None:
-    await redis_client.close()
+    # await redis_client.close()
     db.close()
 
 '''

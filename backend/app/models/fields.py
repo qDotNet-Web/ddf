@@ -26,9 +26,9 @@ class GameFields:
         example="John Doe",
         **_string
     )
-    is_active = Field(
+    game_state = Field(
         description="The status of the lobby",
-        example=True
+        example=0
     )
     players: List[str] = Field(
         description="The list of players in the lobby",
@@ -47,9 +47,9 @@ class GameFields:
         description="The maximum number of players allowed in the lobby",
         example=10
     )
-    text_based = Field(
+    game_type = Field(
         description="The status of the lobby",
-        example=False
+        example=0
     )
 
 
@@ -58,7 +58,7 @@ class PlayerFields:
         description="The unique identifier of the player",
         example=get_uuid()
     )
-    name = Field(
+    player_name = Field(
         description="The name of the player",
         example="John Doe",
         **_string
@@ -74,6 +74,10 @@ class PlayerFields:
     avatar_id = Field(
         description="The id of the avatar",
         example=1
+    )
+    player_state = Field(
+        description="The status of the player",
+        example=0
     )
 
 

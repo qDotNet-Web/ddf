@@ -2,7 +2,7 @@ from uuid import uuid4
 import random
 import string
 
-__all__ = ("get_uuid",)
+__all__ = ("get_uuid", "get_lobby_id")
 
 
 def get_uuid() -> str:

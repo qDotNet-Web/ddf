@@ -23,6 +23,16 @@ const router = createRouter({
       component: WaitingLobbyComponent,
       props: true
     },
+    {
+      path: '/:pathMatch(.*)*',
+      redirect: to => {
+        // Get the string behind the '/'
+        const param = to.path.split('/')[1];
+  
+        // Redirect to home page with the string as a param
+        return { path: '/', query: { lobby_id: param } };
+      },
+    },
   ]
 })
 

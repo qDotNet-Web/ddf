@@ -10,7 +10,7 @@ function getGame(){
     return getGameStore().getGame();
 }
 
-async function createPlayer(name, avatar_id, lives){
+async function createPlayer(name, avatar_id, lives, self){
     let playerResponse = await fetch('http://localhost:8000/player/create_player', {
         method: 'POST',
         headers: {
@@ -21,7 +21,8 @@ async function createPlayer(name, avatar_id, lives){
 
     if (playerResponse.ok) {
         const playerData = await playerResponse.json();
-        player = new Player(playerData.player_id, name, avatar_id, lives, true, true);
+        player = new Player(playerData.player_id, name, avatar_id, lives, self);
+        Cookies.set('playerData', JSON.stringify(player.toArray()));
         return true;
     } else {    
         return false;
@@ -31,7 +32,7 @@ async function createPlayer(name, avatar_id, lives){
 async function createLobby(options, avatar_id){
     let gameOptions = options;
     // wait for player to be created
-    await createPlayer(gameOptions.owner_name, avatar_id, gameOptions.lives_per_player);
+    await createPlayer(gameOptions.owner_name, avatar_id, gameOptions.lives_per_player, true);
     // set owner id to player id
     gameOptions['owner_id'] = player.getId();
 
@@ -47,67 +48,53 @@ async function createLobby(options, avatar_id){
             gameOptions['code'] = data.code;
             let players = [];
             players.push(player);
-            let gameType = gameOptions.text_based ? GameType.TEXT : GameType.VOICE;
-            let gameObj = new Game(gameOptions.code, gameOptions.round_timer, players, gameType);
+            let gameType = gameOptions.game_type
+            let gameObj = new Game(gameOptions.code, gameOptions.round_timer, players, gameType, player.getId());
 
             const gameStore = getGameStore();
             gameStore.setGame(gameObj);
             Cookies.set('game', JSON.stringify(getGame().toArray()));
-
             return true;
         });
 }
 
 
-async function joinLobby(lobbyCode, playerName){
+async function joinLobby(lobbyCode, playerName, savedPlayerData){
     try {
-        const response = await fetch(`http://localhost:8000/lobby/join_code/${lobbyCode}?player_name=${playerName}`, {
-            method: 'POST',
-            headers: {
-                'accept': 'application/json',
-            },
-        });
-
-        if (response.status == 404) {
-            console.clear();
-            return false;
+        // get lobby info
+        const info = await fetch(`http://localhost:8000/lobby/get_by_code/${lobbyCode}`);
+        const lobbyInfo = await info.json();
+        if (lobbyInfo.error) {
+            throw new Error(lobbyInfo.error);
         }
 
-        const data = await response.json();
-        let players = [];
-        let playerData = data.players;
-        for (let i = 0; i < playerData.length; i++) {
-            let player = new Player(playerData[i].id, playerData[i].name, playerData[i].avatar_id, data.lives_per_player, false, false);
-            players.push(player);
-        }
-        let gameType = data.text_based ? GameType.TEXT : GameType.VOICE;
-        let gameState = data.game_state;
-        
-        let gameObj = new Game(lobbyCode, data.round_timer, players, gameType);
-        gameObj.setGameState(gameState);
-        getGameStore().setGame(gameObj);
-        Cookies.set('game', JSON.stringify(getGame().toArray()));
-        return true;
 
 
 
 
+
+        let gameState = lobbyInfo.game_state;
+
+        return true, gameState;
     } catch(error) {
-        console.log(error);
+        console.clear();
         return false;
     }
 }
 
+// event handlers
+
 function playerJoined(id, name, avatar_id, lives, self){
-    player = new Player(id, name, avatar_id, lives, self);
+    let player = new Player(id, name, avatar_id, lives, self);
     getGame().addPlayer(player);
     console.log("player joined", getGame().players);
 }
 
 function playerLeft(id, new_owner_id){
-    player = getGame().players.find(player => player.id == id);
-    player.setPlayerState(PlayerState.DISCONNECTED);
-    player.setLobbyOwner(false);
+    let leftPlayer = getGame().players.find(player => player.id == id);
+    leftPlayer.setPlayerState(PlayerState.DISCONNECTED);
+    leftPlayer.setActive(false);
+    leftPlayer.setLobbyOwner(false);
     if (new_owner_id) {
         let newOwner = new_owner_id;
         getGame().players.find(player => player.id == newOwner).setLobbyOwner(true);
@@ -136,8 +123,12 @@ function votedForPlayer(votingPlayerId, votedPlayerId){
 
 function updateLobby(data){
     let game = getGame();
-    // 
+    for (const [key, value] of Object.entries(data)) {
+        
+    }
 }
+
+
 
 export const logic = {
     createLobby,
@@ -150,5 +141,5 @@ export const logic = {
     endedRound,
     votedForPlayer,
     getGame,
-    updateLobby
+    updateLobby,
 }

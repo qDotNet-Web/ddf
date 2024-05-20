@@ -1,5 +1,5 @@
 <style scoped>
-h2:hover {
+h2 span:hover {
   cursor: pointer;
   text-decoration: underline;
 }
@@ -11,12 +11,13 @@ h2:hover {
       <h1 style="margin-bottom: 0;">Wartelobby</h1>
       <hr style="width: 50%; color: var(--gray-400)">
       <h2 @click="copyLobbyCode">Lobby-ID: {{ lobby_code }} <i class="pi pi-copy" style="font-size: 30px;"></i></h2>
+
     </div>
     <!--<div id="playerList">
       <div v-for="(player, index) in players" :key="index" class="player fr-animate-2 fr-move-up fr-delay-3">
         <img :src="logo" class="avatar">
         <span class="player-name">
-          <span v-if="player.getIsOwner()" v-tooltip.top="'Spielbesitzer'"><i class="pi pi-crown"></i></span>
+          <span v-if="(player.getId() == lobby_owner)" v-tooltip.top="'Spielbesitzer'"><i class="pi pi-crown"></i></span>
           {{ player.getName() }}
           <span v-if="player.getIsSelf()">(Du)</span>
         </span>
@@ -49,10 +50,11 @@ h2:hover {
 </template>
 
 <script>
+import router from '@/router/index.js'
 import { computed } from 'vue';
-import { getGameStore } from "@/store.js";
-import Cookies from 'js-cookie';
-import { logic } from '@/logic/main.js';
+import {getGameStore} from "@/store.js";
+import {logic} from '@/logic/main.js';
+
 import logo from '@/assets/logo.png';
 import { notify, showDialog } from '@/main.js';
 
@@ -62,12 +64,17 @@ export default {
     const gameStore = getGameStore();
     const game = gameStore.getGame();
 
+    if (!game) {
+      router.push({path: '/'});
+    }
+
     const logoSrc = logo;
 
     return {
       players: computed(() => game.getPlayers()),
       lobby_code: computed(() => game.getLobbyCode()),
-      logo: logoSrc,
+      lobby_owner: computed(() => game.getLobbyOwner()),
+      logo: logoSrc
     };
   },
   data() {

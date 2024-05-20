@@ -28,3 +28,15 @@ async def create_player(player_create: PlayerCreate) -> PlayerRead:
         return await PlayerRepository.create_player(player_create)
     except Exception as e:
         raise HTTPException(status_code=404, detail=str(e))
+
+
+@router.get("/get_player/{player_id}",
+            response_model=PlayerRead,
+            description="Get a player by id",
+            tags=["player"])
+async def get_player(player_id: str):
+    try:
+        return await PlayerRepository.get(player_id)
+    except Exception as e:
+        raise HTTPException(status_code=404, detail=str(e))
+

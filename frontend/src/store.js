@@ -13,6 +13,9 @@ export const getGameStore = defineStore({
       this.game = null;
     },
     getGame() {
+      if (this.game.getLobbyCode() == 0){
+        return false;
+      }
       return this.game;
     }
   },

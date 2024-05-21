@@ -2,6 +2,8 @@ services:
   backend:
     build: ./backend
     restart: unless-stopped
+    expose:
+      - "8000"
     depends_on:
       - mongo
       #- redis

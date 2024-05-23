@@ -2,7 +2,7 @@ services:
   backend:
     build: ./backend
     restart: unless-stopped
-    ports: 
+    ports:
       - "8000:8000"
     #expose:
     #  - "8000"
@@ -60,7 +60,7 @@ services:
     depends_on:
       - backend
     ports:
-      - "80:80"
+        - "80:80"
     #labels:
     #    - "traefik.enable=true"
     #    - "traefik.http.routers.ddf_frontend.rule=Host(`derduemmstefliegt.online`)"

@@ -12,7 +12,7 @@ function getGame(){
 }
 
 async function createPlayer(name, avatar_id, lives, self){
-    let playerResponse = await fetch(location.protocol+'//localhost:8000/player/create_player', {
+    let playerResponse = await fetch(location.protocol+'//api.derduemmstefliegt.online/player/create_player', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -37,7 +37,7 @@ async function createLobby(options, avatar_id){
     // set owner id to player id
     gameOptions['owner_id'] = player.getId();
 
-    fetch(location.protocol+'//localhost:8000/lobby/create_lobby', {
+    fetch(location.protocol+'////api.derduemmstefliegt.online/lobby/create_lobby', {
         method: 'POST',
         headers: {
             'accept': 'application/json',
@@ -63,7 +63,7 @@ async function createLobby(options, avatar_id){
 async function joinLobby(lobbyCode, playerName, savedPlayerData){
     try {
         // get lobby info
-        const info = await fetch(location.protocol+`//localhost:8000/lobby/get_by_code/${lobbyCode}`);
+        const info = await fetch(location.protocol+`//api.derduemmstefliegt.online/lobby/get_by_code/${lobbyCode}`);
         const lobbyInfo = await info.json();
         if (lobbyInfo.error) {
             throw new Error(lobbyInfo.error);

@@ -2,19 +2,17 @@ services:
   backend:
     build: ./backend
     restart: unless-stopped
-    ports: 
-      - "8000:8000"
-    #expose:
-    #  - "8000"
+    expose:
+      - "8000"
     depends_on:
       - mongo
       #- redis
-    #labels:
-    #  - "traefik.enable=true"
-    #  - "traefik.http.routers.ddf_backend.rule=Host(`api.derduemmstefliegt.online`)"
-    #  - "traefik.http.routers.ddf_backend.entrypoints=https"
-    #  - "traefik.http.routers.ddf_backend.tls=true"
-    #  - "traefik.http.services.ddf_backend.loadbalancer.server.port=8000"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.ddf_backend.rule=Host(`api.derduemmstefliegt.online`)"
+      - "traefik.http.routers.ddf_backend.entrypoints=https"
+      - "traefik.http.routers.ddf_backend.tls=true"
+      - "traefik.http.services.ddf_backend.loadbalancer.server.port=8000"
     environment:
       - MONGODB_URL=mongodb://admin:password@mongo:27017/ddf_db?authSource=admin
       #- REDIS_HOST=redis
@@ -29,8 +27,8 @@ services:
   mongo:
     image: mongo:latest
     restart: unless-stopped
-    #labels:
-    #  - "traefik.enable=false"
+    labels:
+      - "traefik.enable=false"
     ports:
       - "27017:27017"
     environment:
@@ -59,14 +57,12 @@ services:
     restart: unless-stopped
     depends_on:
       - backend
-    ports:
-      - "80:80"
-    #labels:
-    #    - "traefik.enable=true"
-    #    - "traefik.http.routers.ddf_frontend.rule=Host(`derduemmstefliegt.online`)"
-    #    - "traefik.http.routers.ddf_frontend.entrypoints=https"
-    #    - "traefik.http.routers.ddf_frontend.tls=true"
-    #    - "traefik.http.services.ddf_frontend.loadbalancer.server.port=80"
+    labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.ddf_frontend.rule=Host(`derduemmstefliegt.online`)"
+        - "traefik.http.routers.ddf_frontend.entrypoints=https"
+        - "traefik.http.routers.ddf_frontend.tls=true"
+        - "traefik.http.services.ddf_frontend.loadbalancer.server.port=80"
     networks:
       - ddf
 
@@ -76,5 +72,5 @@ volumes:
 
 networks:
   ddf:
-    #external: true
-    driver: bridge
+    external: true
+    #driver: bridge

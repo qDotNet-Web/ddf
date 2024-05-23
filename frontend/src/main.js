@@ -24,6 +24,7 @@ import Dialog from 'primevue/dialog'
 import DialogService from 'primevue/dialogservice'
 import AnimateOnScroll from 'primevue/animateonscroll'
 import BadgeDirective from "primevue/badgedirective"
+import Badge from 'primevue/badge'
 import Ripple from 'primevue/ripple'
 import StyleClass from 'primevue/styleclass'
 import FocusTrap from 'primevue/focustrap'
@@ -59,6 +60,7 @@ app.component('FloatLabel', FloatLabel)
 app.component('SelectButton', SelectButton)
 app.component('Card', Card)
 app.component('Dialog', Dialog)
+app.component('Badge', Badge)
 
 app.directive('tooltip', Tooltip)
 

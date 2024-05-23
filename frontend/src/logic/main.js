@@ -6,17 +6,18 @@ import Cookies from 'js-cookie';
 import { sendWsMessage } from '@/logic/websocket.js';
 let player;
 
+
 function getGame(){
     return getGameStore().getGame();
 }
 
 async function createPlayer(name, avatar_id, lives, self){
-    let playerResponse = await fetch('http://localhost:8000/player/create_player', {
+    let playerResponse = await fetch(location.protocol+'//localhost:8000/player/create_player', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({name: name, avatar_id: avatar_id})
+        body: JSON.stringify({player_name: name, avatar_id: avatar_id, player_state: PlayerState.WAITING, lives: lives})
     });
 
     if (playerResponse.ok) {
@@ -36,7 +37,7 @@ async function createLobby(options, avatar_id){
     // set owner id to player id
     gameOptions['owner_id'] = player.getId();
 
-    fetch('http://localhost:8000/lobby/create_lobby', {
+    fetch(location.protocol+'//localhost:8000/lobby/create_lobby', {
         method: 'POST',
         headers: {
             'accept': 'application/json',
@@ -62,14 +63,22 @@ async function createLobby(options, avatar_id){
 async function joinLobby(lobbyCode, playerName, savedPlayerData){
     try {
         // get lobby info
-        const info = await fetch(`http://localhost:8000/lobby/get_by_code/${lobbyCode}`);
+        const info = await fetch(location.protocol+`//localhost:8000/lobby/get_by_code/${lobbyCode}`);
         const lobbyInfo = await info.json();
         if (lobbyInfo.error) {
             throw new Error(lobbyInfo.error);
         }
 
+        let lobbyState = lobbyInfo.lobby_state;
+        if (lobbyState == GameState.WAITING) {
+            if (!savedPlayerData) {
+                // create player
+                await createPlayer(playerName, 0, lobbyInfo.lives_per_player, false);
 
-
+            }
+        }
+        
+        // TODO
 
 
 

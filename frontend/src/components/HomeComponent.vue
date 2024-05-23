@@ -15,10 +15,10 @@
         <img src="@/assets/logo.png" alt="Logo" id="main_logo" class="icon mb-4 transition-05">
         <h1 class="dff-h1 mb-4 transition-05">Der Dümmste fliegt!</h1>
         <div class="d-flex justify-content-center gap-5 homeActions">
-            <button class="btn btn-main-new fr-animate fr-move-up fr-delay-3" id="startButton" data-bs-toggle="modal"
-                data-bs-target="#createLobbyModal" @click="modalCreate_visible = true">Erstellen</button>
-            <button class="btn btn-main-new fr-animate fr-move-up fr-delay-5" data-bs-toggle="modal"
-                data-bs-target="#joinLobbyModal" @click="modalJoin_visible = true">Beitreten</button>
+            <button class="btn btn-main-new fr-animate fr-move-up fr-delay-3" id="startButton"
+                @click="modalCreate_visible = true">Erstellen</button>
+            <button class="btn btn-main-new fr-animate fr-move-up fr-delay-5"
+                @click="modalJoin_visible = true">Beitreten</button>
         </div>
         <!-- Modal 2 -->
         <div class="modal fade" id="anleitungsModal" tabindex="-1" aria-labelledby="anleitungsModalLabel"
@@ -27,14 +27,14 @@
                 <div class="modal-content bg-dark text-light">
                     <div class="modal-header">
                         <h5 class="modal-title" id="anleitungsModalLabel">Wie wird gespielt?</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <p>Das Spiel besteht aus 3 Runden. In jeder Runde wird eine Frage gestellt, die von den
                             Spielern beantwortet werden muss...</p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-modal" data-bs-dismiss="modal">Schließen</button>
+                        <button type="button" class="btn btn-modal">Schließen</button>
                     </div>
                 </div>
             </div>
@@ -68,14 +68,14 @@
                         </FloatLabel>
                     </div>
                     <div class="inline-flex flex-column gap-2 mb-3">
-                        <label for="ip_roundLength" class="mb-3">Rundenlänge: {{ ip_roundLength }} min <i style="font-size: 14px;" class="pi pi-clock"></i></label>
                         <Slider name="ip_roundLength" id="ip_roundLength" v-model="ip_roundLength" class="w-full mb-3"
-                            :min="1" :max="10" />
+                        :min="1" :max="10" />
+                        <label for="ip_roundLength" class="mb-3">Rundenlänge: {{ ip_roundLength }} min <i style="font-size: 14px;" class="pi pi-clock"></i></label>
                     </div>
                     <div class="inline-flex flex-column gap-2 mb-3">
-                        <label for="ip_playerLives" class="mb-3">Spielerleben: {{ ip_playerLives }} <i style="font-size: 14px;" class="pi pi-heart-fill"></i></label>
                         <Slider name="ip_playerLives" id="ip_playerLives" v-model="ip_playerLives" class="w-full mb-3"
-                            :min="1" :max="10" />
+                        :min="1" :max="10" />
+                        <label for="ip_playerLives" class="mb-3">Spielerleben: {{ ip_playerLives }} <i style="font-size: 14px;" class="pi pi-heart-fill"></i></label>
                     </div>
                     <div class="inline-flex flex-column gap-2 mb-3">
                         <div class="input-switch mb-3">
@@ -84,7 +84,7 @@
                         </div>
                     </div>
                     <div class="flex align-items-center gap-3" style="display: flex;">
-                        <button type="button" class="btn btn-main-new btn-modal-new" data-bs-dismiss="modal"
+                        <button type="button" class="btn btn-main-new btn-modal-new" id="createLobbyModalClose"
                             @click="closeCallback">Schließen</button>
                         <button type="button" id="createLobbyButton" class="btn btn-main-new btn-modal-new"
                             @click="createLobby()">Starten</button>
@@ -126,7 +126,7 @@
                         </FloatLabel>
                     </div>
                     <div class="flex align-items-center gap-3" style="display: flex;">
-                        <button type="button" class="btn btn-main-new btn-modal-new" data-bs-dismiss="modal"
+                        <button type="button" id="joinLobbyModalClose" class="btn btn-main-new btn-modal-new"
                             @click="closeCallback">Schließen</button>
                         <button type="button" class="btn btn-main-new btn-modal-new"
                             @click="joinLobby()">Beitreten</button>
@@ -135,8 +135,13 @@
             </template>
         </Dialog>
 
-        <!-- Footer -->
     </div>
+    <!-- Footer -->
+            <footer class="mt-auto mb-4 text-center fw-bold">
+              © 2024 <br>
+              qdotnet.de <br>
+              └ <router-link to="/impressum" class="custom-link">Impressum</router-link> ┘
+          </footer>
 </template>
 
 
@@ -277,9 +282,8 @@ export default {
                 return;
             }
 
-            let modalElement = document.getElementById('joinLobbyModal');
-            let closeButton = modalElement.querySelector('[data-bs-dismiss="modal"]');
-            closeButton.click();
+            let joinLobbyModalClose = document.getElementById('joinLobbyModalClose');
+            joinLobbyModalClose.click();
 
             toggleLoadingScreen(true);
 
@@ -304,10 +308,10 @@ export default {
                 notify("error", "Fehler", "Bitte gib einen gültigen Namen ein.");
                 return;
             }
-
-            let modalElement = document.getElementById('createLobbyModal');
-            let closeButton = modalElement.querySelector('[data-bs-dismiss="modal"]');
+            // close modal
+            let closeButton = document.getElementById('createLobbyModalClose');
             closeButton.click();
+
 
             let roundLength = parseInt(ip_roundLength.value);
             let playerLives = parseInt(ip_playerLives.value);

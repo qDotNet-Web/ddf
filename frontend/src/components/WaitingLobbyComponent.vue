@@ -1,7 +1,23 @@
 <style scoped>
-h2 span:hover {
+h2 i{
+  transition: 0.5s;
+}
+h2 i:hover {
   cursor: pointer;
-  text-decoration: underline;
+  color: rgb(0, 68, 255);
+}
+#editAvatar:hover {
+    padding: .5em;
+    color: #57f1f7;
+}
+#editAvatar {
+    position: absolute;
+    padding: .4em;
+    background-color: #393939;
+    border-radius: 50%;
+    right: 2.5em;
+    top: 5.3em;
+    transition: 0.3s;
 }
 </style>
 
@@ -10,7 +26,7 @@ h2 span:hover {
     <div class="heading center mb-4 is-header-waitingLobby">
       <h1 style="margin-bottom: 0;">Wartelobby</h1>
       <hr style="width: 50%; color: var(--gray-400)">
-      <h2 @click="copyLobbyCode">Lobby-ID: {{ lobby_code }} <i class="pi pi-copy" style="font-size: 30px;"></i></h2>
+      <h2>ID: {{ lobby_code }} <i @click="copyLobbyCode" class="pi pi-copy" style="font-size: 30px;"></i></h2>
 
     </div>
     <!--<div id="playerList">
@@ -24,15 +40,29 @@ h2 span:hover {
         <div class="player-status">Bereit</div>
       </div>
     </div> -->
+    <Dialog :visible.sync="showDialog" :modal="true" :style="{width: '50vw'}">
+    <div class="p-grid">
+      <div class="p-col-4" v-for="(avatar, index) in avatars" :key="index">
+        <Card>
+          <template #content>
+            <img :src="avatar.src" @click="selectAvatar(avatar)" style="width: 100%; cursor: pointer;" />
+          </template>
+        </Card>
+      </div>
+    </div>
+  </Dialog>
+
     <div id="playerList" class="mb-5">
-    
         <Card v-for="(player, index) in players" :key="index" stlye="overflow: hidden" class="fr-animate-2 fr-move-up fr-delay-3">
           <template #header>
+            <div class="avatar-container">
             <img :src="logo" class="avatar">
+            <i class="pi pi-pencil" id="editAvatar" @click="showDialog = true"></i>
+          </div>
           </template>
           <template #title>
             <hr>
-            <span v-if="player.getIsOwner()" v-tooltip.top="'Spielbesitzer'"><i class="pi pi-crown" style="font-size: 30px;"></i></span>
+            <span v-if="player.getId() == lobby_owner" v-tooltip.top="'Spielbesitzer'"><i class="pi pi-crown" style="font-size: 30px;"></i></span>
           </template>
           <template #subtitle>
             {{ player.getName() }}
@@ -78,7 +108,15 @@ export default {
     };
   },
   data() {
-    return {}
+    return {
+      showDialog: false,
+      selectedAvatar: null,
+      avatars: [
+        { src: logo },
+        { src: logo },
+        // ...
+      ],
+    }
   },
   methods: {
     animateElement() {
@@ -90,7 +128,12 @@ export default {
       let lobby_code = this.lobby_code;
       navigator.clipboard.writeText(lobby_code);
       notify('success', 'Lobby-ID kopiert', 'Die Lobby-ID wurde in die Zwischenablage kopiert.');
-    }
+    },
+    selectAvatar(avatar) {
+      this.selectedAvatar = avatar;
+      this.showDialog = false;
+      console.log(avatar)
+    },
   },
   mounted() {
     setTimeout(() => {

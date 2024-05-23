@@ -10,7 +10,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.ddf_backend.rule=Host(`api.derduemmstefliegt.online`)"
-      - "traefik.http.routers.ddf_backend.entrypoints=https"
+      - "traefik.http.routers.ddf_backend.entrypoints=http"
       - "traefik.http.routers.ddf_backend.tls=true"
       - "traefik.http.services.ddf_backend.loadbalancer.server.port=8000"
     environment:

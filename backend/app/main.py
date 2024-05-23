@@ -16,19 +16,8 @@ origins = [
 ]
 
 
-@app.middleware("http")
-async def handle_options(request: Request, call_next):
-    if request.method == 'OPTIONS':
-        response = Response(status_code=204)
-        response.headers['Access-Control-Allow-Origin'] = ', '.join(origins)
-        response.headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE, OPTIONS'
-        response.headers['Access-Control-Allow-Headers'] = 'Authorization, Content-Type'
-        response.headers['Access-Control-Allow-Credentials'] = 'true'
-        return response
-    return await call_next(request)
-
 app.middleware("http")(request_handler)
-app.add_middleware(CORSMiddleware, allow_origins=origins, allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
+app.add_middleware(CORSMiddleware, allow_origins='*', allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
 app.include_router(lobby_router.router, prefix="/lobby")
 app.include_router(player_router.router, prefix="/player")
 app.include_router(question_router.router, prefix="/question")

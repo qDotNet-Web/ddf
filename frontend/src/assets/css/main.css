@@ -362,7 +362,40 @@ footer{
     height: 6rem;
     width: 6rem;
     margin-top: 1rem;
+    padding: 0.5rem;
 }
+
+.avatar.blur {
+    filter: blur(2px) brightness(0.5);
+
+  }
+
+.avatar-container {
+    position: relative;
+  }
+
+.avatar.blur:hover {
+    cursor: pointer;
+}
+
+.select-avatar-container .avatar:hover {
+    cursor: pointer;
+}
+  
+  .editAvatar {
+    margin-top: 0.5rem;
+    margin-left: 0.25rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    filter: none;
+    font-size: 2rem;
+  }
+
+  .editAvatar:hover {
+    cursor: pointer;
+  }
 
 .iconBox {
     border-radius: 50%;

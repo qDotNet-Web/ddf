@@ -40,25 +40,20 @@ h2 i:hover {
         <div class="player-status">Bereit</div>
       </div>
     </div> -->
-    <Dialog :visible.sync="showDialog" :modal="true" :style="{width: '50vw'}">
-    <div class="p-grid">
-      <div class="p-col-4" v-for="(avatar, index) in avatars" :key="index">
-        <Card>
-          <template #content>
-            <img :src="avatar.src" @click="selectAvatar(avatar)" style="width: 100%; cursor: pointer;" />
-          </template>
-        </Card>
-      </div>
+    <Dialog v-model:visible="showDialog" modal header="Avatar auswählen" :style="{width: '35rem'}">
+    <div class="select-avatar-container">
+      <img v-for="(avatar, index) in avatars" :key="index" :src="avatar.src" class="avatar" @click="selectAvatar(index)">
     </div>
+
   </Dialog>
 
     <div id="playerList" class="mb-5">
         <Card v-for="(player, index) in players" :key="index" stlye="overflow: hidden" class="fr-animate-2 fr-move-up fr-delay-3">
           <template #header>
-            <div class="avatar-container">
-            <img :src="logo" class="avatar">
-            <i class="pi pi-pencil" id="editAvatar" @click="showDialog = true"></i>
-          </div>
+            <div class="avatar-container" @mouseover="showEditIcon = player.getIsSelf()" @mouseleave="showEditIcon = false">
+              <img :src="logo" :class="{'blur': showEditIcon}" class="avatar" @click="showDialog = player.getIsSelf()">
+              <i class="pi pi-user-edit editAvatar" v-if="showEditIcon" @click="showDialog = true"></i>
+            </div>
           </template>
           <template #title>
             <hr>
@@ -73,9 +68,11 @@ h2 i:hover {
             <div class="player-status" style="font-size: 18px;">Bereit</div>
           </template>
         </Card>
- 
+        
     </div>
-
+    <div class="center">
+      <Button class="btn btn-main-new" @click="startGame">Spiel starten</Button>
+      </div>
   </div>
 </template>
 
@@ -111,7 +108,26 @@ export default {
     return {
       showDialog: false,
       selectedAvatar: null,
+      showEditIcon: false,
       avatars: [
+        { src: logo },
+        { src: logo },
+        { src: logo },
+        { src: logo },
+        { src: logo },
+        { src: logo },
+        { src: logo },
+        { src: logo },
+        { src: logo },
+        { src: logo },
+        { src: logo },
+        { src: logo },
+        { src: logo },
+        { src: logo },
+        { src: logo },
+        { src: logo },
+        { src: logo },
+        { src: logo },
         { src: logo },
         { src: logo },
         // ...
@@ -130,10 +146,16 @@ export default {
       notify('success', 'Lobby-ID kopiert', 'Die Lobby-ID wurde in die Zwischenablage kopiert.');
     },
     selectAvatar(avatar) {
-      this.selectedAvatar = avatar;
       this.showDialog = false;
       console.log(avatar)
     },
+    startGame() {
+      if (this.players.length < 2) {
+        notify('error', 'Spiel kann nicht gestartet werden', 'Es müssen mindestens 2 Spieler in der Lobby sein.');
+        return;
+      }
+      logic.startGame();
+    }
   },
   mounted() {
     setTimeout(() => {

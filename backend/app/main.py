@@ -7,14 +7,13 @@ from .core.utils import sio
 from socketio import ASGIApp
 
 app = FastAPI()
-app.mount("/ws", ASGIApp(socketio_server=sio))
 
 origins = [
     "https://derduemmstefliegt.online",
     "http://derduemmstefliegt.online",
-    "https://localhost",
-    "http://localhost",
-]
+    ]
+
+app.mount("/ws", ASGIApp(socketio_server=sio, cors_allowed_origins=origins))
 
 
 app.middleware("http")(request_handler)

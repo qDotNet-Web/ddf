@@ -337,11 +337,6 @@ export default {
 
             let delay = new Promise(resolve => setTimeout(resolve, 2000));
             let [created] = await Promise.all([logic.createLobby(gameOptions, ownerAvatarId), delay]);
-            if (!created) {
-                notify("error", "Fehler", "Die Lobby konnte nicht erstellt werden.");
-                toggleLoadingScreen(false);
-                return;
-            }
             toggleLoadingScreen(false);
             router.push("/waitingLobby");
         }

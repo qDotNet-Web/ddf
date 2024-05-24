@@ -114,7 +114,8 @@ import { io } from "socket.io-client";
 let socket = null;
 
 function connect(){
-    socket = io("https://localhost:8000/ws");
+    console.log("connecting...")
+    socket = io("https://api.derduemmstefliegt.online");
     socket.on('connect', () => {
         console.log('connected to server');
         socket.emit('message', 'Hello, Server!');

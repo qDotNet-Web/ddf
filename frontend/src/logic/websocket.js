@@ -1,31 +1,21 @@
-let ws;
-let wsConnected;
 import {logic} from './main.js';
-function connectWebSocket(lobbyId){
-    ws = new WebSocket('ws://localhost:8000/ws/'+ lobbyId);
-    wsConnected = new Promise((resolve) => {
-        ws.onopen = () => {
-            resolve();
-        }
-        ws.onmessage = (event) => {
-            const {data} = event;
-            receive(data);
-        }
-    });
+import { io } from "socket.io-client";
+
+let socket = null;
+
+
+// export function connect(){
+//     socket = io('http://localhost:3000/ws');
+//     socket.on('connect', () => {
+//         console.log('connected to server');
+//     });
+// }
+
+export function emitEvent(event, data){
+    socket.emit(event, data);
 }
 
-export async function sendWsMessage(action, data) {
-    await wsConnected;
-    const msg = {action, data};
-    ws.send(JSON.stringify(msg));
-}
-
-function receive(type, data){
-    switch (type) {
-        case "updateLobby":
-            logic.updateLobby(data);
-            return;
-        default:
-            return;
-    }
+export function disconnect(){
+    socket.disconnect();
+    socket = null;
 }

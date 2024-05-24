@@ -1,23 +1,28 @@
-from fastapi import FastAPI, Request, Response
+from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
-
 from .core.database import db
 from .core.middleware import request_handler
 from .router import lobby_router, player_router, question_router
-
+from .core.utils import sio
+from socketio import ASGIApp
 
 app = FastAPI()
 
 origins = [
     "https://derduemmstefliegt.online",
     "http://derduemmstefliegt.online",
-    "https://localhost",
-    "http://localhost",
-]
+    ]
 
+app.mount("/ws", ASGIApp(socketio_server=sio))
+
+
+@sio.on('message')
+async def handle_message(sid, data):
+    print("Socket ID: ", sid)
+    print("Data received: ", data)
 
 app.middleware("http")(request_handler)
-app.add_middleware(CORSMiddleware, allow_origins='*', allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
+app.add_middleware(CORSMiddleware, allow_origins=origins, allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
 app.include_router(lobby_router.router, prefix="/lobby")
 app.include_router(player_router.router, prefix="/player")
 app.include_router(question_router.router, prefix="/question")

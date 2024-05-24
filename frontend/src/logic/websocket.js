@@ -1,31 +1,44 @@
-let ws;
-let wsConnected;
+const { io } = require("socket.io-client");
 import {logic} from './main.js';
-function connectWebSocket(lobbyId){
-    ws = new WebSocket('ws://localhost:8000/ws/'+ lobbyId);
-    wsConnected = new Promise((resolve) => {
-        ws.onopen = () => {
-            resolve();
-        }
-        ws.onmessage = (event) => {
-            const {data} = event;
-            receive(data);
-        }
+
+let socket = null;
+
+export function connectToSocket(){
+    socket = io("http://localhost:3000");
+    socket.on("connect", () => {
+        console.log("connected to server");
+    });
+    socket.on("lobby", (data) => {
+        logic.updateLobby(data);
+    });
+    socket.on("player_joined", (data) => {
+        logic.playerJoined(data.id, data.name, data.avatar_id, data.lives, data.self);
+    });
+    socket.on("player_left", (data) => {
+        logic.playerLeft(data.id, data.new_owner_id);
+    });
+    socket.on("game_started", () => {
+        logic.startedGame();
+    });
+    socket.on("game_ended", () => {
+        logic.endedGame();
+    });
+    socket.on("round_started", () => {
+        logic.startedRound();
+    });
+    socket.on("round_ended", () => {
+        logic.endedRound();
+    });
+    socket.on("player_voted", (data) => {
+        logic.votedForPlayer(data.votingPlayerId, data.votedPlayerId);
     });
 }
 
-export async function sendWsMessage(action, data) {
-    await wsConnected;
-    const msg = {action, data};
-    ws.send(JSON.stringify(msg));
+export function emitEvent(event, data){
+    socket.emit(event, data);
 }
 
-function receive(type, data){
-    switch (type) {
-        case "updateLobby":
-            logic.updateLobby(data);
-            return;
-        default:
-            return;
-    }
+export function disconnect(){
+    socket.disconnect();
+    socket = null;
 }

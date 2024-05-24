@@ -19,7 +19,7 @@ origins = [
 
 
 app.middleware("http")(request_handler)
-app.add_middleware(CORSMiddleware, allow_origins='*', allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
+app.add_middleware(CORSMiddleware, allow_origins=origins, allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
 app.include_router(lobby_router.router, prefix="/lobby")
 app.include_router(player_router.router, prefix="/player")
 app.include_router(question_router.router, prefix="/question")

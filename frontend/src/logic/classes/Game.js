@@ -114,12 +114,8 @@ export class Game {
     endGame() {
         this.pauseRoundTimer();
         // send frontend message that round is over
-        for (let i = 0; i < this.players.length; i++) {
-            if (this.players[i].getIsOwner()) {
-                // Send message to owner that round is over
-                return;
-            }
-        }
+        this.gameState = GameState.FINISHED;
+
     }
 
     pauseRoundTimer(currentTime){

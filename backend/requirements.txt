@@ -2,6 +2,6 @@ fastapi==0.111.0
 motor==3.4.0
 pydantic==2.7.1
 pydantic_settings==2.2.1
-redis==5.0.4
 starlette==0.37.2
+python-socketio==5.4.0
 uvicorn==0.29.0

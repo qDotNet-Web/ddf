@@ -149,7 +149,7 @@
 import { useRouter, useRoute } from 'vue-router';
 import router from '@/router/index.js';
 import { reactive, ref } from 'vue';
-import Cookies from 'js-cookie';
+import {Cookies} from '@/logic/obfuscation.js';
 import { logic } from '@/logic/main.js';
 import {notify, showDialog} from '@/main.js';
 import { GameState } from '@/logic/classes/Enums';
@@ -197,7 +197,7 @@ export default {
             let gameOptionsObj = JSON.parse(gameCookies);
             let lobbyCode = gameOptionsObj.lobby_code;
             // get if lobby is still active
-            fetch(`http://localhost:8000/lobby/get_by_code/${lobbyCode}`, {
+            fetch(`https://api.derduemmstefliegt.online/lobby/get_by_code/${lobbyCode}`, {
                 method: 'GET',
                 headers: {
                     'accept': 'application/json'
@@ -337,6 +337,11 @@ export default {
 
             let delay = new Promise(resolve => setTimeout(resolve, 2000));
             let [created] = await Promise.all([logic.createLobby(gameOptions, ownerAvatarId), delay]);
+            if (!created) {
+                notify("error", "Fehler", "Die Lobby konnte nicht erstellt werden.");
+                toggleLoadingScreen(false);
+                return;
+            }
             toggleLoadingScreen(false);
             router.push("/waitingLobby");
         }

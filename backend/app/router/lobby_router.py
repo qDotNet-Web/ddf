@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException
 from ..crud.game_repo import GameRepository
 from ..models.game_model import LobbyRead, LobbyCreate, LobbyUpdate
 from ..crud.lobby_repo import lobby_manager
-from ..main import sio
+from ..core.utils import sio
 from typing import List
 
 

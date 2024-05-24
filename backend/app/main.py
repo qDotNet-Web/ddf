@@ -1,14 +1,13 @@
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
-import socketio
 from .core.database import db
 from .core.middleware import request_handler
 from .router import lobby_router, player_router, question_router
-
+from .core.utils import sio
+from socketio import ASGIApp
 
 app = FastAPI()
-sio = socketio.AsyncServer(async_mode='asgi')
-app.mount("/ws", socketio.ASGIApp(sio, app=app))
+app.mount("/ws", ASGIApp(socketio_server=sio))
 
 origins = [
     "https://derduemmstefliegt.online",

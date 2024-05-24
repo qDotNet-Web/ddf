@@ -1,7 +1,8 @@
 from typing import List, Dict
-from ..main import sio
+from ..core.utils import sio
 from ..crud.game_repo import GameRepository
 import json
+
 
 class LobbyManager:
     def __init__(self):

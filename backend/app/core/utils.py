@@ -1,8 +1,11 @@
 from uuid import uuid4
 import random
 import string
+import socketio
 
 __all__ = ("get_uuid", "get_lobby_id")
+
+sio = socketio.AsyncServer(async_mode='asgi')
 
 
 def get_uuid() -> str:

@@ -16,6 +16,11 @@ origins = [
 app.mount("/ws", ASGIApp(socketio_server=sio))
 
 
+@sio.on('message')
+async def handle_message(sid, data):
+    print("Socket ID: ", sid)
+    print("Data received: ", data)
+
 app.middleware("http")(request_handler)
 app.add_middleware(CORSMiddleware, allow_origins=origins, allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
 app.include_router(lobby_router.router, prefix="/lobby")

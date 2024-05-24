@@ -107,3 +107,18 @@ window.addEventListener('beforeunload', function (e) {
     e.returnValue = '';
   }
 });
+
+
+import { io } from "socket.io-client";
+
+let socket = null;
+
+function connect(){
+    socket = io("https://localhost:8000/ws");
+    socket.on('connect', () => {
+        console.log('connected to server');
+        socket.emit('message', 'Hello, Server!');
+    });
+}
+
+setTimeout(connect, 1000);

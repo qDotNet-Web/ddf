@@ -4,7 +4,6 @@ import {Player} from '@/logic/classes/Player.js'
 import {getGameStore} from "@/store.js";
 import {Cookies} from '@/logic/obfuscation.js';
 import { encrypt, cleartext } from '@/logic/obfuscation.js';
-import { sendWsMessage } from '@/logic/websocket.js';
 let player;
 
 

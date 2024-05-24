@@ -5,7 +5,7 @@ import socketio
 
 __all__ = ("get_uuid", "get_lobby_id")
 
-sio = socketio.AsyncServer(async_mode='asgi')
+sio = socketio.AsyncServer(async_mode='asgi', cors_allowed_origins='https://api.derduemmstefliegt.online')
 
 
 def get_uuid() -> str:

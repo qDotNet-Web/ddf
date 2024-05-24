@@ -13,7 +13,7 @@ origins = [
     "http://derduemmstefliegt.online",
     ]
 
-app.mount("/ws", ASGIApp(socketio_server=sio, cors_allowed_origins=origins))
+app.mount("/ws", ASGIApp(socketio_server=sio))
 
 
 app.middleware("http")(request_handler)

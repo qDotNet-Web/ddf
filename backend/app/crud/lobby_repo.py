@@ -50,4 +50,5 @@ class LobbyManager:
         """
         await sio.emit('message', message, room=lobby_id)
 
+
 lobby_manager = LobbyManager()

@@ -26,7 +26,7 @@ async def list_lobbies():
             tags=["lobby"])
 async def list_active_lobbies():
     try:
-        return await lobby_manager.get_active_lobbies()
+        return await GameRepository.list_active_lobbies()
     except Exception as e:
         raise HTTPException(status_code=404, detail=str(e))
 
@@ -37,7 +37,6 @@ async def list_active_lobbies():
              tags=["lobby"])
 async def create_lobby(lobby_id: str, lobby_data: LobbyCreate):
     try:
-        await lobby_manager.create_lobby(lobby_id, lobby_data)
         return await GameRepository.create(lobby_data)
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
@@ -71,7 +70,6 @@ async def get_lobby_by_code(code: str):
              tags=["lobby"])
 async def add_player_to_lobby_by_id(lobby_id: str, player_id: str, player_name: str):
     try:
-        await lobby_manager.create_player(player_name, player_id, lobby_id)
         return await GameRepository.add_player_to_lobby_by_id(lobby_id, player_id)
     except Exception as e:
         raise HTTPException(status_code=404, detail=str(e))
@@ -83,8 +81,6 @@ async def add_player_to_lobby_by_id(lobby_id: str, player_id: str, player_name: 
              tags=["lobby"])
 async def add_player_to_lobby_by_code(code: str, player_id: str, player_name: str):
     try:
-        lobby = await GameRepository.get_by_code(code)
-        await lobby_manager.create_player(player_name, player_id, lobby.id)
         return await GameRepository.add_player_to_lobby_by_code(code, player_id)
     except Exception as e:
         raise HTTPException(status_code=404, detail=str(e))

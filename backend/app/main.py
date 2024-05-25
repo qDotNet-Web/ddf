@@ -11,6 +11,7 @@ app = FastAPI()
 origins = [
     "https://derduemmstefliegt.online",
     "http://derduemmstefliegt.online",
+    "https://congenial-lamp-95ww4wp67x62q5v-80.app.github.dev",  # codespace leo
     ]
 
 app.mount("/ws", ASGIApp(socketio_server=sio))

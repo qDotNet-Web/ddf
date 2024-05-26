@@ -5,10 +5,16 @@ import socketio
 
 __all__ = ("get_uuid", "get_lobby_id")
 
-#sio = socketio.AsyncServer(async_mode='asgi', cors_allowed_origins='https://api.derduemmstefliegt.online')
+origins = [
+    "https://derduemmstefliegt.online",
+    "http://derduemmstefliegt.online",
+    "http://localhost",
+    "https://localhost",
+    ]
+
 sio = socketio.AsyncServer(
     async_mode='asgi',
-    cors_allowed_origins='*',
+    cors_allowed_origins=origins
 )
 
 

@@ -11,7 +11,23 @@ app = FastAPI()
 origins = [
     "https://derduemmstefliegt.online",
     "http://derduemmstefliegt.online",
+    "http://localhost",
+    "https://localhost",
     ]
+
+
+app.middleware("http")(request_handler)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"]
+)
+
+app.include_router(lobby_router.router, prefix="/lobby")
+app.include_router(player_router.router, prefix="/player")
+app.include_router(question_router.router, prefix="/question")
 
 app.mount("/ws", ASGIApp(socketio_server=sio))
 
@@ -20,12 +36,6 @@ app.mount("/ws", ASGIApp(socketio_server=sio))
 async def handle_message(sid, data):
     print("Socket ID: ", sid)
     print("Data received: ", data)
-
-app.middleware("http")(request_handler)
-app.add_middleware(CORSMiddleware, allow_origins='*', allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
-app.include_router(lobby_router.router, prefix="/lobby")
-app.include_router(player_router.router, prefix="/player")
-app.include_router(question_router.router, prefix="/question")
 
 
 @app.on_event("startup")

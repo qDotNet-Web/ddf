@@ -109,17 +109,17 @@ window.addEventListener('beforeunload', function (e) {
 });
 
 
-import { io } from "socket.io-client";
+// import { io } from "socket.io-client";
 
-let socket = null;
+// let socket = null;
 
-function connect(){
-    console.log("connecting...")
-    socket = io("https://api.derduemmstefliegt.online");
-    socket.on('connect', () => {
-        console.log('connected to server');
-        socket.emit('message', 'Hello, Server!');
-    });
-}
+// function connect(){
+//     console.log("connecting...")
+//     socket = io("https://api.derduemmstefliegt.online");
+//     socket.on('connect', () => {
+//         console.log('connected to server');
+//         socket.emit('message', 'Hello, Server!');
+//     });
+// }
 
-setTimeout(connect, 1000);
+// setTimeout(connect, 1000);

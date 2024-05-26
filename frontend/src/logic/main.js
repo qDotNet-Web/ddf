@@ -3,7 +3,6 @@ import {GameState, PlayerState, GameType} from '@/logic/classes/Enums.js'
 import {Player} from '@/logic/classes/Player.js'
 import {getGameStore} from "@/store.js";
 import {Cookies} from '@/logic/obfuscation.js';
-import { encrypt, cleartext } from '@/logic/obfuscation.js';
 let player;
 
 
@@ -15,6 +14,7 @@ async function createPlayer(name, avatar_id, lives, self){
     let playerResponse = await fetch('https://api.derduemmstefliegt.online/player/create_player', {
         method: 'POST',
         headers: {
+            'accept': 'application/json',
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({player_name: name, avatar_id: avatar_id, player_state: PlayerState.WAITING, lives: lives})

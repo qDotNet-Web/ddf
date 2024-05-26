@@ -29,7 +29,7 @@ app.include_router(lobby_router.router, prefix="/lobby")
 app.include_router(player_router.router, prefix="/player")
 app.include_router(question_router.router, prefix="/question")
 
-app.mount("/ws", ASGIApp(socketio_server=sio))
+app.mount("/ws", ASGIApp(socketio_server=sio, app=app))
 
 
 @sio.on('message')
